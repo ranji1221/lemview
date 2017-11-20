@@ -7,7 +7,7 @@
 					<span class="ctrTool">
 						<i class="icon-move"></i>
 				        <i class="icon-refresh" @click="refresh()"></i>
-				        <i class="icon-chevron-up" @click="card.slidetoggle=!card.slidetoggle"></i>
+				        <i class="icon-chevron-up" @click="card.slidetoggle=!card.slidetoggle" :class="{rotatetoggle:!card.slidetoggle}"></i>
 				        <i class="icon-remove" @click="card.remove=true"></i>
 					</span>
 				</div>
@@ -54,7 +54,8 @@
 		color:#333333;;	
 	}
 	.operable_card_body{
-		min-height:1.9rem;
+		/*min-height:1.9rem;*/
+		min-height:2.2rem;
 	}
 	.operable_card_foot{
 		height:0.5rem;
@@ -76,6 +77,12 @@
 	}
 	.ctrTool .icon-move {
   		color: #5ca2f7;
+	}
+	.ctrTool .icon-chevron-up{
+		transition:transform 0.2s;
+	}
+	.ctrTool .rotatetoggle{
+		transform:rotate(180deg);
 	}
 	.ctrTool .icon-refresh {
 	    color: #5bde93;
