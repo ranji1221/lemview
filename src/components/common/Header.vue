@@ -1,6 +1,4 @@
 <template>
-  <el-container>
-    <el-header>
       <el-row>
         <el-col :span="24">
           <el-col :span="15">
@@ -50,8 +48,6 @@
           </el-col>
         </el-col>
       </el-row>
-    </el-header>
-  </el-container>
 </template>
 <script>
 require("../../assets/style/index/index.css")

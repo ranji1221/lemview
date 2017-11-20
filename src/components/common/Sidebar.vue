@@ -1,5 +1,4 @@
 <template>
-
 <el-menu default-active="home" class="el-menu-vertical-demo" :router=true  @open="handleOpen" @close="handleClose" :collapse="isCollapse" :background-color="backgroundColor" :unique-opened=true >
   <!--用户信息-->
   <div class="user">
@@ -14,7 +13,6 @@
   <!--导航-->
 <!--  <div style="min-height:4.5rem;">-->
   <template v-for="item in navlist" v-if="item.pid==0" >
-  	
 	  <el-submenu :index="item.lid.toString()" key="item.lid">	
 	  	<template slot="title">
 	  		<div class="rightborder"></div>
