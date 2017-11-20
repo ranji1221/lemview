@@ -5,6 +5,8 @@
     overflow-x: hidden;
     overflow-y: auto;
     font-size: 0.14rem;
+    float:left;
+    width:100%;
 }
 .ajax_dom .el-row{
     width:100%;

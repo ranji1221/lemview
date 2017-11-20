@@ -1,13 +1,13 @@
 <template>
-  <div class="ajax_dom">
-    <home-heard></home-heard>
+ <el-main>
+ 	 	<home-heard></home-heard>
     <home-content></home-content>
-  </div>
+ </el-main>
 </template>
 
 <script>
-import HomeContent from "./Home_content/Home_content.vue"
-import HomeHeard from "./Home_heard/Home_heard.vue"
+import HomeContent from "./Home_card/Home_card.vue"
+import HomeHeard from "./Home_card/Home_operable_card.vue"
 require("../../../assets/default/style/index/Home.css")
 export default {
   components: {
