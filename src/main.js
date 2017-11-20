@@ -1,9 +1,9 @@
 import Vue from 'vue'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
-import Layout from './components/default/Layout.vue'
-import './assets/default/style/common/common.css'
-import './assets/default/style/fonts/iconfont.css'
+import Layout from './Layout.vue'
+import './assets/style/common/common.css'
+import './assets/style/fonts/iconfont.css'
 import 'element-ui/lib/theme-chalk/display.css'
 
 Vue.use(ElementUI)
