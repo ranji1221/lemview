@@ -1,6 +1,6 @@
 <template>
 	<el-row :gutter="24" class="home_cards" id="funcNav">
-		<el-col :xl="6" :lg="6" :md="12" :sm="24" v-for="(card, index) in cards" :key="index" class="func-item">
+		<el-col :xl="6" :lg="6" :md="12" :sm="12" xs="24" v-for="(card, index) in cards" :key="index" class="func-item">
 			<div class="grid-content bg-purple home_card" :class='card.bscolor' :style='{backgroundColor: card.bgcolor}'>
 				<div class="funcImg">
 					<img :src='card.thumb' class="signImg" alt="">
