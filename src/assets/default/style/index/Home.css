@@ -1,0 +1,14 @@
+.ajax_dom{
+    height:auto;
+    padding: 0.32rem 0.41rem;
+    background: rgb(241, 241, 241);
+    overflow-x: hidden;
+    overflow-y: auto;
+    font-size: 0.14rem;
+}
+.ajax_dom .el-row{
+    width:100%;
+}
+.ajax_dom .el-row .el-col{
+    height:1.5rem;
+}
