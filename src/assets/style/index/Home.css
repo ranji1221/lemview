@@ -1,16 +1,53 @@
-.ajax_dom{
-    height:auto;
-    /*padding: 0.32rem 0.41rem;*/
-    background: rgb(241, 241, 241);
-    overflow-x: hidden;
-    overflow-y: auto;
+.el-main{
     font-size: 0.14rem;
-    float:left;
-    width:100%;
+    background: rgb(241, 241, 241);
+    padding:0;
 }
-.ajax_dom .el-row{
+.el-main .home_cards{
     width:100%;
+    padding: 0.32rem 0.41rem;
 }
-.ajax_dom .el-row .el-col{
+.el-main .home_cards .el-col{
     height:1.5rem;
+    
+}
+.el-main .home_cards .home_card{
+    height:100%;
+    width:100%;
+    border-radius: 4px;
+    background-color:white;
+    padding: 15px;
+}
+.el-main .home_cards .home_card:hover{
+    background-image:url("../../images/index/navhover.png");
+    background-repeat: no-repeat;
+    background-size:cover;
+}
+.el-main .home_cards .home_card.pink{
+    box-shadow: 0.02rem 0.04rem 0.12rem 0 rgb(241, 111, 110);
+}
+.el-main .home_cards .home_card.blue{
+  box-shadow: 0.02rem 0.04rem 0.12rem 0 rgb(92, 162, 247);
+}
+.el-main .home_cards .home_card.yellow{
+     box-shadow: 0.02rem 0.04rem 0.12rem 0 rgb(252, 223, 58);
+}
+.el-main .home_cards .home_card.green{
+     box-shadow: 0.02rem 0.04rem 0.12rem 0 rgb(92, 247, 158);
+}
+.el-main .home_cards .home_card .funcImg{
+    text-align:right
+}
+.el-main .home_cards .home_card .funcImg img{
+    width: 0.55rem;
+    height: 0.55rem;
+}
+.el-main .home_cards .home_card .title{
+    color:white;
+}
+.el-main .home_cards .home_card .title h3{
+        font-size: 0.26rem;
+}
+.el-main .home_cards .home_card .title h4{
+    font-size:0.2rem;
 }

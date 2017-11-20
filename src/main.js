@@ -5,7 +5,6 @@ import App from './App.vue'
 import './assets/style/common/common.css'
 import './assets/style/fonts/iconfont.css'
 import 'element-ui/lib/theme-chalk/display.css'
-
 Vue.use(ElementUI)
 
 new Vue({

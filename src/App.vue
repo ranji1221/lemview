@@ -1,29 +1,33 @@
 <template>
-		<el-container>
-			<el-header>
+	<el-container>
+		<el-header>
 			<lemon-header></lemon-header>
-			</el-header>
-			<el-container class="autoheight">
-				<lemon-sidebar></lemon-sidebar>
+		</el-header>
+		<el-container class="autoheight">
+			<lemon-sidebar></lemon-sidebar>
+			<el-main>
 				<lemon-home></lemon-home>
-			</el-container>
+			</el-main>
 		</el-container>
+	</el-container>
 </template>
 
 <script>
-import LemonHeader from './components/common/Header.vue'
-import LemonSidebar from './components/common/Sidebar.vue'
-import LemonHome from './components/common/Home.vue'
+	import LemonHeader from './components/common/Header.vue'
+	import LemonSidebar from './components/common/Sidebar.vue'
+	import LemonHome from './components/common/Home.vue'
 
-export default {
-  components: {
-    LemonHeader,LemonSidebar,LemonHome
-  }
-}
+	export default {
+		components: {
+			LemonHeader,
+			LemonSidebar,
+			LemonHome
+		}
+	}
 </script>
 
 <style>
-	.autoheight{
+	.autoheight {
 		/*position:absolute;
 		top:60px;
 		left:0;
@@ -31,5 +35,4 @@ export default {
 		/*bottom:0;*/
 		min-height: 100%;
 	}
-	
 </style>
