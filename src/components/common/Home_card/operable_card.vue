@@ -1,6 +1,6 @@
 <template>
 		<div class="cardwrap" :class="card.classObject">
-			<div :id="card.card_id" class="operable_card" v-if="!card.remove">
+			<div :id="card.card_id" class="operable_card" v-if="!card.remove" :class="{slideUp:!card.slidetoggle}">
 				<div class="operable_card_title">
 					<i class="icon-circle" v-bind:style="{ color: card.circleColor}"></i>
 				    <span class='title'>{{card.title}}</span>
@@ -11,7 +11,7 @@
 				        <i class="icon-remove" @click="card.remove=true"></i>
 					</span>
 				</div>
-				<div class="operable_card_body" v-show="card.slidetoggle">
+				<div class="operable_card_body">
 					
 					<release-card v-if="card.cardType === 'release'"></release-card>
 					<activity-card v-if="card.cardType === 'activity'"></activity-card>
@@ -21,7 +21,8 @@
 					<draft-card v-if="card.cardType === 'draft'"></draft-card>
 					
 				</div>
-				<div class="operable_card_foot"  v-show="card.slidetoggle">
+				<div class="operable_card_foot">
+				<!--<div class="operable_card_foot"  v-show="card.slidetoggle">-->
 					<!--<router-link to='' v-if='card.more' >更多</router-link>-->
 					<a href="javascript:;"  v-if='card.more'>更多</a>
 				</div>
@@ -31,6 +32,7 @@
 <style>
 	#showList .cardwrap{
 		margin-bottom:0.2rem;
+		transition: height 0.5s ease;
 	}
 	.operable_card{
 		/*height:3rem;*/
@@ -40,6 +42,11 @@
 		box-shadow: 2px 4px 12px 0px 
 			rgba(233, 232, 232, 0.75);
 		border: solid 1px #eeeeee;
+		transition: all 0.5s ease;
+	}
+	.slideUp{
+		height:0.6rem;
+		overflow: hidden;
 	}
 	.operable_card_title{
 		height:0.6rem;
@@ -55,7 +62,7 @@
 	}
 	.operable_card_body{
 		/*min-height:1.9rem;*/
-		min-height:2.2rem;
+		min-height:2.4rem;
 	}
 	.operable_card_foot{
 		height:0.5rem;
@@ -81,7 +88,10 @@
 	.ctrTool .icon-chevron-up{
 		transition:transform 0.2s;
 	}
-	.ctrTool .rotatetoggle{
+	.ctrTool .rotatetoggle:before{
+		transition:all 0.2s;
+	}
+	.ctrTool .rotatetoggle:before{
 		transform:rotate(180deg);
 	}
 	.ctrTool .icon-refresh {
@@ -91,6 +101,7 @@
 	    color: #ed0e0e;
 		font-size:0.23rem;
 	}
+
 </style>
 <script>
 //	require("../../../assets/default/style/index/Home_operable_card.css");
