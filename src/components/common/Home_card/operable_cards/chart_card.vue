@@ -24,16 +24,22 @@
 				bottom:'20%',
 			},
 			tooltip: {
-				trigger: 'axis',
+//				trigger: 'axis',
+				trigger: 'item',		
 				tooltip: false,
 				backgroundColor: "#f9119f",
 				borderColor: "#ffffff",
 				borderWidth: 1,
 				enterable: true,
+//				 position: function (point, params, dom, rect, size) {
+//				      // 固定在顶部
+//				      return [point[0]-10, '10%'];
+//				 },
 				//				position:function(point, params, dom, rect, size){
 				//					return [point[0]+30,point[1]-size.contentSize[1]]
 				//				},
 //				b0 x轴坐标 a0曲线标题 c0 y轴坐标
+				position:"top",
 				formatter: "{c0}",
 				textStyle: {
 					color: "#ffffff",
