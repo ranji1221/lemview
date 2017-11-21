@@ -6,20 +6,21 @@
     style="width: 100%"
     border
     :data="tabledata"
-     slot-scope="scope"
+   
     @selection-change="handleSelectionChange" >
-    <el-table-column align="center" v-for="item in items"  :key="item.id" :type="item.type"  :label="item.label" :sortable="item.sort"  :prop="item.prop"  > 
-        <div v-if="item.icon">
-        <template slot-scope="scope" >
-          {{item.icon}}
-        <i :class="item.icon"></i>
-        </template>
-        </div>
-        <div v-else>
-          {{item.name}}
-        </div>
-    </el-table-column>
-    
+        <template v-for="item in items">
+        	<template v-if="item.icon">
+				    <el-table-column align="center" :key="item.id" :type="item.type"  :label="item.label" :sortable="item.sort"  :prop="item.prop"  > 
+						        <template slot-scope="scope">
+						        <i :class="item.icon"></i>		
+						        </template>
+				    </el-table-column>
+        	</template>       	
+        	<template v-else>
+				    <el-table-column align="center" :key="item.id" :type="item.type"  :label="item.label" :sortable="item.sort"  :prop="item.prop"  > 
+				    </el-table-column>       	
+        	</template>
+        </template>  
 </el-table>
 </template>
 <script>
