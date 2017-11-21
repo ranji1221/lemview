@@ -63,6 +63,10 @@ export default {
 	  				'el-col-lg-8':true,
 	  				'el-col-lg-12':false,
 	  				'el-col-lg-16':false,
+	  				'el-col-xs-24':true,
+	  				'el-col-sm-24':true,
+	  				'el-col-md-12':true,
+	  				
 	  			},
 	        },
 	        {
@@ -77,6 +81,9 @@ export default {
 	  				'el-col-lg-8':true,
 	  				'el-col-lg-12':false,
 	  				'el-col-lg-16':false,
+	  				'el-col-xs-24':true,
+	  				'el-col-sm-24':true,
+	  				'el-col-md-12':true,
 	  			},
 	        },
 	        {
@@ -91,6 +98,9 @@ export default {
 	  				'el-col-lg-8':true,
 	  				'el-col-lg-12':false,
 	  				'el-col-lg-16':false,
+	  				'el-col-xs-24':true,
+	  				'el-col-sm-24':true,
+	  				'el-col-md-12':true,
 	  			},
 	        },
 			{
@@ -105,6 +115,9 @@ export default {
 	  				'el-col-lg-8':true,
 	  				'el-col-lg-12':false,
 	  				'el-col-lg-16':false,
+	  				'el-col-xs-24':true,
+	  				'el-col-sm-24':true,
+	  				'el-col-md-12':true,
 	  			},
 	        },
 	        {
@@ -119,6 +132,9 @@ export default {
 	  				'el-col-lg-8':false,
 	  				'el-col-lg-12':false,
 	  				'el-col-lg-16':true,
+	  				'el-col-xs-24':true,
+	  				'el-col-sm-24':true,
+	  				'el-col-md-24':true,
 	  			},
 	        },
 	        {
@@ -133,6 +149,9 @@ export default {
 	  				'el-col-lg-8':true,
 	  				'el-col-lg-12':false,
 	  				'el-col-lg-16':false,
+	  				'el-col-xs-24':true,
+	  				'el-col-sm-24':true,
+	  				'el-col-md-12':true,
 	  			},
 	        },
       	]

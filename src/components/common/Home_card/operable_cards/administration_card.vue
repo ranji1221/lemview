@@ -7,22 +7,27 @@
 	        prop="number"
 	        label="编号"
 	        width="70"
+	        align="center"
 	        >
 	      </el-table-column>
 	      <el-table-column
 	        prop="name"
 	        label="名称"
 	        width="100"
+	        align="center"
 	        >
 	      </el-table-column>
 	      <el-table-column
 	        prop="father"
 	        label="父菜单"
 	        width="80"
+	        align="center"
 	        >
 	      </el-table-column>
 	      <el-table-column
-	        label="操作">
+	        label="操作"
+	        align="center"
+	        >
 	        <template slot-scope="scope">
 	          <a href="" class="icon-eye-open lookRole" title="查看"></a>
 			  <a href="" class="icon-pencil editUser" title="编辑"></a>
@@ -128,16 +133,34 @@
 	padding: 0 0.05rem;
     font-size: 0.2rem;
 }
-.administration col[name='el-table_1_column_1'],.administration .el-table_1_column_1 div.cell{
-	width:0.75rem!important;
+.administration col[name='el-table_1_column_1']{
+	min-width:0.75rem!important;
+	width:20%;
 }
-.administration col[name='el-table_1_column_2'],.administration .el-table_1_column_2 div.cell{
-	width:1rem!important;
+.administration col[name='el-table_1_column_2']{
+	min-width:1rem!important;
+	width:30%;
 }
-.administration col[name='el-table_1_column_3'],.administration .el-table_1_column_3 div.cell{
-	width:0.9rem!important;
+.administration col[name='el-table_1_column_3']{
+	min-width:0.9rem!important;
+	width:25%;
 }
-.administration col[name='el-table_1_column_4'],.administration .el-table_1_column_4 div.cell{
+.administration col[name='el-table_1_column_4']{
+	width:auto!important;
+}
+.administration .el-table_1_column_1 div.cell{
+	min-width:0.75rem!important;
+
+}
+.administration .el-table_1_column_2 div.cell{
+	min-width:1rem!important;
+
+}
+.administration .el-table_1_column_3 div.cell{
+	min-width:0.9rem!important;
+
+}
+.administration .el-table_1_column_4 div.cell{
 	width:auto!important;
 }
 .administration_card .el-table__header thead{
