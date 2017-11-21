@@ -4,6 +4,10 @@
 }
 .el-main .rolelist{
     background: rgb(255, 255, 255);
+    border-color:rgba(215, 215, 215, 1);
+}
+.el-main .rolelist::before{
+    background-color:rgba(215, 215, 215, 1)
 }
 .el-main .rolelist .el-table__body-wrapper table tr{
     color: rgb(51, 51, 51);
@@ -18,7 +22,7 @@
     min-width: 70px;
 }
 .el-main .rolelist .el-table__body-wrapper table colgroup [name="el-table_1_column_5"],[name="el-table_1_column_6"],[name="el-table_1_column_7"]{
-    width:0.35rem;
+    width:0.5rem;
 }
 .el-main .rolelist .el-table__body-wrapper table colgroup [name="el-table_1_column_8"]{
     width:0.5rem;
@@ -59,6 +63,11 @@
 .el-checkbox__input.is-checked .el-checkbox__inner, .el-checkbox__input.is-indeterminate .el-checkbox__inner{
     background-color:#3498DB;
 }
+.el-main .rolelist .el-table__body-wrapper td .cell i{
+    font-size: 0.32rem;
+    cursor: pointer;
+    vertical-align: -0.05rem;
+}
 
 
 
@@ -82,7 +91,7 @@
     min-width: 70px;
 }
 .el-main .rolelist .el-table__header-wrapper table colgroup [name="el-table_1_column_5"],[name="el-table_1_column_6"],[name="el-table_1_column_7"]{
-    width:0.35rem;
+    width:0.5rem;
 }
 .el-main .rolelist .el-table__header-wrapper table colgroup [name="el-table_1_column_8"]{
     width:0.5rem;
@@ -107,6 +116,7 @@
     width:100%;
     height:100%;
 }
+
 .el-main .rolelist .el-table__header-wrapper th.el-table-column--selection .cell label .el-checkbox__input{
     width:100%;
     height:100%;
