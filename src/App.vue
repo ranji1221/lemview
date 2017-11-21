@@ -6,7 +6,7 @@
 		<el-container class="autoheight">
 			<lemon-sidebar></lemon-sidebar>
 			<el-main>
-				<lemon-home></lemon-home>
+				 <router-view></router-view>
 			</el-main>
 		</el-container>
 	</el-container>
@@ -22,7 +22,7 @@
 			LemonHeader,
 			LemonSidebar,
 			LemonHome
-		}
+		},
 	}
 </script>
 
