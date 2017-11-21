@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import vCheckboxList from '../../common/CheckboxList.vue';
+import vCheckboxList from '../../common/list/CheckboxList.vue';
 
 export default {
   components:{
