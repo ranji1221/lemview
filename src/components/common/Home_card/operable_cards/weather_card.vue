@@ -51,6 +51,7 @@
 	width: 100%;
 	height: 85%;
 	position: relative;
+	top:0.3rem;
 }
 
 .skyBox>.row .con .pie .pieChart canvas {
@@ -60,10 +61,11 @@
 }
 
 .skyBox>.row .con .pie .per {
-	position: static;
+	position: relative;
 	font-size: 0.2rem;
 	width: 100%;
 	text-align: center;
+	top:-0.05rem;
 }
 
 @media screen and (min-width: 750px) and (max-width: 1200px) {
@@ -144,6 +146,7 @@
 .skyBox .pieChart{
 	width:1rem;
 	height:1rem;
+	margin:auto;
 }
 
 </style>
@@ -161,9 +164,11 @@
 //	    option = {
  tooltip: {
         trigger: 'item',
+        showContent:false,
         formatter: "{a} <br/>{b}: {c} ({d}%)"
     },
     legend: {
+    	show:false,
         orient: 'vertical',
         x: 'left',
         data:['直接访问','邮件营销','联盟广告','视频广告','搜索引擎']
@@ -172,7 +177,7 @@
         {
             name:'访问来源',
             type:'pie',
-            radius: ['50%', '70%'],
+            radius: ['90%', '100%'],
             avoidLabelOverlap: false,
             label: {
                 normal: {
@@ -180,7 +185,7 @@
                     position: 'center'
                 },
                 emphasis: {
-                    show: true,
+                    show: false,
                     textStyle: {
                         fontSize: '30',
                         fontWeight: 'bold'
