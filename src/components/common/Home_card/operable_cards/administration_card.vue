@@ -1,142 +1,176 @@
 <template>
-	<div class="panel-body humanInfo">
-		<div class="table-responsive table-condensed">
-			<table class="table userlist">
-				<thead>
-					<tr>
-						<th>编号</th>
-						<th>名称</th>
-						<th>父菜单</th>
-						<th>操作</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>02</td>
-						<td class="manageName" title="首页信息管理">首页信息管理</td>
-						<td>首页</td>
-						<td>
-							<a href="" class="icon-eye-open lookRole" title="查看"></a>
-							<a href="" class="icon-pencil editUser" title="编辑"></a>
-							<a href="" class="icon-trash removeBtn" title="删除"></a>
-							<a href="" class="icon-key" title="授权"></a>
-						</td>
-					</tr>
-					<tr>
-						<td>02</td>
-						<td class="manageName">首页管理</td>
-						<td>首页</td>
-						<td>
-							<a href="" class="icon-eye-open lookRole" title="查看"></a>
-							<a href="" class="icon-pencil editUser" title="编辑"></a>
-							<a href="" class="icon-trash removeBtn" title="删除"></a>
-							<a href="" class="icon-key" title="授权"></a>
-						</td>
-					</tr>
-					<tr>
-						<td>02</td>
-						<td class="manageName">首页管理</td>
-						<td>首页</td>
-						<td>
-							<a href="" class="icon-eye-open lookRole" title="查看"></a>
-							<a href="" class="icon-pencil editUser" title="编辑"></a>
-							<a href="" class="icon-trash removeBtn" title="删除"></a>
-							<a href="" class="icon-key" title="授权"></a>
-						</td>
-					</tr>
-					<tr>
-						<td>02</td>
-						<td class="manageName">首页管理</td>
-						<td>首页</td>
-						<td>
-							<a href="" class="icon-eye-open lookRole" title="查看"></a>
-							<a href="" class="icon-pencil editUser" title="编辑"></a>
-							<a href="" class="icon-trash removeBtn" title="删除"></a>
-							<a href="" class="icon-key" title="授权"></a>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
+	<div class='administration'>
+	    <el-table
+	      :data="tableData"
+	      style="width: 100%">
+	      <el-table-column
+	        prop="number"
+	        label="编号"
+	        width="70"
+	        align="center"
+	        >
+	      </el-table-column>
+	      <el-table-column
+	        prop="name"
+	        label="名称"
+	        width="100"
+	        align="center"
+	        >
+	      </el-table-column>
+	      <el-table-column
+	        prop="father"
+	        label="父菜单"
+	        width="80"
+	        align="center"
+	        >
+	      </el-table-column>
+	      <el-table-column
+	        label="操作"
+	        align="center"
+	        >
+	        <template slot-scope="scope">
+	          <a href="" class="icon-eye-open lookRole" title="查看"></a>
+			  <a href="" class="icon-pencil editUser" title="编辑"></a>
+			  <a href="" class="icon-trash removeBtn" title="删除"></a>
+			  <a href="" class="icon-key" title="授权"></a>
+	        </template>
+	      </el-table-column>
+	    </el-table>
+    </div>
+  </template>
 
-	</div>
-</template>
+  <script>
+//	require("../../../assets/default/style/index/Home_operable_card.css");
+  	
+    export default {
+      data() {
+        return {
+          tableData: [
+          {
+            number: '01',
+            name: '首页信息管理',
+            father: '首页',
+          }, 
+          {
+            number: '02',
+            name: '首页信息管理',
+            father: '首页',
+          }, 
+          {
+            number: '03',
+            name: '首页信息管理',
+            father: '首页',
+          }, 
+          {
+            number: '04',
+            name: '首页信息管理',
+            father: '首页',
+          }, 
+          ]
+        }
+    },
+    methods: {
+      handleClick(row) {
+      console.log(row);
+    }
+      }
+    }
+  </script>
+
 <style>
-.humanInfo .icon-eye-open {
+.administration .el-table__body, .administration .el-table__footer, .administration .el-table__header{
+	width:100%!important;
+}
+.administration .el-table__body{
+	width:100%!important;
+	padding:1px;
+}
+.administration .el-table::before{
+	display: none;
+}
+.icon-eye-open {
 	color: #f47675;
 }
 
-.humanInfo .icon-pencil {
+.icon-pencil {
 	color: #5ca2f7;
 }
 
-.humanInfo .icon-trash {
+.icon-trash {
 	color: #fcdf3a;
 }
 
-.humanInfo .icon-key {
+.icon-key {
 	color: #84f9b6;
 }
-
-.humanInfo .table {
-	height: 1.85rem;
-	min-width: 3.75rem;
-	margin-bottom: 0px;
-	margin-left: 1px;
-	border: 1px solid transparent;
-	width: 100%;
-	border-collapse:collapse;
+.administration table.el-table__header{
+	margin-bottom:0.2rem;
 }
-
-.humanInfo .table-responsive {
-	border: none;
+.administration .el-table td,.administration  .el-table th.is-leaf{
+	border:none!important;
+	padding:0;
+    text-align: center;
 }
-
-.humanInfo .table [class*='icon-'] {
-	padding: 0 0.05rem;
-	font-size: 0.2rem;
+.administration  .el-table th.is-leaf{
+	background-color: #f7f7f7;
 }
-.humanInfo .table thead{
-	margin-bottom:0.1rem;
-}
-.humanInfo .table td,
-.humanInfo .table th {
-	text-align: center;
-	border: none;
-}
-.humanInfo .table td{
-	line-height: 0.4rem;
-}
-.humanInfo .table th{
-	line-height: 0.4rem;
-}
-.humanInfo .table thead {
-	background: #f7f7f7;
-}
-
-.humanInfo .table tbody tr:hover {
+.administration .el-table__row:hover{
+	background:rgba(255,255,255,1);
 	outline: 1px solid #378ef8;
 }
-.table-responsive {
-    min-height: .01%;
-    overflow-x: auto;
+.el-table--enable-row-hover .el-table__body tr:hover>td{
+	background:rgba(255,255,255,0);
+}
+.el-table .cell, .el-table th div{
+	white-space: nowrap;
+}
+.administration .cell{
+    font-size: 0.14rem;
+    line-height:0.4rem;
+    padding:0;
+}
+.administration .cell a{
+	padding: 0 0.05rem;
+    font-size: 0.2rem;
+}
+.administration col[name='el-table_1_column_1']{
+	min-width:0.75rem!important;
+	width:20%;
+}
+.administration col[name='el-table_1_column_2']{
+	min-width:1rem!important;
+	width:30%;
+}
+.administration col[name='el-table_1_column_3']{
+	min-width:0.9rem!important;
+	width:25%;
+}
+.administration col[name='el-table_1_column_4']{
+	width:auto!important;
+}
+.administration .el-table_1_column_1 div.cell{
+	min-width:0.75rem!important;
+
+}
+.administration .el-table_1_column_2 div.cell{
+	min-width:1rem!important;
+
+}
+.administration .el-table_1_column_3 div.cell{
+	min-width:0.9rem!important;
+
+}
+.administration .el-table_1_column_4 div.cell{
+	width:auto!important;
+}
+.administration_card .el-table__header thead{
+	width:auto!important;
+}
+.administration_card .el-table__header thead th{
+	background-color: #f7f7f7;
 }
 </style>
-<script>
-//	require("../../../assets/default/style/index/Home_operable_card.css");
 
-  export default {
-//	props: ['card'],
-    data() {
-      return {
 
-      };
-    },
-    methods: {
-
-    },
-
-  }
-</script>
 
 

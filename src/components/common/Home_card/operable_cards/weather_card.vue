@@ -2,7 +2,8 @@
 	<div class="panel-body skyBox">
 		<div class="row">
 			<div class="moreSky text-right">
-				<a href="" class="moresky">更多天气</a>
+				<!--<a href="" class="moresky">更多天气</a>-->
+				<a href="" class="moresky"></a>
 			</div>
 			<div class="el-col-sm-8 con r">
 				<div class="pie text-center">
@@ -31,7 +32,7 @@
 				</div>
 				<div class="date text-center">
 					<i class="icon-calendar"></i>
-					<span id="calendar">{{date}}</span>
+					<span id="calendar">{{now()}}</span>
 				</div>
 			</div>
 		</div>
@@ -89,7 +90,7 @@
 	margin: 0;
 }
 
-.skyBox>.row .con .skyDetail .col-xs-6 {
+.skyBox>.row .con .skyDetail .el-col-xs-6 {
 	height: 100%;
 	padding: 0;
 }
@@ -153,11 +154,17 @@
 //	props: ['card'],
     data() {
       return {
-		date:'2017/11/21'
+//		date:'2017/11/21'
       };
     },
     methods: {
-
+	  now: function () {
+	    var mydate = new Date();
+		var str = "" + mydate.getFullYear() + "/";
+		str += (mydate.getMonth() + 1) + "/";
+		str += mydate.getDate();
+		return str;
+	  }
     },
 
   }

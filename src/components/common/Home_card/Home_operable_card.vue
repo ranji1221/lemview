@@ -1,25 +1,54 @@
 <template>
 	<div id="showList">
-		<operable-card :card="card" v-for="card in cards" :key="card.card_id"></operable-card>
+		<div class="row_m">
+			<operable-card :card="card" v-for="card in cards" :key="card.card_id"></operable-card>
+		</div>
 	</div>
 </template>
 <style>
 	#showList{
-		margin:0 15px;
+		padding:0 0.41rem;
 		overflow: hidden;
 	}
 	#showList .cardwrap{
 		padding:0 15px;
+	}
+	.row_m{
+		margin:0 -15px;	
+	}
+	.row_m:after{
+		display: block;
+		content:'';
+		clear:both;
 	}
 </style>
 <script>
 //	require("../../../assets/default/style/index/Home_operable_card.css");
 
 import operableCard from './operable_card.vue'
-
+require("../../../../static/jqueryui/jquery-ui.js")
 
 export default {
-data() {
+	mounted: function() {
+		var handle = $("#showList .ctrTool .icon-move");
+		var mcons = $("#showList .row_m");
+		var items = $("#showList .cardwrap");
+		$(mcons).sortable({
+			items: items,
+			connectWith: mcons,
+			handle: handle,
+			helper: "clone"
+			//      forcePlaceholderSize: true
+			//      activate:function(event,ui){
+			//      	$(ui.item).siblings().addClass("moveAnimation");
+			//      }
+			//      placeholder:'ui-nav-placeholder',
+			//介绍后的回掉函数
+			//      beforeStop: function( event, ui ) {
+			//      }
+		});
+	},
+	data() {
       return {
       	cards:[
 	        {
@@ -34,6 +63,10 @@ data() {
 	  				'el-col-lg-8':true,
 	  				'el-col-lg-12':false,
 	  				'el-col-lg-16':false,
+	  				'el-col-xs-24':true,
+	  				'el-col-sm-24':true,
+	  				'el-col-md-12':true,
+	  				
 	  			},
 	        },
 	        {
@@ -48,6 +81,9 @@ data() {
 	  				'el-col-lg-8':true,
 	  				'el-col-lg-12':false,
 	  				'el-col-lg-16':false,
+	  				'el-col-xs-24':true,
+	  				'el-col-sm-24':true,
+	  				'el-col-md-12':true,
 	  			},
 	        },
 	        {
@@ -62,6 +98,9 @@ data() {
 	  				'el-col-lg-8':true,
 	  				'el-col-lg-12':false,
 	  				'el-col-lg-16':false,
+	  				'el-col-xs-24':true,
+	  				'el-col-sm-24':true,
+	  				'el-col-md-12':true,
 	  			},
 	        },
 			{
@@ -76,6 +115,9 @@ data() {
 	  				'el-col-lg-8':true,
 	  				'el-col-lg-12':false,
 	  				'el-col-lg-16':false,
+	  				'el-col-xs-24':true,
+	  				'el-col-sm-24':true,
+	  				'el-col-md-12':true,
 	  			},
 	        },
 	        {
@@ -90,6 +132,9 @@ data() {
 	  				'el-col-lg-8':false,
 	  				'el-col-lg-12':false,
 	  				'el-col-lg-16':true,
+	  				'el-col-xs-24':true,
+	  				'el-col-sm-24':true,
+	  				'el-col-md-24':true,
 	  			},
 	        },
 	        {
@@ -104,6 +149,9 @@ data() {
 	  				'el-col-lg-8':true,
 	  				'el-col-lg-12':false,
 	  				'el-col-lg-16':false,
+	  				'el-col-xs-24':true,
+	  				'el-col-sm-24':true,
+	  				'el-col-md-12':true,
 	  			},
 	        },
       	]
