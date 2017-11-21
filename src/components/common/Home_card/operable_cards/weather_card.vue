@@ -162,50 +162,63 @@
 	// 绘制图表
 	myChart.setOption({
 //	    option = {
- tooltip: {
-        trigger: 'item',
-        showContent:false,
-        formatter: "{a} <br/>{b}: {c} ({d}%)"
-    },
-    legend: {
-    	show:false,
-        orient: 'vertical',
-        x: 'left',
-        data:['直接访问','邮件营销','联盟广告','视频广告','搜索引擎']
-    },
-    series: [
-        {
-            name:'访问来源',
-            type:'pie',
-            radius: ['90%', '100%'],
-            avoidLabelOverlap: false,
-            label: {
-                normal: {
-                    show: false,
-                    position: 'center'
-                },
-                emphasis: {
-                    show: false,
-                    textStyle: {
-                        fontSize: '30',
-                        fontWeight: 'bold'
-                    }
+			tooltip : { //提示框组件
+				show:false,
+                trigger: 'item', //触发类型(饼状图片就是用这个)
+                formatter: "{a} <br/>{b} : {c} ({d}%)" //提示框浮层内容格式器
+            },
+            color:['#48cda6','#fd87ab','#11abff','#ffdf33','#968ade'],  //手动设置每个图例的颜色
+            legend: {  //图例组件
+                //right:100,  //图例组件离右边的距离
+				show:false,
+                orient : 'horizontal',  //布局  纵向布局 图例标记居文字的左边 vertical则反之
+                width:40,      //图行例组件的宽度,默认自适应
+                x : 'right',   //图例显示在右边
+                y: 'center',   //图例在垂直方向上面显示居中
+                itemWidth:10,  //图例标记的图形宽度
+                itemHeight:10, //图例标记的图形高度
+                data:['30%','10%','15%','20%','25%'],
+                textStyle:{    //图例文字的样式
+                    color:'#333',  //文字颜色
+                    fontSize:12    //文字大小
                 }
             },
-            labelLine: {
-                normal: {
-                    show: false
+            series : [ //系列列表
+                {
+                    name:'随访次数',  //系列名称
+                    type:'pie',   //类型 pie表示饼图
+                    //center:['30%','50%'], //设置饼的原心坐标 不设置就会默认在中心的位置
+                    radius : ['50%', '70%'],  //饼图的半径,第一项是内半径,第二项是外半径,内半径为0就是真的饼,不是环形
+                    itemStyle : {  //图形样式
+                        normal : { //normal 是图形在默认状态下的样式；emphasis 是图形在高亮状态下的样式，比如在鼠标悬浮或者图例联动高亮时。
+                            label : {  //饼图图形上的文本标签
+                                show : false  //平常不显示
+                            },
+                            labelLine : {     //标签的视觉引导线样式
+                                show : false  //平常不显示
+                            }
+                        },
+                        emphasis : {   //normal 是图形在默认状态下的样式；emphasis 是图形在高亮状态下的样式，比如在鼠标悬浮或者图例联动高亮时。
+                            label : {  //饼图图形上的文本标签
+                                show : true,
+                                position : 'center',
+                                textStyle : {
+                                    fontSize : '10',
+                                    fontWeight : 'bold'
+                                }
+                            }
+                        }
+                    },
+                    data:[
+                        {value:30, name:'30%'},
+                        {value:10, name:'10%'},
+                        {value:15, name:'15%'},
+                        {value:20, name:'20%'},
+                        {value:25, name:'25%'}
+                    ]
                 }
-            },
-            data:[
-                {value:335, name:'直接访问'},
-                {value:310, name:'邮件营销'},
-                {value:234, name:'联盟广告'},
-                {value:135, name:'视频广告'},
-                {value:1548, name:'搜索引擎'}
             ]
-        }
-    ]
+        
 //};
 	});
 		
@@ -230,3 +243,11 @@
 </script>
 
 
+<!--normal:{
+							color:new echarts.graphic.LinearGradient(0,0,0,1,[
+								{offset:0,color:'#fc129d'},
+								{offset:1,color:'#bb04be'},
+							],false),
+							opacity: "1"
+							
+						}-->

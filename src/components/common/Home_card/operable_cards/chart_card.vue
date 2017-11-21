@@ -97,22 +97,30 @@
 					smooth: true,
 					showSymbol: false,
 					areaStyle: {
-						normal: {
-							color: '#fc129d',
+//						normal: {
+//							color: '#fc129d',
+//							opacity: "1"
+//						}
+						normal:{
+							color:new echarts.graphic.LinearGradient(0,0,0,1,[
+								{offset:0,color:'#fc129d'},
+								{offset:1,color:'#bb04be'},
+							],false),
 							opacity: "1"
+							
 						}
 					},
 					itemStyle: {
 						normal: {
-							color: "#f58705",
+							color: "#f58705",//外圈
 						},
 						emphasis: {
-							color: "#f58705"
+							color: "#ffffff",//内芯
 						}
 					},
 					lineStyle: {
 						normal: {
-							color: "#fc129d"
+							color: "#fc129d"//边线
 						}
 					},
 					data: [1.4,1.7,1.6,2,1.8,2.7,2.4,5.5,2.5,2.4,2,1.8,3,2.7,4,1.5,1.4,1.1,2.5,2.3,4,2]
