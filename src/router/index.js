@@ -10,16 +10,16 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'Home',
+      name: '首页',
       component: Home,
     },
     {
       path:"/authority",
-      name:"authority",
       component:authority,
       children:[
         {
           path:"roleList",
+          name:"角色管理/角色列表",
           component:roleList
         }
       ]
