@@ -163,6 +163,20 @@
 .administration .el-table_1_column_4 div.cell{
 	width:auto!important;
 }
+@media screen and (min-width: 1200px) { 
+	.administration col[name='el-table_1_column_1'],.administration .el-table_1_column_1 div.cell{
+		width:0.75rem!important;
+	}
+	.administration col[name='el-table_1_column_2'],.administration .el-table_1_column_2 div.cell{
+		width:1rem!important;
+	}
+	.administration col[name='el-table_1_column_3'],.administration .el-table_1_column_3 div.cell{
+		width:0.9rem!important;
+	}
+	.administration col[name='el-table_1_column_4'],.administration .el-table_1_column_4 div.cell{
+		width:auto!important;
+	}
+}
 .administration_card .el-table__header thead{
 	width:auto!important;
 }

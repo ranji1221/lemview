@@ -7,7 +7,7 @@
 			</div>
 			<div class="el-col-sm-8 con r">
 				<div class="pie text-center">
-					<div class="pieChart text-center" data-percent="76%">
+					<div id="circle" class="pieChart text-center" data-percent="76%">
 					</div>
 					<!--<div class="per">76%</div>-->
 					<label for="" class="per">76%</label>
@@ -151,7 +151,60 @@
 //	require("../../../assets/default/style/index/Home_operable_card.css");
 
   export default {
-//	props: ['card'],
+	mounted: function() {
+		var echarts = require('echarts');
+
+	// 基于准备好的dom，初始化echarts实例
+	var myChart = echarts.init(document.getElementById('circle'));
+	// 绘制图表
+	myChart.setOption({
+//	    option = {
+ tooltip: {
+        trigger: 'item',
+        formatter: "{a} <br/>{b}: {c} ({d}%)"
+    },
+    legend: {
+        orient: 'vertical',
+        x: 'left',
+        data:['直接访问','邮件营销','联盟广告','视频广告','搜索引擎']
+    },
+    series: [
+        {
+            name:'访问来源',
+            type:'pie',
+            radius: ['50%', '70%'],
+            avoidLabelOverlap: false,
+            label: {
+                normal: {
+                    show: false,
+                    position: 'center'
+                },
+                emphasis: {
+                    show: true,
+                    textStyle: {
+                        fontSize: '30',
+                        fontWeight: 'bold'
+                    }
+                }
+            },
+            labelLine: {
+                normal: {
+                    show: false
+                }
+            },
+            data:[
+                {value:335, name:'直接访问'},
+                {value:310, name:'邮件营销'},
+                {value:234, name:'联盟广告'},
+                {value:135, name:'视频广告'},
+                {value:1548, name:'搜索引擎'}
+            ]
+        }
+    ]
+//};
+	});
+		
+	},
     data() {
       return {
 //		date:'2017/11/21'
@@ -165,6 +218,7 @@
 		str += mydate.getDate();
 		return str;
 	  }
+	  
     },
 
   }
