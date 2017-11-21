@@ -1,0 +1,130 @@
+.el-main{
+    padding: 0px 0.45rem;
+    background-color:white;
+}
+.el-main .rolelist{
+    background: rgb(255, 255, 255);
+}
+.el-main .rolelist .el-table__body-wrapper table tr{
+    color: rgb(51, 51, 51);
+    font-size: 0.18rem;
+    font-weight:normal;
+}
+.el-main .rolelist .el-table__body-wrapper table tr td{
+    border:none;
+}
+.el-main .rolelist .el-table__body-wrapper table colgroup [name="el-table_1_column_1"]{
+    width:0.5rem;
+    min-width: 70px;
+}
+.el-main .rolelist .el-table__body-wrapper table colgroup [name="el-table_1_column_5"],[name="el-table_1_column_6"],[name="el-table_1_column_7"]{
+    width:0.35rem;
+}
+.el-main .rolelist .el-table__body-wrapper table colgroup [name="el-table_1_column_8"]{
+    width:0.5rem;
+}
+.el-main .rolelist .el-table__body-wrapper td.el-table-column--selection{
+    width:0.8rem;
+}
+.el-main .rolelist .el-table__body-wrapper td.el-table-column--selection .cell{
+    display: inline-block;
+    vertical-align: middle;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    margin: 0px;
+    padding: 0px;
+}
+.el-main .rolelist .el-table__body-wrapper td.el-table-column--selection .cell label{
+    width:100%;
+    height:100%;
+}
+.el-main .rolelist .el-table__body-wrapper td.el-table-column--selection .cell label .el-checkbox__input{
+    width:100%;
+    height:100%;
+    vertical-align: unset;
+}
+
+.el-main .rolelist .el-table__body-wrapper td.el-table-column--selection .cell label .el-checkbox__input .el-checkbox__inner{
+    width:100%;
+    height:100%;
+    border-radius: 4px;
+}
+.el-main .rolelist .el-table__body-wrapper td.el-table-column--selection .cell label .el-checkbox__input .el-checkbox__inner::after{
+    left:38%;
+    top:12%;
+    border-width:2px;
+    height:10px;
+}
+.el-checkbox__input.is-checked .el-checkbox__inner, .el-checkbox__input.is-indeterminate .el-checkbox__inner{
+    background-color:#3498DB;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+.el-main .rolelist .el-table__header-wrapper table tr{
+    background-color:rgb(222, 233, 247);
+    color: rgb(51, 51, 51);
+    font-size: 0.18rem;
+}
+.el-main .rolelist .el-table__header-wrapper table colgroup [name="el-table_1_column_1"]{
+    width:0.5rem;
+    min-width: 70px;
+}
+.el-main .rolelist .el-table__header-wrapper table colgroup [name="el-table_1_column_5"],[name="el-table_1_column_6"],[name="el-table_1_column_7"]{
+    width:0.35rem;
+}
+.el-main .rolelist .el-table__header-wrapper table colgroup [name="el-table_1_column_8"]{
+    width:0.5rem;
+}
+.el-main .rolelist .el-table__header-wrapper th{
+    font-weight:normal;
+    border:none;
+}
+.el-main .rolelist .el-table__header-wrapper th.el-table-column--selection{
+    width:0.8rem;
+}
+.el-main .rolelist .el-table__header-wrapper th.el-table-column--selection .cell{
+    display: inline-block;
+    vertical-align: middle;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    margin: 0px;
+    padding: 0px;
+}
+.el-main .rolelist .el-table__header-wrapper th.el-table-column--selection .cell label{
+    width:100%;
+    height:100%;
+}
+.el-main .rolelist .el-table__header-wrapper th.el-table-column--selection .cell label .el-checkbox__input{
+    width:100%;
+    height:100%;
+    vertical-align: unset;
+}
+
+.el-main .rolelist .el-table__header-wrapper th.el-table-column--selection .cell label .el-checkbox__input .el-checkbox__inner{
+    width:100%;
+    height:100%;
+    border-radius: 4px;
+}
+.el-main .rolelist .el-table__header-wrapper th.el-table-column--selection .cell label .el-checkbox__input .el-checkbox__inner::after{
+    left:38%;
+    top:12%;
+    border-width:2px;
+    height:10px;
+}
+.el-checkbox__input.is-checked .el-checkbox__inner, .el-checkbox__input.is-indeterminate .el-checkbox__inner{
+    background-color:#3498DB;
+}
+

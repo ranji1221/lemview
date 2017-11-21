@@ -4,23 +4,36 @@
     stripe
     tooltip-effect="dark"
     style="width: 100%"
-    @selection-change="handleSelectionChange">
-    <el-table-column v-for="item in items" :key="item.id" :type="item.type" :width="item.width" :label="item.label">
+    border
+    :data="tabledata"
+     slot-scope="scope"
+    @selection-change="handleSelectionChange" >
+    <el-table-column align="center" v-for="item in items"  :key="item.id" :type="item.type"  :label="item.label" :sortable="item.sort"  :prop="item.prop"  > 
+        <div v-if="item.icon">
+        <template slot-scope="scope" >
+          {{item.icon}}
+        <i :class="item.icon"></i>
+        </template>
+        </div>
+        <div v-else>
+          {{item.name}}
+        </div>
     </el-table-column>
-
+    
 </el-table>
 </template>
 <script>
   export default {
-    props: ['items'],
+    props: ['items','tabledata'],
     data() {
       return {
-     
-        multipleSelection: []
+        multipleSelection: [],
       }
     },
-
-    methods: {
+    mounted:function(){
+      console.log(this.items)
+    },
+    methods: { 
       toggleSelection(rows) {
         if (rows) {
           rows.forEach(row => {
