@@ -1,15 +1,15 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from '@/components/common/home.vue'
-import Authority from "@/components/authority/authority.vue"
-import RoleList from "@/components/authority/role/list.vue"
-import RoleAdd from '@/components/authority/role/add.vue'
-import RoleAdds from '@/components/authority/role/adds.vue'
-import UserList from '@/components/authority/user/list.vue'
-import UserAdd from '@/components/authority/user/add.vue'
-import UserAdds from '@/components/authority/user/adds.vue'
-import ResourceList from '@/components/authority/resource/list.vue'
-import ResourceAdd from '@/components/authority/resource/add.vue'
+import Home from '@/components/common/layout/Home.vue'
+import Authority from '@/components/auth/Authority.vue'
+import RoleList from "@/components/auth/role/List.vue"
+import RoleAdd from '@/components/auth/role/Add.vue'
+import RoleAdds from '@/components/auth/role/Adds.vue'
+import UserList from '@/components/auth/user/List.vue'
+import UserAdd from '@/components/auth/user/Add.vue'
+import UserAdds from '@/components/auth/user/Adds.vue'
+import ResourceList from '@/components/auth/resource/List.vue'
+import ResourceAdd from '@/components/auth/resource/Add.vue'
 
 Vue.use(Router)
 
@@ -22,7 +22,7 @@ export default new Router({
     },
     {
       path:"/authority",
-      component:Authority,
+      component: Authority,
       children:[
         {
           path:"roleList",

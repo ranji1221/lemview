@@ -1,6 +1,6 @@
 <template>
-    <div>
-      <lemon-alert :alerts="alerts"></lemon-alert>
+    <div class='listpagewrap'>
+      <lemon-prompt :alerts="alerts"></lemon-prompt>
       <lemon-list class="rolelist" :tabledata="tabledatas"  :items="items"> 
       </lemon-list>
       <lemon-pagination :page="page"></lemon-pagination>
@@ -8,14 +8,14 @@
 </template>
 
 <script>
-import LemonList from '@/components/common/list/list.vue';
-import LemonAlert from '@/components/common/alert/alert.vue';
-import LemonPagination from '@/components/common/pagination/pagination.vue'
+import LemonList from '@/components/common/action/List.vue';
+import LemonPrompt from '@/components/common/prompt/Prompt.vue';
+import LemonPagination from '@/components/common/action/Pagination.vue'
 import "@/assets/style/common/list.css"
 
 export default {
   components: {
-    LemonList,LemonAlert,LemonPagination
+    LemonList,LemonPrompt,LemonPagination
   },
   data() {
     return {
@@ -30,32 +30,24 @@ export default {
       tabledatas:[
         {
           id:'01',
-          userName: "李佳",
-          assignRole: "管理员",
-          phone: '15940324325',
-          email: '23474@qq.com',
+          name:"首页",
+          fath:"首页1",
         },
         {
           id:'02',
-          userName: "李佳",
-          assignRole: "管理员",
-          phone: '15940324325',
-          email: '23474@qq.com',
+          name:"首页",
+          fath:"首页1",
         },
         {
           id:'03',
-          userName: "李佳",
-          assignRole: "管理员",
-          phone: '15940324325',
-          email: '23474@qq.com',
+          name:"首页",
+          fath:"首页1",
         },
         {
           id:'04',
-          userName: "李佳",
-          assignRole: "管理员",
-          phone: '15940324325',
-          email: '23474@qq.com',
-        },
+          name:"首页",
+          fath:"首页1",
+        }
       ],
       items: [
         {
@@ -72,59 +64,43 @@ export default {
       },
       {
         id: 3,
-        prop:'userName',
+        prop:'name',
         type: " ",
-        label: "用户名",
+        label: "名称",
         sort:true,
         icon:false
       },
       {
         id:4,
-        prop:'assignRole',
+        prop:'fath',
         type:"",
-        label:"分配角色",
+        label:"父菜单",
         sort:true,
         icon:false
       },
       {
         id:5,
-        prop:'phone',
-        type:"",
-        label:"手机号码",
-        sort:true,
-        icon:false
-      },
-      {
-        id:6,
-        prop:'email',
-        type:"",
-        label:"邮箱地址",
-        sort:true,
-        icon:false
-      },
-      {
-        id:7,
         type:"",
         label:"查看",
         sort:false,
         icon:'icon-eye-open',
       },
       {
-        id:8,
+        id:6,
         type:"",
         label:"编辑",
         sort:false,
         icon:'icon-pencil'
       },
       {
-        id:9,
+        id:7,
         type:"",
         label:"删除",
         sort:false,
         icon:'icon-trash',
       },
       {
-        id:10,
+        id:8,
         type:"",
         label:"授权",
         sort:false,

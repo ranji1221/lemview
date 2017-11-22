@@ -1,5 +1,5 @@
 <template>
-    <div class='listpagewrap'>
+    <div>
       <lemon-alert :alerts="alerts"></lemon-alert>
       <lemon-list class="rolelist" :tabledata="tabledatas"  :items="items"> 
       </lemon-list>
@@ -8,9 +8,9 @@
 </template>
 
 <script>
-import LemonList from '@/components/common/list/list.vue';
-import LemonAlert from '@/components/common/alert/alert.vue';
-import LemonPagination from '@/components/common/pagination/pagination.vue'
+import LemonList from '@/components/common/action/List.vue';
+import LemonAlert from '@/components/common/prompt/Prompt.vue';
+import LemonPagination from '@/components/common/action/Pagination.vue'
 import "@/assets/style/common/list.css"
 
 export default {
@@ -30,32 +30,32 @@ export default {
       tabledatas:[
         {
           id:'01',
-          name:"首页",
-          fath:"首页1",
+          resourceType:"菜单",
+          resourceName:"员工",
+          resourcePName:"权限管理"
         },
         {
           id:'02',
-          name:"首页",
-          fath:"首页1",
+          resourceType:"菜单",
+          resourceName:"员工",
+          resourcePName:"权限管理"
         },
-        {
+       {
           id:'03',
-          name:"首页",
-          fath:"首页1",
+          resourceType:"菜单",
+          resourceName:"员工",
+          resourcePName:"权限管理"
         },
-        {
+       {
           id:'04',
-          name:"首页",
-          fath:"首页1",
-        }
+          resourceType:"菜单",
+          resourceName:"员工",
+          resourcePName:"权限管理"
+        },
       ],
       items: [
-        {
-        id: 1,
-        type: "selection"
-      },
       {
-        id: 2,
+        id: 1,
         prop:'id',
         type: " ",
         label: "编号",
@@ -63,18 +63,26 @@ export default {
         icon:false
       },
       {
-        id: 3,
-        prop:'name',
+        id: 2,
+        prop:'resourceType',
         type: " ",
-        label: "名称",
+        label: "资源类型",
         sort:true,
         icon:false
       },
       {
-        id:4,
-        prop:'fath',
+        id:3,
+        prop:'resourceName',
         type:"",
-        label:"父菜单",
+        label:"资源名称",
+        sort:true,
+        icon:false
+      },
+       {
+        id:4,
+        prop:'resourcePName',
+        type:"",
+        label:"父级资源",
         sort:true,
         icon:false
       },

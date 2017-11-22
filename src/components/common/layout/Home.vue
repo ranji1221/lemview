@@ -6,9 +6,9 @@
 </template>
 
 <script>
-	import HomeHeard from "./Home_card/Home_card.vue"
-	import HomeContent from "./Home_card/Home_operable_card.vue"
-	require("../../assets/style/index/Home.css")
+	import HomeHeard from "@/components/home/HomeHeader.vue"
+	import HomeContent from "@/components/home/HomeContent.vue"
+	require("../../../assets/style/index/Home.css")
 	export default {
 		components: {
 			HomeContent,

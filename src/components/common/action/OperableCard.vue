@@ -109,15 +109,12 @@
 
 </style>
 <script>
-	
-	
-//	require("../../../assets/default/style/index/Home_operable_card.css");
-import releaseCard from './operable_cards/release_card.vue'	
-import activityCard from './operable_cards/activity_card.vue'	
-import weatherCard from './operable_cards/weather_card.vue'	
-import administrationCard from './operable_cards/administration_card.vue'	
-import chartCard from './operable_cards/chart_card.vue'	
-import draftCard from './operable_cards/draft_card.vue'	
+import ReleaseCard from '@/components/home/card_content/ReleaseCard.vue'	
+import ActivityCard from '@/components/home/card_content/ActivityCard.vue'	
+import WeatherCard from '@/components/home/card_content/WeatherCard.vue'	
+import AdministrationCard from '@/components/home/card_content/AdministrationCard.vue'	
+import ChartCard from '@/components/home/card_content/ChartCard.vue'	
+import DraftCard from '@/components/home/card_content/DraftCard.vue'	
 // collapse 展开折叠
 import CollapseTransition from 'element-ui/lib/transitions/collapse-transition';
   export default {
@@ -151,7 +148,7 @@ import CollapseTransition from 'element-ui/lib/transitions/collapse-transition';
       }
     },
 	components: {
-	    releaseCard,weatherCard,administrationCard,chartCard,draftCard,activityCard 
+	    ReleaseCard,WeatherCard,AdministrationCard,ChartCard,DraftCard,ActivityCard 
 	  }
   }
 </script>

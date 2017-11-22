@@ -13,9 +13,9 @@
 </template>
 
 <script>
-	import LemonHeader from './components/common/header.vue'
-	import LemonSidebar from './components/common/sidebar.vue'
-	import LemonHome from './components/common/home.vue'
+	import LemonHeader from './components/common/layout/Header.vue'
+	import LemonSidebar from './components/common/layout/Aside.vue'
+	import LemonHome from './components/common/layout/Home.vue'
 
 	export default {
 		components: {

@@ -8,9 +8,9 @@
 </template>
 
 <script>
-import LemonList from '@/components/common/list/list.vue';
-import LemonAlert from '@/components/common/alert/alert.vue';
-import LemonPagination from '@/components/common/pagination/pagination.vue'
+import LemonList from '@/components/common/action/List.vue';
+import LemonAlert from '@/components/common/prompt/Prompt.vue';
+import LemonPagination from '@/components/common/action/Pagination.vue'
 import "@/assets/style/common/list.css"
 
 export default {
@@ -30,32 +30,40 @@ export default {
       tabledatas:[
         {
           id:'01',
-          resourceType:"菜单",
-          resourceName:"员工",
-          resourcePName:"权限管理"
+          userName: "李佳",
+          assignRole: "管理员",
+          phone: '15940324325',
+          email: '23474@qq.com',
         },
         {
           id:'02',
-          resourceType:"菜单",
-          resourceName:"员工",
-          resourcePName:"权限管理"
+          userName: "李佳",
+          assignRole: "管理员",
+          phone: '15940324325',
+          email: '23474@qq.com',
         },
-       {
+        {
           id:'03',
-          resourceType:"菜单",
-          resourceName:"员工",
-          resourcePName:"权限管理"
+          userName: "李佳",
+          assignRole: "管理员",
+          phone: '15940324325',
+          email: '23474@qq.com',
         },
-       {
+        {
           id:'04',
-          resourceType:"菜单",
-          resourceName:"员工",
-          resourcePName:"权限管理"
+          userName: "李佳",
+          assignRole: "管理员",
+          phone: '15940324325',
+          email: '23474@qq.com',
         },
       ],
       items: [
-      {
+        {
         id: 1,
+        type: "selection"
+      },
+      {
+        id: 2,
         prop:'id',
         type: " ",
         label: "编号",
@@ -63,52 +71,60 @@ export default {
         icon:false
       },
       {
-        id: 2,
-        prop:'resourceType',
+        id: 3,
+        prop:'userName',
         type: " ",
-        label: "资源类型",
+        label: "用户名",
         sort:true,
         icon:false
       },
       {
-        id:3,
-        prop:'resourceName',
-        type:"",
-        label:"资源名称",
-        sort:true,
-        icon:false
-      },
-       {
         id:4,
-        prop:'resourcePName',
+        prop:'assignRole',
         type:"",
-        label:"父级资源",
+        label:"分配角色",
         sort:true,
         icon:false
       },
       {
         id:5,
+        prop:'phone',
+        type:"",
+        label:"手机号码",
+        sort:true,
+        icon:false
+      },
+      {
+        id:6,
+        prop:'email',
+        type:"",
+        label:"邮箱地址",
+        sort:true,
+        icon:false
+      },
+      {
+        id:7,
         type:"",
         label:"查看",
         sort:false,
         icon:'icon-eye-open',
       },
       {
-        id:6,
+        id:8,
         type:"",
         label:"编辑",
         sort:false,
         icon:'icon-pencil'
       },
       {
-        id:7,
+        id:9,
         type:"",
         label:"删除",
         sort:false,
         icon:'icon-trash',
       },
       {
-        id:8,
+        id:10,
         type:"",
         label:"授权",
         sort:false,

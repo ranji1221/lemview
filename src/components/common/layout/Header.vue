@@ -5,7 +5,7 @@
             <div class="grid-content bg-purple">
               <el-col :span="6" :sm="9"  :lg="6" class="lemon_logo">
                 <div class="lemon_logo_img">
-                  <img src="../../assets/images/index/logo.png" alt="">
+                  <img src="../../../assets/images/index/logo.png" alt="">
                 </div>
                 <div class="navbar_header_logo_home">
                   <i class="icon-home"></i>
@@ -42,7 +42,7 @@
                </div>
              </el-col>
                <el-col :span="5" class="lemon_admin_output hidden-md-and-down">
-                 <img src="../../assets/images/index/out.png" alt="">
+                 <img src="../../../assets/images/index/out.png" alt="">
                </el-col>
             </div>
           </el-col>
@@ -50,7 +50,7 @@
       </el-row>
 </template>
 <script>
-require("../../assets/style/index/index.css")
+require("../../../assets/style/index/index.css")
 export default {
 }
 </script>

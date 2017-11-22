@@ -88,7 +88,7 @@
 	</el-menu>
 </template>
 <script>
-require("../../assets/style/common/Sidebar.css");
+require("../../../assets/style/common/Sidebar.css");
 
 export default {
 	data() {
@@ -97,7 +97,7 @@ export default {
 			backgroundColor: '#ffffff',
 			user: {
 				name: '哎吆吆',
-				avater: require('../../assets/images/test/per.png'),
+				avater: require('../../../assets/images/test/per.png'),
 				role: '超级管理员'
 			},
 			navlist: [

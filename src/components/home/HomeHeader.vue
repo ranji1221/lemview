@@ -15,7 +15,7 @@
 </template>
 
 <script>
-require("../../../../static/jqueryui/jquery-ui.js")
+require("../../../static/jqueryui/jquery-ui.js")
 export default {
 	mounted: function() {
 		var funcItems = $("#funcNav .func-item");

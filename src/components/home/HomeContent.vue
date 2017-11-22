@@ -23,10 +23,9 @@
 	}
 </style>
 <script>
-//	require("../../../assets/default/style/index/Home_operable_card.css");
 
-import operableCard from './operable_card.vue'
-require("../../../../static/jqueryui/jquery-ui.js")
+import OperableCard from '@/components/common/action/OperableCard.vue'
+require("../../../static/jqueryui/jquery-ui.js")
 
 export default {
 	mounted: function() {
@@ -160,7 +159,7 @@ export default {
       };
     },
   components: {
-    operableCard
+    OperableCard
   }
 }
 </script>
