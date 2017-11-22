@@ -37,7 +37,8 @@
 								<el-menu-item :index="item3.linkto" key="item3.lid">
 									<div class="leftline"></div>
 									<i class="iconfont thirdlevel" :class="item3.icon"></i>
-									{{item3.title}}
+									<span>{{item3.title}}</span>
+									
 								</el-menu-item>
 							</template>
 
@@ -50,7 +51,7 @@
 					<template v-for="item4 in navlist" v-if="item4.pid==item.lid">
 						<el-menu-item :index="item4.linkto" key="item4.lid">
 							<i class="iconfont secondlevel" :class="item4.icon"></i>
-							{{item4.title}}
+							<span>{{item4.title}}</span>
 						</el-menu-item>
 					</template>
 
@@ -127,7 +128,7 @@ export default {
 				{
 					icon: 'icon-tianjia',
 					title: '添加角色',
-					linkto: 'role/add',
+					linkto: '/authority/roleAdd',
 					level: 3,
 					pid: 2,
 					lid: 4
@@ -135,7 +136,7 @@ export default {
 				{
 					icon: 'icon-piliangtianjia',
 					title: '批量添加角色',
-					linkto: '',
+					linkto: '/authority/roleAdds',
 					level: 3,
 					pid: 2,
 					lid: 5
@@ -152,7 +153,7 @@ export default {
 				{
 					icon: 'icon-yonghuliebiao',
 					title: '用户列表',
-					linkto: '',
+					linkto: '/authority/userList',
 					level: 3,
 					pid: 6,
 					lid: 7
@@ -160,7 +161,7 @@ export default {
 				{
 					icon: 'icon-tianjiaxinyonghu',
 					title: '添加用户',
-					linkto: '',
+					linkto: '/authority/userAdd',
 					level: 3,
 					pid: 6,
 					lid: 8
@@ -168,7 +169,7 @@ export default {
 				{
 					icon: 'icon-tianjiaduoyonghu',
 					title: '批量添加用户',
-					linkto: '',
+					linkto: '/authority/userAdds',
 					level: 3,
 					pid: 6,
 					lid: 9
@@ -185,7 +186,7 @@ export default {
 				{
 					icon: 'icon-ziyuanguanli2',
 					title: '资源列表',
-					linkto: '',
+					linkto: '/authority/resourceList',
 					level: 2,
 					pid: 10,
 					lid: 11
@@ -193,7 +194,7 @@ export default {
 				{
 					icon: 'icon-tianjiaziyuan-q',
 					title: '添加资源',
-					linkto: '',
+					linkto: '/authority/resourceAdd',
 					level: 2,
 					pid: 10,
 					lid: 12
