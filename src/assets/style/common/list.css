@@ -17,15 +17,17 @@
 }
 .el-main .rolelist .el-table__body-wrapper table tr td{
     border:none;
+
 }
+
 .el-main .rolelist .el-table__body-wrapper table colgroup col:nth-child(1){
-    width:0.5rem;
+    width:0.35rem;
     min-width: 70px;
 }
 .el-main .rolelist .el-table__body-wrapper table colgroup col:nth-child(5),col:nth-child(6),col:nth-child(7){
-    width:0.5rem;
+    width:0.35rem;
 }
-.el-main .rolelist .el-table__body-wrapper table colgroup col:nth-child(8){
+.el-main .rolelist .el-table__body-wrapper table colgroup col:last-child{
     width:0.5rem;
 }
 .el-main .rolelist .el-table__body-wrapper td.el-table-column--selection{
@@ -87,14 +89,15 @@
     color: rgb(51, 51, 51);
     font-size: 0.18rem;
 }
+
 .el-main .rolelist .el-table__header-wrapper table colgroup col:nth-child(1){
-    width:0.5rem;
+    width:0.35rem;
     min-width: 70px;
 }
 .el-main .rolelist .el-table__header-wrapper table colgroup col:nth-child(5),col:nth-child(6),col:nth-child(7){
-    width:0.5rem;
+    width:0.35rem;
 }
-.el-main .rolelist .el-table__header-wrapper table colgroup col:nth-child(8){
+.el-main .rolelist .el-table__header-wrapper table colgroup col:last-child{
     width:0.5rem;
 }
 .el-main .rolelist .el-table__header-wrapper th{
@@ -144,15 +147,29 @@
 .listpagewrap{
 	padding:0 0.41rem;
 }
+.rolelist table{
+	border-collapse: collapse;
+}
 .rolelist .el-table__body, .rolelist .el-table__footer, .rolelist .el-table__header{
 	width:100%!important;
 }
 .rolelist .el-table::before{
 	display: none;
 }
-.rolelist .el-table__body{
+/*.rolelist .el-table__body{
+	width:100%!important;
+	padding:2px;
+}*/
+.rolelist .el-table__body-wrapper{
 	width:100%!important;
 	padding:1px;
+}
+/*.el-main .rolelist .el-table__body-wrapper td.el-table-column--selection div.cell{
+	margin-left:-3px;	
+}*/
+
+.rolelist .el-table__body tr{
+	width:100%!important;
 }
 .rolelist .el-table__row:hover{
 	outline: 1px solid #378ef8;
@@ -180,3 +197,23 @@
 	top:50%;
 	margin-top:-4px;
 }
+.el-table--border::after, .el-table--group::after, .el-table::before{
+	display: none;
+}
+/*.rolelist .tableCheckbox{
+	width:0.5rem!important;
+    min-width: 70px;
+}
+.rolelist .tableId{
+	width:0.5rem!important;
+    min-width: 70px;
+}
+.rolelist .tableName{
+	width:0.5rem!important;
+}
+.rolelist .tableFather{
+	width:0.5rem!important;
+}
+.rolelist .tableAction{
+	width:0.5rem!important;
+}*/

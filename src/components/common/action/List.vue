@@ -2,14 +2,14 @@
   <el-table ref="multipleTable" stripe tooltip-effect="dark" style="width: 100%" border :data="tabledata" @selection-change="handleSelectionChange">
     <template v-for="item in items">
       <template v-if="item.icon">
-        <el-table-column align="center" :key="item.id" :type="item.type" :label="item.label" :sortable="item.sort" :prop="item.prop">
+        <el-table-column align="center" :key="item.id" :type="item.type" :label="item.label" :sortable="item.sort" :prop="item.prop" :class-name="item.class">
           <template slot-scope="scope">
             <i :class="item.icon"></i>
           </template>
         </el-table-column>
       </template>
       <template v-else>
-        <el-table-column align="center" :key="item.id" :type="item.type" :label="item.label" :sortable="item.sort" :prop="item.prop">
+        <el-table-column align="center" :key="item.id" :type="item.type" :label="item.label" :sortable="item.sort" :prop="item.prop" :class-name="item.class">
         </el-table-column>
       </template>
     </template>

@@ -52,7 +52,8 @@ export default {
       items: [
         {
         id: 1,
-        type: "selection"
+        type: "selection",
+        class:"tableCheckbox"
       },
       {
         id: 2,
@@ -60,7 +61,8 @@ export default {
         type: " ",
         label: "编号",
         sort:true,
-        icon:false
+        icon:false,
+        class:"tableId"
       },
       {
         id: 3,
@@ -68,7 +70,8 @@ export default {
         type: " ",
         label: "名称",
         sort:true,
-        icon:false
+        icon:false,
+        class:"tableName"
       },
       {
         id:4,
@@ -76,7 +79,8 @@ export default {
         type:"",
         label:"父菜单",
         sort:true,
-        icon:false
+        icon:false,
+        class:"tableFather"
       },
       {
         id:5,
@@ -84,13 +88,15 @@ export default {
         label:"查看",
         sort:false,
         icon:'icon-eye-open',
+        class:"tableAction"
       },
       {
         id:6,
         type:"",
         label:"编辑",
         sort:false,
-        icon:'icon-pencil'
+        icon:'icon-pencil',
+        class:"tableAction"
       },
       {
         id:7,
@@ -98,13 +104,15 @@ export default {
         label:"删除",
         sort:false,
         icon:'icon-trash',
+        class:"tableAction"
       },
       {
         id:8,
         type:"",
         label:"授权",
         sort:false,
-        icon:'icon-key'
+        icon:'icon-key',
+        class:"tableAction"
       },
       ],
     }
