@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class='listpagewrap'>
       <lemon-alert :alerts="alerts"></lemon-alert>
       <lemon-list class="rolelist" :tabledata="tabledatas"  :items="items"> 
       </lemon-list>

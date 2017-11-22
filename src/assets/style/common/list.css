@@ -47,7 +47,7 @@
 .el-main .rolelist .el-table__body-wrapper td.el-table-column--selection .cell label .el-checkbox__input{
     width:100%;
     height:100%;
-    vertical-align: unset;
+    vertical-align: top;
 }
 
 .el-main .rolelist .el-table__body-wrapper td.el-table-column--selection .cell label .el-checkbox__input .el-checkbox__inner{
@@ -121,7 +121,7 @@
 .el-main .rolelist .el-table__header-wrapper th.el-table-column--selection .cell label .el-checkbox__input{
     width:100%;
     height:100%;
-    vertical-align: unset;
+    vertical-align: top;
 }
 
 .el-main .rolelist .el-table__header-wrapper th.el-table-column--selection .cell label .el-checkbox__input .el-checkbox__inner{
@@ -139,3 +139,44 @@
     background-color:#3498DB;
 }
 
+
+/*轩不在新加样式*/
+.listpagewrap{
+	padding:0 0.41rem;
+}
+.rolelist .el-table__body, .rolelist .el-table__footer, .rolelist .el-table__header{
+	width:100%!important;
+}
+.rolelist .el-table::before{
+	display: none;
+}
+.rolelist .el-table__body{
+	width:100%!important;
+	padding:1px;
+}
+.rolelist .el-table__row:hover{
+	outline: 1px solid #378ef8;
+}
+.el-table--striped .el-table__body tr.el-table__row--striped td{
+	background-color:rgb(250,250,250)!important;
+}
+.rolelist.el-table--enable-row-hover .el-table__body tr:hover>td{
+	background:rgba(255,255,255,0);
+}
+/*去掉padding用line-height设置行高*/
+.rolelist.el-table td, .rolelist.el-table th{
+	padding:0!important;
+}
+.rolelist.el-table div.cell{
+    line-height:0.52rem;
+    padding:0;
+}
+/*上下箭头*/
+.el-table .sort-caret.ascending{
+	top:50%;
+	margin-top:-11px;
+}
+.el-table .sort-caret.descending{
+	top:50%;
+	margin-top:-4px;
+}

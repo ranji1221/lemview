@@ -127,6 +127,14 @@
 		$(window).on('resize.card_echart',function(){
 			card_echart.resize();
 		})
+		var n=1;
+		$('.el-menu-vertical-demo .btn-fold').on('click.card_echart',function(){
+			n++;
+			console.log(n)
+			card_echart.resize();
+			
+		})
+
 	},
     data() {
       return {
