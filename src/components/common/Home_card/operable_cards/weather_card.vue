@@ -133,6 +133,7 @@
 	width:100%;
 	height:100%;
 	margin:auto;
+	max-width:1.5rem;
 }
 
 </style>

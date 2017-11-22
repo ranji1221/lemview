@@ -19,7 +19,7 @@
 		var option = {
 			grid: {
 				top: '10%',
-				left: '5%',
+				left: '10%',
 				right: '5%',
 				bottom:'15%',
 			},
