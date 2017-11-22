@@ -112,7 +112,7 @@ export default {
         label:"授权",
         sort:false,
         icon:'icon-key',
-        class:"tableAction"
+        class:"tableAction tableLast"
       },
       ],
     }

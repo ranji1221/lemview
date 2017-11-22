@@ -7,6 +7,8 @@
     </ul>
 </template>
 <script>
+import "@/assets/style/common/Prompt.css"
+
      export default {
          props: ['alerts'],
      }

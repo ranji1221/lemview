@@ -9,6 +9,7 @@
   </div>
 </template>
 <script>
+import "@/assets/style/common/Pagination.css"
   export default {
     props: ['page'],
     methods: {

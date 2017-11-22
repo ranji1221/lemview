@@ -1,6 +1,6 @@
 .el-main{
     /*padding: 0px 0.45rem;*/
-    /*background-color:white;*/
+    background-color:white;
 }
 .el-main .rolelist{
     background: rgb(255, 255, 255);
@@ -19,15 +19,14 @@
     border:none;
 
 }
-
 .el-main .rolelist .el-table__body-wrapper table colgroup col:nth-child(1){
-    width:0.35rem;
+    width:0.5rem;
     min-width: 70px;
 }
 .el-main .rolelist .el-table__body-wrapper table colgroup col:nth-child(5),col:nth-child(6),col:nth-child(7){
     width:0.35rem;
 }
-.el-main .rolelist .el-table__body-wrapper table colgroup col:last-child{
+.el-main .rolelist .el-table__body-wrapper table colgroup col:nth-child(8){
     width:0.5rem;
 }
 .el-main .rolelist .el-table__body-wrapper td.el-table-column--selection{
@@ -51,7 +50,6 @@
     height:100%;
     vertical-align: top;
 }
-
 .el-main .rolelist .el-table__body-wrapper td.el-table-column--selection .cell label .el-checkbox__input .el-checkbox__inner{
     width:100%;
     height:100%;
@@ -71,19 +69,6 @@
     cursor: pointer;
     vertical-align: -0.05rem;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 .el-main .rolelist .el-table__header-wrapper table tr{
     background-color:rgb(222, 233, 247);
     color: rgb(51, 51, 51);
@@ -91,13 +76,13 @@
 }
 
 .el-main .rolelist .el-table__header-wrapper table colgroup col:nth-child(1){
-    width:0.35rem;
+    width:0.5rem;
     min-width: 70px;
 }
 .el-main .rolelist .el-table__header-wrapper table colgroup col:nth-child(5),col:nth-child(6),col:nth-child(7){
     width:0.35rem;
 }
-.el-main .rolelist .el-table__header-wrapper table colgroup col:last-child{
+.el-main .rolelist .el-table__header-wrapper table colgroup col:nth-child(8){
     width:0.5rem;
 }
 .el-main .rolelist .el-table__header-wrapper th{
@@ -143,7 +128,6 @@
 }
 
 
-/*轩不在新加样式*/
 .listpagewrap{
 	padding:0 0.41rem;
 }
@@ -158,16 +142,12 @@
 }
 /*.rolelist .el-table__body{
 	width:100%!important;
-	padding:2px;
+	padding:1px;
 }*/
 .rolelist .el-table__body-wrapper{
 	width:100%!important;
 	padding:1px;
 }
-/*.el-main .rolelist .el-table__body-wrapper td.el-table-column--selection div.cell{
-	margin-left:-3px;	
-}*/
-
 .rolelist .el-table__body tr{
 	width:100%!important;
 }
@@ -217,3 +197,23 @@
 .rolelist .tableAction{
 	width:0.5rem!important;
 }*/
+
+.rolelist th.tableLast div.cell{
+	padding-right:0.3rem;
+}
+.rolelist td.tableLast div.cell{
+	padding-right:0.3rem;
+	margin-right:-1px;
+}
+.el-table--striped .el-table__body tr.el-table__row--striped td{	
+	background:rgba(250,250,250,0)!important;
+}
+.el-table--striped .el-table__body tr.el-table__row--striped{
+	background:rgba(250,250,250,1)!important;
+}
+.el-table--border, .el-table--group{
+	border-top:1px solid rgba(215, 215, 215, 1);
+	border-right:1px solid rgba(215, 215, 215, 1);
+	border-left:1px solid rgba(215, 215, 215, 1);
+	border-bottom:none;
+}
