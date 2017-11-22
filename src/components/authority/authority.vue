@@ -3,11 +3,11 @@
 </template>
 
 <script>
-import rolelist from "./role/List"
+import RoleList from "@/components/authority/role/list.vue"
 
 export default {
     components:{
-        rolelist
+        RoleList
     }
 }
 </script>
