@@ -18,10 +18,10 @@
 		var card_echart = echarts.init(document.getElementById("card_echart"))
 		var option = {
 			grid: {
-				top: '20%',
-				left: '10%',
-				right: '10%',
-				bottom:'20%',
+				top: '10%',
+				left: '5%',
+				right: '5%',
+				bottom:'15%',
 			},
 			tooltip: {
 //				trigger: 'axis',
@@ -31,16 +31,9 @@
 				borderColor: "#ffffff",
 				borderWidth: 1,
 				enterable: true,
-//				 position: function (point, params, dom, rect, size) {
-//				      // 固定在顶部
-//				      return [point[0]-10, '10%'];
-//				 },
-				//				position:function(point, params, dom, rect, size){
-				//					return [point[0]+30,point[1]-size.contentSize[1]]
-				//				},
 //				b0 x轴坐标 a0曲线标题 c0 y轴坐标
 				position:"top",
-				formatter: "{c0}",
+				formatter: "{c0}k",
 				textStyle: {
 					color: "#ffffff",
 					align: 'center',
@@ -54,9 +47,10 @@
 				axisPointer: {
 					type: 'cross',
 					label: {
-						backgroundColor: '#6a7985'
+						backgroundColor: '#6a7985',
+						formatter:'{value} k',						
 					}
-				}
+				},
 			},
 			xAxis: {
 				splitLine: {
@@ -64,29 +58,34 @@
 				},
 				type: 'category',
 				boundaryGap: false,
-				axisLabel: {
-					show: true,
-					textStyle: {
-						color: 'black',
-						fontWeight: "",
-						fontSize: 14,
-					}
+				axisTick:{
+					length:0,
 				},
-				data: ['2.5k', '2.5k', '2.5k', '2.5k', '2.5k', '2.5k', '2.5k', '2.5k', '2.5k', '2.5k', '2.5k','2.5k', '2.5k', '2.5k', '2.5k', '2.5k', '2.5k', '2.5k', '2.5k', '2.5k', '2.5k', '2.5k',]
+				axisLabel:{
+					show: true,
+//					margin:15,
+					formatter:'{value} k',
+					color:'rgb(0,0,0)',
+					fontSize:14,
+				},
+				data: ['2.5', '2.5', '2.5', '2.5', '2.5', '2.5', '2.5', '2.5', '2.5', '2.5', '2.5','2.5', '2.5', '2.5', '2.5', '2.5', '2.5', '2.5', '2.5', '2.5', '2.5', '2.5',]
 			},
 			yAxis: {
 				splitLine: {
 					show: true
 				},
 				type: 'value',
-				axisLabel: {
-					show: true,
-					textStyle: {
-						color: 'black',
-						//						fontWeight: "bolder",
-						fontSize: 14,
-					}
+				axisTick:{
+					length:0,
 				},
+				axisLabel:{
+					show: true,
+//					margin:15,
+					formatter:'{value} k',
+					color:'rgb(0,0,0)',
+					fontSize:14,
+				},
+//				nameGap:0,
 //				data: ['0', '2.5k', '5k', '7.5k', '10k',]
 			},
 			series: [
@@ -97,17 +96,12 @@
 					smooth: true,
 					showSymbol: false,
 					areaStyle: {
-//						normal: {
-//							color: '#fc129d',
-//							opacity: "1"
-//						}
 						normal:{
 							color:new echarts.graphic.LinearGradient(0,0,0,1,[
 								{offset:0,color:'#fc129d'},
 								{offset:1,color:'#bb04be'},
 							],false),
-							opacity: "1"
-							
+							opacity: "1"							
 						}
 					},
 					itemStyle: {
@@ -116,12 +110,12 @@
 						},
 						emphasis: {
 							color: "#ffffff",//内芯
-						}
+						},
 					},
 					lineStyle: {
 						normal: {
 							color: "#fc129d"//边线
-						}
+						},
 					},
 					data: [1.4,1.7,1.6,2,1.8,2.7,2.4,5.5,2.5,2.4,2,1.8,3,2.7,4,1.5,1.4,1.1,2.5,2.3,4,2]
 				},
@@ -130,7 +124,9 @@
 
 		};
 		card_echart.setOption(option);
-		
+		$(window).on('resize.card_echart',function(){
+			card_echart.resize();
+		})
 	},
     data() {
       return {

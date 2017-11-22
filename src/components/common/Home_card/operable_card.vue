@@ -1,6 +1,6 @@
 <template>
 		<div class="cardwrap" :class="card.classObject">
-			<div :id="card.card_id" class="operable_card" v-if="!card.remove" :class="{slideUp:!card.slidetoggle}">
+			<div :id="card.card_id" class="operable_card" v-if="!card.remove">
 				<div class="operable_card_title">
 					<i class="icon-circle" v-bind:style="{ color: card.circleColor}"></i>
 				    <span class='title'>{{card.title}}</span>
@@ -11,6 +11,9 @@
 				        <i class="icon-remove" @click="card.remove=true"></i>
 					</span>
 				</div>
+				<el-collapse-transition >
+					<div v-show="card.slidetoggle">
+						
 				<div class="operable_card_body">
 					
 					<release-card v-if="card.cardType === 'release'"></release-card>
@@ -26,6 +29,8 @@
 					<!--<router-link to='' v-if='card.more' >更多</router-link>-->
 					<a href="javascript:;"  v-if='card.more'>更多</a>
 				</div>
+					</div>
+				</el-collapse-transition>
 			</div>
 		</div>
 </template>
@@ -104,6 +109,8 @@
 
 </style>
 <script>
+	
+	
 //	require("../../../assets/default/style/index/Home_operable_card.css");
 import releaseCard from './operable_cards/release_card.vue'	
 import activityCard from './operable_cards/activity_card.vue'	
@@ -111,7 +118,8 @@ import weatherCard from './operable_cards/weather_card.vue'
 import administrationCard from './operable_cards/administration_card.vue'	
 import chartCard from './operable_cards/chart_card.vue'	
 import draftCard from './operable_cards/draft_card.vue'	
-
+// collapse 展开折叠
+import CollapseTransition from 'element-ui/lib/transitions/collapse-transition';
   export default {
   	props: ['card'],
     data() {
