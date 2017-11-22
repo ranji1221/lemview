@@ -1,16 +1,16 @@
 <template>
-    <v-checkboxList class="rolelist" :tabledata="tabledatas"  :items="items">
+    <lemon-list class="rolelist" :tabledata="tabledatas"  :items="items">
       
-    </v-checkboxList>
+    </lemon-list>
 </template>
 
 <script>
-import vCheckboxList from '@/components/common/list/List';
+import lemonList from '@/components/common/list/List';
 import "@/assets/style/common/list.css"
 
 export default {
   components: {
-    vCheckboxList
+    lemonList
   },
   data() {
     return {
