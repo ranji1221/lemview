@@ -120,7 +120,7 @@ export default {
 				{
 					icon: 'icon-liebiao3',
 					title: '角色列表',
-					linkto: '/authority/roleList',
+					linkto: '/index/authority/roleList',
 					level: 3,
 					pid: 2,
 					lid: 3
@@ -128,7 +128,7 @@ export default {
 				{
 					icon: 'icon-tianjia',
 					title: '添加角色',
-					linkto: '/authority/roleAdd',
+					linkto: '/index/authority/roleAdd',
 					level: 3,
 					pid: 2,
 					lid: 4
@@ -136,7 +136,7 @@ export default {
 				{
 					icon: 'icon-piliangtianjia',
 					title: '批量添加角色',
-					linkto: '/authority/roleAdds',
+					linkto: '/index/authority/roleAdds',
 					level: 3,
 					pid: 2,
 					lid: 5
@@ -153,7 +153,7 @@ export default {
 				{
 					icon: 'icon-yonghuliebiao',
 					title: '用户列表',
-					linkto: '/authority/userList',
+					linkto: '/index/authority/userList',
 					level: 3,
 					pid: 6,
 					lid: 7
@@ -161,7 +161,7 @@ export default {
 				{
 					icon: 'icon-tianjiaxinyonghu',
 					title: '添加用户',
-					linkto: '/authority/userAdd',
+					linkto: '/index/authority/userAdd',
 					level: 3,
 					pid: 6,
 					lid: 8
@@ -169,7 +169,7 @@ export default {
 				{
 					icon: 'icon-tianjiaduoyonghu',
 					title: '批量添加用户',
-					linkto: '/authority/userAdds',
+					linkto: '/index/authority/userAdds',
 					level: 3,
 					pid: 6,
 					lid: 9
@@ -186,7 +186,7 @@ export default {
 				{
 					icon: 'icon-ziyuanguanli2',
 					title: '资源列表',
-					linkto: '/authority/resourceList',
+					linkto: '/index/authority/resourceList',
 					level: 2,
 					pid: 10,
 					lid: 11
@@ -194,7 +194,7 @@ export default {
 				{
 					icon: 'icon-tianjiaziyuan-q',
 					title: '添加资源',
-					linkto: '/authority/resourceAdd',
+					linkto: '/index/authority/resourceAdd',
 					level: 2,
 					pid: 10,
 					lid: 12

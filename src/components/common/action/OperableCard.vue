@@ -109,12 +109,12 @@
 
 </style>
 <script>
-import ReleaseCard from '@/components/home/card_content/ReleaseCard.vue'	
-import ActivityCard from '@/components/home/card_content/ActivityCard.vue'	
-import WeatherCard from '@/components/home/card_content/WeatherCard.vue'	
-import AdministrationCard from '@/components/home/card_content/AdministrationCard.vue'	
-import ChartCard from '@/components/home/card_content/ChartCard.vue'	
-import DraftCard from '@/components/home/card_content/DraftCard.vue'	
+import ReleaseCard from '@/components/home/content/ReleaseCard.vue'	
+import ActivityCard from '@/components/home/content/ActivityCard.vue'	
+import WeatherCard from '@/components/home/content/WeatherCard.vue'	
+import AdministrationCard from '@/components/home/content/AdministrationCard.vue'	
+import ChartCard from '@/components/home/content/ChartCard.vue'	
+import DraftCard from '@/components/home/content/DraftCard.vue'	
 // collapse 展开折叠
 import CollapseTransition from 'element-ui/lib/transitions/collapse-transition';
   export default {

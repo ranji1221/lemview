@@ -15,7 +15,7 @@
 <script>
 	import LemonHeader from '@/components/common/layout/Header.vue'
 	import LemonSidebar from '@/components/common/layout/Aside.vue'
-	import LemonHome from '@/components/common/layout/Home.vue'
+	import LemonHome from '@/components/home/Home.vue'
 
 	export default {
 		components: {
