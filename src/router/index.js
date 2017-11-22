@@ -1,8 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from '@/components/common/Home'
-import authority from "@/components/authority/authority"
-import roleList from "@/components/authority/role/List"
+import Home from '@/components/common/home.vue'
+import Authority from "@/components/authority/authority.vue"
+import RoleList from "@/components/authority/role/list.vue"
+import RoleAdd from '@/components/authority/role/add.vue'
+import RoleAdds from '@/components/authority/role/adds.vue'
 
 Vue.use(Router)
 
@@ -15,13 +17,24 @@ export default new Router({
     },
     {
       path:"/authority",
-      component:authority,
+      component:Authority,
       children:[
         {
           path:"roleList",
           name:"角色管理/角色列表",
-          component:roleList
-        }
+          component:RoleList
+        },
+        {
+          path:"roleAdd",
+          name:"角色管理/添加角色",
+          component:RoleAdd
+        },
+        {
+          path:"roleAdds",
+          name:"角色管理/批量添加角色",
+          component:RoleAdds
+        },
+       
       ]
     }
   ]

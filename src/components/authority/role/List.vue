@@ -1,19 +1,32 @@
 <template>
-    <lemon-list class="rolelist" :tabledata="tabledatas"  :items="items">
-      
-    </lemon-list>
+    <div>
+      <lemon-alert :alerts="alerts"></lemon-alert>
+      <lemon-list class="rolelist" :tabledata="tabledatas"  :items="items"> 
+      </lemon-list>
+      <lemon-pagination :page="page"></lemon-pagination>
+    </div>
 </template>
 
 <script>
-import lemonList from '@/components/common/list/List';
+import LemonList from '@/components/common/list/list.vue';
+import LemonAlert from '@/components/common/alert/alert.vue';
+import LemonPagination from '@/components/common/pagination/pagination.vue'
 import "@/assets/style/common/list.css"
 
 export default {
   components: {
-    lemonList
+    LemonList,LemonAlert,LemonPagination
   },
   data() {
     return {
+      page: {
+        size: 10,
+        total: 19
+      },
+      alerts: [{
+        title: '温馨提示：此页面展示角色列表，您可以对角色查看、编辑、删除、授权及批量删除和新建的操作。单击右方x号，可以关闭此条提示语!',
+        type: 'info'
+      }],
       tabledatas:[
         {
           id:'01',
@@ -21,17 +34,17 @@ export default {
           fath:"首页1",
         },
         {
-          id:'01',
+          id:'02',
           name:"首页",
           fath:"首页1",
         },
         {
-          id:'01',
+          id:'03',
           name:"首页",
           fath:"首页1",
         },
         {
-          id:'01',
+          id:'04',
           name:"首页",
           fath:"首页1",
         }
