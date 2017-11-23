@@ -11,7 +11,7 @@
                   <i class="icon-home"></i>
                 </div>
               </el-col>
-              <el-col :span="6" class="lemon_title hidden-md-and-down">
+              <el-col :span="7" class="lemon_title hidden-md-and-down">
                   <h4 class="el-col-24">青柠后台管理系统欢迎您</h4>
               </el-col>
               <el-col :span="8" :sm="12"  :lg="8" class="lemon_search">
@@ -21,7 +21,7 @@
               </el-col>
             </div>
           </el-col>
-          <el-col :span="6"  class="lemon_admin">
+          <el-col :span="7"  class="lemon_admin">
             <div class="grid-content bg-purple-light">
               <el-col :span="10" :sm="14"  :lg="10" class="admin_fun_icon">
                 <el-dropdown-item class="clearfix el-col-4 admin_fun_icon_text">

@@ -1,0 +1,74 @@
+<template>
+  <div class="role_add option_title_agg">
+    <lemon-option-title></lemon-option-title>
+    <lemon-form :forms="form"></lemon-form> 
+  </div>
+</template>
+
+<script>
+import LemonForm  from "@/components/common/action/Form"
+import LemonOptionTitle from "@/components/common/action/OptionTitle"
+import "@/assets/style/common/Option_title.css"
+
+export default {
+    components:{ LemonForm,LemonOptionTitle },
+      data() {
+      return {
+        form: {
+          name: {
+            label:"角色名称",
+            text:"",
+            type:"text",
+            default:"请输入角色名称"
+          },
+          fath:{
+            label:"父级角色",
+            text:"",
+            type:"select",
+            selected:"选择父级角色",
+            childrens:[
+              {
+                label:"角色列表",
+                value:1
+              },
+              {
+                label:"首页",
+                value:2
+              }
+            ]
+          },
+          rely:{
+            label:"依赖角色",
+            text:"",
+            type:"select",
+            selected:"选择依赖角色",
+            childrens:[
+              {
+                label:"依赖角色列表",
+                value:"1"
+              },
+              {
+                label:"首页",
+                value:"2"
+              }
+            ]
+          },
+          num:{
+            label:"最大限制用户数",
+            type:"number",
+            text:1,
+            min:1,
+            max:10
+          },
+          remarks:{
+            label:"备注",
+            text:"",
+            type:"remarks",
+            default:"请输入备注"
+          }
+        }
+      }
+    },
+    
+}
+</script>
