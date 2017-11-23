@@ -1,7 +1,7 @@
 <template>
 	<div class="breadcrumbwrap">
 		<el-breadcrumb separator-class="el-icon-arrow-right">
-		    <el-breadcrumb-item :to="{ path: '/' }">
+		    <el-breadcrumb-item :to="{ path: '/index/home' }">
 		    	<i class="icon-home"></i>
 		    	首页
 		    </el-breadcrumb-item>
