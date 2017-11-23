@@ -1,5 +1,6 @@
 <template>
     <div class='listpagewrap'>
+      <lemon-breadcrumb :breadcrumb="breadcrumb"></lemon-breadcrumb>
       <lemon-prompt :alerts="alerts"></lemon-prompt>
       <lemon-list class="rolelist" :tabledata="tabledatas"  :items="items"> 
       </lemon-list>
@@ -10,18 +11,29 @@
 <script>
 import LemonList from '@/components/common/action/List.vue';
 import LemonPrompt from '@/components/common/prompt/Prompt.vue';
+import LemonBreadcrumb from '@/components/common/action/Breadcrumb.vue';
 import LemonPagination from '@/components/common/action/Pagination.vue'
 import "@/assets/style/common/list.css"
 
 export default {
   components: {
-    LemonList,LemonPrompt,LemonPagination
+    LemonList,LemonPrompt,LemonPagination,LemonBreadcrumb
   },
   data() {
     return {
+      breadcrumb:{
+      	search:true,
+      	
+      },
       page: {
         size: 10,
-        total: 19
+        total: 19,
+        tfootbtns:{
+        	btns:true,//是否添加按钮组
+        	create:true,//新建按钮
+        	refresh:true,//刷新按钮
+        	delete:true, //删除按钮      	
+        }
       },
       alerts: [{
         title: '温馨提示：此页面展示角色列表，您可以对角色查看、编辑、删除、授权及批量删除和新建的操作。单击右方x号，可以关闭此条提示语!',
