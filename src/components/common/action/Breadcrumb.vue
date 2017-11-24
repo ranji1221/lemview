@@ -1,11 +1,12 @@
 <template>
 	<div class="breadcrumbwrap">
 		<el-breadcrumb separator-class="el-icon-arrow-right">
-		    <el-breadcrumb-item :to="{ path: '/index/home' }">
+		    <el-breadcrumb-item to="/index/home">
 		    	<i class="icon-home"></i>
 		    	首页
 		    </el-breadcrumb-item>
-		    <el-breadcrumb-item v-for="item in breadcrumbList" :key="item.index" :to="item.path">{{item.name}}</el-breadcrumb-item>
+		    <!--<el-breadcrumb-item v-for="item in breadcrumbList" :key="item.index" :to="item.path">{{item.name}}</el-breadcrumb-item>-->
+		    <el-breadcrumb-item v-for="item in breadcrumbList" :key="item.index" >{{item.name}}</el-breadcrumb-item>
 		</el-breadcrumb>
 		
 		<div class="bread_search" v-if="breadcrumb.search">

@@ -2,7 +2,7 @@
     <div class='listpagewrap'>
       <lemon-breadcrumb :breadcrumb="breadcrumb"></lemon-breadcrumb>
       <lemon-prompt :alerts="alerts"></lemon-prompt>
-      <lemon-list class="rolelist" :tabledata="tabledatas"  :items="items"> 
+      <lemon-list class="rolelist" :tabledata="tabledatas"  :items="items" :actions="actions"> 
       </lemon-list>
       <lemon-pagination :page="page"></lemon-pagination>
     </div>
@@ -42,91 +42,98 @@ export default {
       tabledatas:[
         {
           id:'01',
-          name:"首页",
-          fath:"首页1",
+          name:"首页2",
+          fath:"首页14",
         },
         {
           id:'02',
-          name:"首页",
+          name:"首页5",
           fath:"首页1",
         },
         {
           id:'03',
-          name:"首页",
-          fath:"首页1",
+          name:"首页1",
+          fath:"首页177",
         },
         {
           id:'04',
-          name:"首页",
-          fath:"首页1",
+          name:"首页8",
+          fath:"首页19",
         }
       ],
       items: [
-        {
-        id: 1,
-        type: "selection",
-        class:"tableCheckbox"
-      },
+//      {
+//      id: 1,
+//      type: "selection",
+//      class:"tableCheckbox"
+//    },
       {
         id: 2,
         prop:'id',
-        type: " ",
+//      type: " ",
         label: "编号",
         sort:true,
-        icon:false,
-        class:"tableId"
+//      icon:false,
+
       },
       {
         id: 3,
         prop:'name',
-        type: " ",
+//      type: " ",
         label: "名称",
         sort:true,
-        icon:false,
-        class:"tableName"
+//      icon:false,
+
       },
       {
         id:4,
         prop:'fath',
-        type:"",
+//      type:"",
         label:"父菜单",
         sort:true,
-        icon:false,
-        class:"tableFather"
+//      icon:false,
+
       },
-      {
-        id:5,
-        type:"",
-        label:"查看",
-        sort:false,
-        icon:'icon-eye-open',
-        class:"tableAction"
-      },
-      {
-        id:6,
-        type:"",
-        label:"编辑",
-        sort:false,
-        icon:'icon-pencil',
-        class:"tableAction"
-      },
-      {
-        id:7,
-        type:"",
-        label:"删除",
-        sort:false,
-        icon:'icon-trash',
-        class:"tableAction"
-      },
-      {
-        id:8,
-        type:"",
-        label:"授权",
-        sort:false,
-        icon:'icon-key',
-        class:"tableAction tableLast"
-      },
+//    {
+//      id:5,
+//      type:"",
+//      label:"查看",
+//      sort:false,
+//      icon:'icon-eye-open',
+//      class:"tableAction"
+//    },
+//    {
+//      id:6,
+//      type:"",
+//      label:"编辑",
+//      sort:false,
+//      icon:'icon-pencil',
+//      class:"tableAction"
+//    },
+//    {
+//      id:7,
+//      type:"",
+//      label:"删除",
+//      sort:false,
+//      icon:'icon-trash',
+//      class:"tableAction"
+//    },
+//    {
+//      id:8,
+//      type:"",
+//      label:"授权",
+//      sort:false,
+//      icon:'icon-key',
+//      class:"tableAction tableLast"
+//    },
       ],
+      actions:{
+      	selection:true,
+      	view:true,
+      	edit:true,
+      	dele:true,
+      	ault:true,
+      }
     }
   }
 }

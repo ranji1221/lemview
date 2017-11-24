@@ -197,14 +197,20 @@
 .rolelist .tableAction{
 	width:0.5rem!important;
 }*/
-
-.rolelist th.tableLast div.cell{
+.rolelist tr >th:nth-last-child(2) div.cell{
+	padding-right:0.3rem;
+}
+.rolelist tr td:nth-last-child(1) div.cell{
+	padding-right:0.3rem;
+	margin-right:-1px;
+}
+/*.rolelist th.tableLast div.cell{
 	padding-right:0.3rem;
 }
 .rolelist td.tableLast div.cell{
 	padding-right:0.3rem;
 	margin-right:-1px;
-}
+}*/
 .el-table--striped .el-table__body tr.el-table__row--striped td{	
 	background:rgba(250,250,250,0)!important;
 }

@@ -1,26 +1,50 @@
 <template>
-  <el-table ref="multipleTable" stripe tooltip-effect="dark" style="width: 100%" border :data="tabledata" @selection-change="handleSelectionChange">
-    <template v-for="item in items">
-      <template v-if="item.icon">
-        <el-table-column align="center" :key="item.id" :type="item.type" :label="item.label" :sortable="item.sort" :prop="item.prop" :class-name="item.class">
+  <el-table ref="multipleTable" stripe tooltip-effect="dark" style="width: 100%" border :data="tabledata" @selection-change="handleSelectionChange" :default-sort = "{prop: 'id', order: 'descending'}">
+   		<template v-if="actions.selection">
+        <el-table-column :resizable="resizable" align="center" type="selection" class-name="tableAction">
+        </el-table-column>
+      </template>
+      
+	    <el-table-column v-for="item in items" :resizable="resizable"	 align="center" :key="item.id" :label="item.label" :sortable="item.sort" :prop="item.prop" :class-name="item.class">
+	    </el-table-column>
+
+      <template v-if="actions.view">
+        <el-table-column :resizable="resizable" align="center" label="查看" class-name="tableAction">
           <template slot-scope="scope">
-            <i :class="item.icon"></i>
+            <i class="icon-eye-open" @click="handleView(scope.$index, scope.row)"></i>
           </template>
         </el-table-column>
       </template>
-      <template v-else>
-        <el-table-column align="center" :key="item.id" :type="item.type" :label="item.label" :sortable="item.sort" :prop="item.prop" :class-name="item.class">
+      <template v-if="actions.edit">
+        <el-table-column :resizable="resizable" align="center" label="编辑" class-name="tableAction">
+          <template slot-scope="scope">
+            <i class="icon-pencil" @click="handleEdit(scope.$index, scope.row)"></i>
+          </template>
         </el-table-column>
       </template>
-    </template>
+      <template v-if="actions.dele">
+        <el-table-column :resizable="resizable" align="center" label="删除" class-name="tableAction">
+          <template slot-scope="scope">
+            <i class="icon-trash" @click="handleDele(scope.$index, scope.row)"></i>
+          </template>
+        </el-table-column>
+      </template>
+      <template v-if="actions.ault">
+        <el-table-column :resizable="resizable" align="center" label="授权" class-name="tableAction">
+          <template slot-scope="scope">
+            <i class="icon-key" @click="handleAult(scope.$index, scope.row)"></i>
+          </template>
+        </el-table-column>
+      </template>
   </el-table>
 </template>
 <script>
 export default {
-  props: ['items', 'tabledata'],
+  props: ['items', 'tabledata','actions'],
   data() {
     return {
       multipleSelection: [],
+      resizable:false,
     }
   },
   mounted: function() {
@@ -41,7 +65,19 @@ export default {
     },
     formatter(row, column) {
       return row.address;
-    }
+    },
+    handleView(index, row) {
+	    console.log(index, row);
+	  },
+	   handleEdit(index, row) {
+	    console.log(index, row);
+	  },
+	  handleDele(index, row) {
+	    console.log(index, row);
+	  },
+	  handleAult(index, row) {
+	    console.log(index, row);
+	  },
   }
 }
 
