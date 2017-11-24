@@ -1,6 +1,6 @@
 <template>
   <div class="role_add option_title_agg">
-    <lemon-option-title></lemon-option-title>
+    <lemon-option-title :actions="actions"></lemon-option-title>
     <lemon-form :forms="form"></lemon-form> 
   </div>
 </template>
@@ -13,6 +13,11 @@ export default {
     components:{ LemonForm,LemonOptionTitle },
       data() {
       return {
+      	actions:{
+      		hid:true,
+      		scaling:true,
+      		close:true,
+      	},
         form: {
           name: {
             label:"资源名称",
