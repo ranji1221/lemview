@@ -9,6 +9,7 @@
     </div>
 </template>
 <script>
+import "@/assets/style/common/Option_title.css"
 export default {
     computed:{
         Route:function(){

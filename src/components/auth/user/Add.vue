@@ -8,7 +8,6 @@
 <script>
 import LemonForm  from "@/components/common/action/Form"
 import LemonOptionTitle from "@/components/common/action/OptionTitle"
-import "@/assets/style/common/Option_title.css"
 
 export default {
     components:{ LemonForm,LemonOptionTitle },
