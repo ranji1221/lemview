@@ -57,27 +57,27 @@ export default {
               }
             ]
           },
-          operation:{
-            lable:"相关操作",
-            text:"",
-            type:"checked",
-            childrens:[
-                {
-                    label:"查看",
-                    value:1
-                },
-                {
-                    label:"更改",
-                    vaule:2
-                },
-                {
-                    label:"增加",
-                    value:3
-                },
-                {
-                    label:"删除",
-                    value:4
-                }
+          option:{
+            type:"options",
+            arr:[
+              {
+                label:"相关操作",
+                type:"text",
+                text:"",
+                default:"请输入相关操作"
+              },
+              {
+                label:"权限许可",
+                type:"text",
+                text:"",
+                default:"请输入权限许可"
+              },
+              {
+                label:"选择依赖操作",
+                type:'select',
+                text:"",
+                selected:"选择资源",
+              }
             ]
           }
         }
