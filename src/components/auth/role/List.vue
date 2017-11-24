@@ -2,7 +2,7 @@
     <div class='listpagewrap'>
       <lemon-breadcrumb :breadcrumb="breadcrumb"></lemon-breadcrumb>
       <lemon-prompt :alerts="alerts"></lemon-prompt>
-      <lemon-list class="rolelist" :tabledata="tabledatas"  :items="items" :actions="actions"> 
+      <lemon-list class="rolelist list" :tabledata="tabledatas"  :items="items" :actions="actions"> 
       </lemon-list>
       <lemon-pagination :page="page"></lemon-pagination>
     </div>
