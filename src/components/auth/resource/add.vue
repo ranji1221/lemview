@@ -1,88 +1,93 @@
 <template>
-  <div class="role_add option_title_agg">
-     <lemon-option-title :actions="title_actions" ></lemon-option-title>
-    <lemon-form :forms="form"></lemon-form> 
+  <div class="resource_add option_title_agg">
+    <lemon-option-title :actions="title_actions"></lemon-option-title>
+    <lemon-form :forms="form"></lemon-form>
   </div>
 </template>
 
 <script>
-import LemonForm  from "@/components/common/action/Form"
+import LemonForm from "@/components/common/action/Form"
 import LemonOptionTitle from "@/components/common/action/OptionTitle"
 
 export default {
-    components:{ LemonForm,LemonOptionTitle },
-      data() {
-      return {
-      	title_actions:{
-	      		hid:true,
-	      		scaling:true,
-	      		close:true,
-	      	},
-        form: {
-          name: {
-            label:"资源名称",
-            text:"",
-            type:"text",
-            default:"请输入资源名称"
-          },
-          fath:{
-            label:"资源类型",
-            text:"",
-            type:"select",
-            selected:"选择资源类型",
-            childrens:[
+  components: { LemonForm, LemonOptionTitle },
+  data() {
+    return {
+      title_actions: {
+        hid: true,
+        scaling: true,
+        close: true,
+      },
+      form: {
+        name: {
+          label: "资源名称：",
+          text: "",
+          type: "text",
+          default: "请输入资源名称"
+        },
+        fath: {
+          label: "资源类型：",
+          text: "",
+          type: "select",
+          selected: "选择资源类型",
+          childrens: [
+            {
+              label: "资源列表",
+              value: 1
+            },
+            {
+              label: "首页",
+              value: 2
+            }
+          ]
+        },
+        rely: {
+          label: "父级角色：",
+          text: "",
+          type: "select",
+          selected: "依赖父级列表",
+          childrens: [
+            {
+              label: "资源列表",
+              value: 1
+            },
+            {
+              label: "首页",
+              value: 2
+            }
+          ]
+        },
+        option: {
+          type: "options",
+          arr: [
+            [
               {
-                label:"资源列表",
-                value:1
+                btn_look: true,
+                readonly: false,
+                label: "相关操作：",
+                type: "text",
+                text: "",
+                default: "请输入相关操作",
               },
               {
-                label:"首页",
-                value:2
+                readonly: false,
+                label: "权限许可：",
+                type: "text",
+                text: "",
+                default: "请输入权限许可",
+              },
+              {
+                readonly: false,
+                label: "选择依赖操作：",
+                type: 'select',
+                text: "",
+                selected: "选择资源",
               }
             ]
-          },
-          rely:{
-            label:"父级角色",
-            text:"",
-            type:"select",
-            selected:"依赖父级列表",
-            childrens:[
-              {
-                label:"资源列表",
-                value:1
-              },
-              {
-                label:"首页",
-                value:2
-              }
-            ]
-          },
-          option:{
-            type:"options",
-            arr:[
-              {
-                label:"相关操作",
-                type:"text",
-                text:"",
-                default:"请输入相关操作"
-              },
-              {
-                label:"权限许可",
-                type:"text",
-                text:"",
-                default:"请输入权限许可"
-              },
-              {
-                label:"选择依赖操作",
-                type:'select',
-                text:"",
-                selected:"选择资源",
-              }
-            ]
-          }
+          ]
         }
       }
-    },
-    
+    }
+  }
 }
 </script>
