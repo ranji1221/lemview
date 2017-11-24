@@ -1,7 +1,8 @@
 <template>
-    <div>
+    <div class='listpagewrap'>
+      <lemon-breadcrumb :breadcrumb="breadcrumb"></lemon-breadcrumb>
       <lemon-alert :alerts="alerts"></lemon-alert>
-      <lemon-list class="rolelist" :tabledata="tabledatas"  :items="items"> 
+      <lemon-list class="rolelist" :tabledata="tabledatas"  :items="items" :actions="actions"> 
       </lemon-list>
       <lemon-pagination :page="page"></lemon-pagination>
     </div>
@@ -10,18 +11,28 @@
 <script>
 import LemonList from '@/components/common/action/List.vue';
 import LemonAlert from '@/components/common/prompt/Prompt.vue';
-import LemonPagination from '@/components/common/action/Pagination.vue'
+import LemonPagination from '@/components/common/action/Pagination.vue';
+import LemonBreadcrumb from '@/components/common/action/Breadcrumb.vue';
 import "@/assets/style/common/list.css"
 
 export default {
   components: {
-    LemonList,LemonAlert,LemonPagination
+    LemonList,LemonAlert,LemonPagination,LemonBreadcrumb
   },
   data() {
     return {
+      breadcrumb:{
+      	search:true,
+      },
       page: {
         size: 10,
-        total: 19
+        total: 19,
+        tfootbtns:{
+        	btns:true,//是否添加按钮组
+        	create:true,//新建按钮
+        	refresh:true,//刷新按钮
+        	delete:true, //删除按钮      	
+        }
       },
       alerts: [{
         title: '温馨提示：此页面展示角色列表，您可以对角色查看、编辑、删除、授权及批量删除和新建的操作。单击右方x号，可以关闭此条提示语!',
@@ -58,79 +69,45 @@ export default {
         },
       ],
       items: [
-        {
+      {
         id: 1,
-        type: "selection"
+        prop:'id',
+        label: "编号",
+        sort:true,
       },
       {
         id: 2,
-        prop:'id',
-        type: " ",
-        label: "编号",
-        sort:true,
-        icon:false
-      },
-      {
-        id: 3,
         prop:'userName',
-        type: " ",
         label: "用户名",
         sort:true,
-        icon:false
+      },
+      {
+        id:3,
+        prop:'assignRole',
+        label:"分配角色",
+        sort:true,
       },
       {
         id:4,
-        prop:'assignRole',
-        type:"",
-        label:"分配角色",
-        sort:true,
-        icon:false
+        prop:'phone',
+        label:"手机号码",
+        sort:true
       },
       {
         id:5,
-        prop:'phone',
-        type:"",
-        label:"手机号码",
-        sort:true,
-        icon:false
-      },
-      {
-        id:6,
         prop:'email',
         type:"",
         label:"邮箱地址",
         sort:true,
-        icon:false
-      },
-      {
-        id:7,
-        type:"",
-        label:"查看",
-        sort:false,
-        icon:'icon-eye-open',
-      },
-      {
-        id:8,
-        type:"",
-        label:"编辑",
-        sort:false,
-        icon:'icon-pencil'
-      },
-      {
-        id:9,
-        type:"",
-        label:"删除",
-        sort:false,
-        icon:'icon-trash',
-      },
-      {
-        id:10,
-        type:"",
-        label:"授权",
-        sort:false,
-        icon:'icon-key'
       },
       ],
+      actions:{
+      	selection:true,
+      	view:true,
+      	edit:true,
+      	dele:true,
+      	ault:true,
+      }
     }
   }
 }

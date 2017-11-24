@@ -62,70 +62,25 @@ export default {
         }
       ],
       items: [
-//      {
-//      id: 1,
-//      type: "selection",
-//      class:"tableCheckbox"
-//    },
+      {
+        id: 1,
+        prop:'id',
+        label: "编号",
+        sort:true
+
+      },
       {
         id: 2,
-        prop:'id',
-//      type: " ",
-        label: "编号",
+        prop:'name',
+        label: "名称",
         sort:true,
-//      icon:false,
-
       },
       {
         id: 3,
-        prop:'name',
-//      type: " ",
-        label: "名称",
-        sort:true,
-//      icon:false,
-
-      },
-      {
-        id:4,
         prop:'fath',
-//      type:"",
         label:"父菜单",
         sort:true,
-//      icon:false,
-
       },
-//    {
-//      id:5,
-//      type:"",
-//      label:"查看",
-//      sort:false,
-//      icon:'icon-eye-open',
-//      class:"tableAction"
-//    },
-//    {
-//      id:6,
-//      type:"",
-//      label:"编辑",
-//      sort:false,
-//      icon:'icon-pencil',
-//      class:"tableAction"
-//    },
-//    {
-//      id:7,
-//      type:"",
-//      label:"删除",
-//      sort:false,
-//      icon:'icon-trash',
-//      class:"tableAction"
-//    },
-//    {
-//      id:8,
-//      type:"",
-//      label:"授权",
-//      sort:false,
-//      icon:'icon-key',
-//      class:"tableAction tableLast"
-//    },
       ],
       actions:{
       	selection:true,
