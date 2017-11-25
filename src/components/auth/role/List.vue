@@ -2,7 +2,7 @@
     <div class='listpagewrap'>
       <lemon-breadcrumb :breadcrumb="breadcrumb"></lemon-breadcrumb>
       <lemon-prompt :alerts="alerts"></lemon-prompt>
-      <lemon-list class="rolelist" :tabledata="tabledatas"  :items="items" :actions="actions"> 
+      <lemon-list class="rolelist list" :tabledata="tabledatas"  :items="items" :actions="actions"> 
       </lemon-list>
       <lemon-pagination :page="page"></lemon-pagination>
     </div>
@@ -23,6 +23,7 @@ export default {
     return {
       breadcrumb:{
       	search:true,
+      	
       },
       page: {
         size: 10,
@@ -65,7 +66,7 @@ export default {
         id: 1,
         prop:'id',
         label: "编号",
-        sort:true,
+        sort:true
 
       },
       {
@@ -79,7 +80,6 @@ export default {
         prop:'fath',
         label:"父菜单",
         sort:true,
-
       },
       ],
       actions:{

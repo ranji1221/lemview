@@ -2,7 +2,7 @@
     <div class='listpagewrap'>
       <lemon-breadcrumb :breadcrumb="breadcrumb"></lemon-breadcrumb>
       <lemon-alert :alerts="alerts"></lemon-alert>
-      <lemon-list class="rolelist" :tabledata="tabledatas"  :items="items" :actions="actions"> 
+      <lemon-list class="resourcelist list" :tabledata="tabledatas"  :items="items" :actions="actions"> 
       </lemon-list>
       <lemon-pagination :page="page"></lemon-pagination>
     </div>
@@ -95,7 +95,6 @@ export default {
       	view:true,
       	edit:true,
       	dele:true,
-      	ault:true,
       }
     }
   }
