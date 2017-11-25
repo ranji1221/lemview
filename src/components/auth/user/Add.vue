@@ -1,5 +1,6 @@
 <template>
   <div class="user_add option_title_agg">
+    <lemon-breadcrumb :breadcrumb="breadcrumb"></lemon-breadcrumb>
     <lemon-option-title></lemon-option-title>
     <lemon-form :forms="form"></lemon-form> 
   </div>
@@ -8,11 +9,14 @@
 <script>
 import LemonForm  from "@/components/common/action/Form"
 import LemonOptionTitle from "@/components/common/action/OptionTitle"
-
+import LemonBreadcrumb from '@/components/common/action/Breadcrumb.vue';
 export default {
-    components:{ LemonForm,LemonOptionTitle },
+    components:{ LemonForm,LemonOptionTitle,LemonBreadcrumb },
       data() {
       return {
+        breadcrumb:{
+          search:true,
+        },
         form: {
           name: {
             label:"用户名称",
