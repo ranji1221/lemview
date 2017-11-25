@@ -3,7 +3,7 @@
         <template>
             <p>青柠云后台管理系统</p>
         </template>
-        <el-form-item v-for="(form,index) in forms" :key="index" :label="form.label" :class="{textarea:form.type=='remarks'}">
+        <el-form-item v-for="(form,index) in forms" :key="index" :label="form.label" :class="{textarea:form.type=='remarks'}" v-show="form.type!='options'">
             <template v-if="form.type=='text'">
                 <el-input class="roleinput" v-model="form.text" :placeholder="form.default"></el-input>
             </template>
@@ -20,6 +20,27 @@
                 <el-input-number v-model="form.text" class="maxnum" size="mini" :min="form.min" :max="form.max" label="描述文字"></el-input-number>
             </template>
         </el-form-item>
+        <template v-if="forms.option">
+            <div v-for="(option,index) in forms.option.arr" :key="index">
+                <div class="options">
+                    <el-form-item v-for="(optionarr,index) in option" :key="index" :label="optionarr.label">
+                        <template v-if="optionarr.type=='text'">
+                            <el-input class="option_text roleinput" v-model="optionarr.text" :disabled="optionarr.readonly" :placeholder="optionarr.default"></el-input>
+                            <div class="options_btn" v-if="optionarr.btn_look">
+                                <button class="option_add" @click="addOption">+</button>
+                                <button class="option_cancel" @click="cancelOption">-</button>
+                            </div>
+                        </template>
+                        <template v-if="optionarr.type=='select'">
+                            <el-select class="option_select select" :disabled="optionarr.readonly" v-model="optionarr.text" :placeholder="optionarr.selected">
+                                <el-option v-for="(item,index) in optionarr.childrens" :key="index" :label="optionarr.label" :value="optionarr.value">
+                                </el-option>
+                            </el-select>
+                        </template>
+                    </el-form-item>
+                </div>
+            </div>
+        </template>
         <div class="btns">
             <el-button class="btn_succse btn" type="primary" @click="onSubmit">确认</el-button>
             <el-button class="btn_cancel btn">取消</el-button>
@@ -34,9 +55,64 @@ export default {
     mounted: function() {
 
     },
+    data() {
+        return {
+            
+        }
+    },
     methods: {
         onSubmit() {
             console.log('submit!');
+        },
+        addOption: function() {
+           var forms_content = this.forms.option.arr
+            var parpam = [
+                {
+                    btn_look: true,
+                    label: "相关操作：",
+                    type: "text",
+                    text: "",
+                    default: "请输入相关操作"
+                },
+                {
+                    label: "权限许可：",
+                    type: "text",
+                    text: "",
+                    default: "请输入权限许可"
+                },
+                {
+                    label: "选择依赖操作：",
+                    type: 'select',
+                    text: "",
+                    selected: "选择资源",
+                }
+            ]
+
+            var option = forms_content[forms_content.length - 1][0].text
+            var Permit = forms_content[forms_content.length - 1][1].text
+            if (!(option && Permit)) {
+                return
+            } else {
+                forms_content.forEach(function(i, v) {
+                    i.forEach(function(i, v) {
+                        i.readonly = true,
+                        i.btn_look = false
+                    })
+                })
+               forms_content.push(parpam)
+            }
+        },
+        cancelOption: function() {
+            var forms_content = this.forms.option.arr
+            if (forms_content.length > 1) {
+                forms_content.pop()
+               forms_content[forms_content.length - 1].forEach(function(i, v) {
+                    i.readonly = false
+                })
+               forms_content[forms_content.length - 1][0].btn_look = true
+            } else {
+                return
+            }
         }
     }
 

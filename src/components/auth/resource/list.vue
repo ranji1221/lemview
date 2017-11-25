@@ -17,7 +17,7 @@ import "@/assets/style/common/list.css"
 
 export default {
   components: {
-    LemonList,LemonAlert,LemonPagination,LemonBreadcrumb
+    LemonList,LemonAlert,LemonPagination,LemonBreadcrumb 
   },
   data() {
     return {
@@ -95,7 +95,7 @@ export default {
       	view:true,
       	edit:true,
       	dele:true,
-      	ault:false,
+      	ault:true,
       }
     }
   }

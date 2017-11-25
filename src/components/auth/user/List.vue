@@ -2,7 +2,7 @@
     <div class='listpagewrap'>
       <lemon-breadcrumb :breadcrumb="breadcrumb"></lemon-breadcrumb>
       <lemon-alert :alerts="alerts"></lemon-alert>
-      <lemon-list class="userlist list" :tabledata="tabledatas"  :items="items" :actions="actions"> 
+      <lemon-list class="rolelist" :tabledata="tabledatas"  :items="items" :actions="actions"> 
       </lemon-list>
       <lemon-pagination :page="page"></lemon-pagination>
     </div>
@@ -21,10 +21,10 @@ export default {
   },
   data() {
     return {
-      breadcrumb:{
+        breadcrumb:{
       	search:true,
       },
-      page: {
+       page: {
         size: 10,
         total: 19,
         tfootbtns:{
@@ -82,26 +82,25 @@ export default {
         sort:true,
       },
       {
-        id:3,
+        id: 3,
         prop:'assignRole',
         label:"分配角色",
         sort:true,
       },
       {
-        id:4,
+        id: 4,
         prop:'phone',
         label:"手机号码",
-        sort:true
+        sort:true,
       },
       {
         id:5,
         prop:'email',
-        type:"",
         label:"邮箱地址",
         sort:true,
       },
       ],
-      actions:{
+       actions:{
       	selection:true,
       	view:true,
       	edit:true,

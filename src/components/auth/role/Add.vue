@@ -15,8 +15,8 @@ export default {
     components:{ LemonForm,LemonOptionTitle,LemonBreadcrumb },
       data() {
       return {
-         breadcrumb:{
-      	    search:true,
+        breadcrumb:{
+      	search:true,
         },
       	title_actions:{
 	      		hid:true,

@@ -10,13 +10,12 @@
 import LemonForm  from "@/components/common/action/Form"
 import LemonOptionTitle from "@/components/common/action/OptionTitle"
 import LemonBreadcrumb from '@/components/common/action/Breadcrumb.vue';
-
 export default {
     components:{ LemonForm,LemonOptionTitle,LemonBreadcrumb },
       data() {
       return {
         breadcrumb:{
-        	search:true,
+          search:true,
         },
         title_actions:{
 	      		hid:true,
