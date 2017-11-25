@@ -1,7 +1,7 @@
 <template>
   <div class="user_add option_title_agg">
     <lemon-breadcrumb :breadcrumb="breadcrumb"></lemon-breadcrumb>
-    <lemon-option-title></lemon-option-title>
+    <lemon-option-title :actions="title_actions" ></lemon-option-title>
     <lemon-form :forms="form"></lemon-form> 
   </div>
 </template>
@@ -18,6 +18,11 @@ export default {
         breadcrumb:{
         	search:true,
         },
+        title_actions:{
+	      		hid:true,
+	      		scaling:true,
+	      		close:true,
+	      	},
         form: {
           name: {
             label:"用户名称",
