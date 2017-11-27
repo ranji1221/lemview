@@ -45,6 +45,7 @@ export default {
           assignRole: "管理员",
           phone: '15940324325',
           email: '23474@qq.com',
+          rowType: '用户'
         },
         {
           id:'02',
@@ -52,6 +53,7 @@ export default {
           assignRole: "管理员",
           phone: '15940324325',
           email: '23474@qq.com',
+          rowType: '用户'
         },
         {
           id:'03',
@@ -59,6 +61,7 @@ export default {
           assignRole: "管理员",
           phone: '15940324325',
           email: '23474@qq.com',
+          rowType: '用户'
         },
         {
           id:'04',
@@ -66,6 +69,7 @@ export default {
           assignRole: "管理员",
           phone: '15940324325',
           email: '23474@qq.com',
+          rowType: '用户'
         },
       ],
       items: [

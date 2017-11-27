@@ -44,21 +44,25 @@ export default {
           id:'01',
           name:"首页2",
           fath:"首页14",
+          rowType: '角色'
         },
         {
           id:'02',
           name:"首页5",
           fath:"首页1",
+          rowType: '角色'
         },
         {
           id:'03',
           name:"首页1",
           fath:"首页177",
+          rowType: '角色'
         },
         {
           id:'04',
           name:"首页8",
           fath:"首页19",
+          rowType: '角色'
         }
       ],
       items: [

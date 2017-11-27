@@ -43,25 +43,29 @@ export default {
           id:'01',
           resourceType:"菜单",
           resourceName:"员工",
-          resourcePName:"权限管理"
+          resourcePName:"权限管理",
+          rowType: '资源'
         },
         {
           id:'02',
           resourceType:"菜单",
           resourceName:"员工",
-          resourcePName:"权限管理"
+          resourcePName:"权限管理",
+          rowType: '资源'
         },
        {
           id:'03',
           resourceType:"菜单",
           resourceName:"员工",
-          resourcePName:"权限管理"
+          resourcePName:"权限管理",
+          rowType: '资源'
         },
        {
           id:'04',
           resourceType:"菜单",
           resourceName:"员工",
-          resourcePName:"权限管理"
+          resourcePName:"权限管理",
+          rowType: '资源'
         },
       ],
       items: [
