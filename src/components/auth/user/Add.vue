@@ -1,7 +1,8 @@
 <template>
   <div class="user_add option_title_agg">
     <lemon-breadcrumb :breadcrumb="breadcrumb"></lemon-breadcrumb>
-    <lemon-option-title :actions="title_actions" ></lemon-option-title>
+    <!--<lemon-option-title :actions="title_actions" ></lemon-option-title>-->
+		<lemon-option-title  :actions="title_actions" v-on:btn_hidden="btn_hid" v-on:btn_scaling="btn_scaling" v-on:btn_close="btn_close"></lemon-option-title>		
     <lemon-form :forms="form"></lemon-form> 
   </div>
 </template>
@@ -12,14 +13,25 @@ import LemonOptionTitle from "@/components/common/action/OptionTitle"
 import LemonBreadcrumb from '@/components/common/action/Breadcrumb.vue';
 export default {
     components:{ LemonForm,LemonOptionTitle,LemonBreadcrumb },
-      data() {
+      methods:{
+	    	btn_hid:function(){
+	    	
+	    	},
+	    	btn_scaling:function(){
+	    	
+	    	},
+	    	btn_close:function(){
+	    		
+	    	},
+    	},
+    	data() {
       return {
         breadcrumb:{
           search:true,
         },
         title_actions:{
-	      		hid:true,
-	      		scaling:true,
+	      		hid:false,
+	      		scaling:false,
 	      		close:true,
 	      	},
         form: {

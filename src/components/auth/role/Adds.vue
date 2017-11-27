@@ -1,7 +1,8 @@
 <template>
   <div class="role_adds option_title_agg">
     <lemon-breadcrumb :breadcrumb="breadcrumb"></lemon-breadcrumb>
-    <lemon-option-title :actions="title_actions" ></lemon-option-title>
+    <!--<lemon-option-title :actions="title_actions" ></lemon-option-title>-->
+		<lemon-option-title  :actions="title_actions" v-on:btn_hidden="btn_hid" v-on:btn_scaling="btn_scaling" v-on:btn_close="btn_close"></lemon-option-title>		
     <lemon-upload-excel :upload="upload"></lemon-upload-excel> 
   </div>
 </template>
@@ -12,6 +13,17 @@ import LemonBreadcrumb from '@/components/common/action/Breadcrumb.vue';
 
 export default {
     components:{ LemonUploadExcel,LemonOptionTitle,LemonBreadcrumb },
+    methods:{
+    	btn_hid:function(){
+    	
+    	},
+    	btn_scaling:function(){
+    	
+    	},
+    	btn_close:function(){
+    		
+    	},
+		},
     data() {
       	return {
 		      breadcrumb:{

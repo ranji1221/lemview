@@ -125,6 +125,9 @@
 .listpagewrap{
 	padding:0 0.41rem;
 }
+.list{	
+	margin-top:0.15rem;
+}
 .list table{
 	border-collapse: collapse;
 }
@@ -151,10 +154,10 @@
 	background:rgba(255,255,255,0);
 }
 /*去掉padding用line-height设置行高*/
-.list.el-table td, .list.el-table th{
+.list td, .list th{
 	padding:0!important;
 }
-.list.el-table div.cell{
+.list div.cell{
     line-height:0.52rem;
     padding:0;
 }

@@ -1,7 +1,4 @@
 <template>
-	<div>
-		
-
   <el-table ref="multipleTable" stripe tooltip-effect="dark" style="width: 100%" border :data="tabledata" @selection-change="handleSelectionChange" :default-sort = "{prop: 'id', order: 'descending'}">
    		<!--是否包含多选框-->
    		<template v-if="actions.selection">
@@ -43,76 +40,13 @@
           </template>
         </el-table-column>
       </template>
-  </el-table>
-
-<!-- Table -->
-<el-button type="text" @click="dialogTableVisible = true">打开嵌套表格的 Dialog</el-button>
-
-
-
-<!-- Form -->
-<el-button type="text" @click="dialogFormVisible = true">打开嵌套表单的 Dialog</el-button>
-
-<el-dialog title="收货地址" :visible.sync="dialogFormVisible" :modal="false" :lock-scroll="false" :close-on-click-modal="false">
-  <el-form :model="form">
-    <el-form-item label="活动名称" :label-width="formLabelWidth">
-      <el-input v-model="form.name" auto-complete="off"></el-input>
-    </el-form-item>
-    <el-form-item label="活动区域" :label-width="formLabelWidth">
-      <el-select v-model="form.region" placeholder="请选择活动区域">
-        <el-option label="区域一" value="shanghai"></el-option>
-        <el-option label="区域二" value="beijing"></el-option>
-      </el-select>
-    </el-form-item>
-  </el-form>
-  <div slot="footer" class="dialog-footer">
-    <el-button @click="dialogFormVisible = false">取 消</el-button>
-    <el-button type="primary" @click="dialogFormVisible = false">确 定</el-button>
-  </div>
-</el-dialog>
-
-
-	
-	</div>
+  </el-table>	
 </template>
 <script>
 export default {
   props: ['items', 'tabledata','actions'],
   data() {
     return {
-    	true:true,
-    	false:false,
-    	 gridData: [{
-          date: '2016-05-02',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        }, {
-          date: '2016-05-04',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        }, {
-          date: '2016-05-01',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        }, {
-          date: '2016-05-03',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        }],
-        dialogTableVisible: false,
-        dialogFormVisible: false,
-        form: {
-          name: '',
-          region: '',
-          date1: '',
-          date2: '',
-          delivery: false,
-          type: [],
-          resource: '',
-          desc: ''
-        },
-        formLabelWidth: '120px',
-     
       multipleSelection: [],
       resizable:false,
     }
@@ -137,26 +71,16 @@ export default {
       return row.address;
     },
     handleView(index, row) {
-	    console.log(index, row);
-	    var dialog=`<el-dialog title="收货地址" :visible.sync="dialogTableVisible" :modal="false" :lock-scroll="false" :close-on-click-modal="false" >
-					  <el-table :data="gridData">
-					    <el-table-column property="date" label="日期" width="150"></el-table-column>
-					    <el-table-column property="name" label="姓名" width="200"></el-table-column>
-					    <el-table-column property="address" label="地址"></el-table-column>
-					  </el-table>
-					</el-dialog>`;
-	    $('.listpagewrap').append(dialog)
-	    console.log(('.listpagewrap') )
+//	    console.log(row.id);
+	    this.$emit('viewitemid',row.id)
 	},
 	handleEdit(index, row) {
 	    console.log(index, row);
-<<<<<<< HEAD
+
 	},
-	handleDele(index, row) {
-	    console.log(index, row);
-	},
+
 	handleAult(index, row) {
-=======
+
 	  },
 	  handleDele(index, row) {
 	    this.$confirm('此操作将永久删除该'+row.rowType+', 是否继续?', '提示', {
@@ -176,7 +100,7 @@ export default {
         });
 	  },
 	  handleAult(index, row) {
->>>>>>> e2016cd935031b4471bb3584408f66ef57ff72cd
+
 	    console.log(index, row);
 	},
   }
