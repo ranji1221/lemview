@@ -1,5 +1,5 @@
 <template>
-    <ul>
+    <ul class="alert_list">
     <li v-for="alert in alerts" :key="alert.id">
         <el-alert :title="alert.title" :type="alert.type" :description="alert.description" show-icon>
         </el-alert>

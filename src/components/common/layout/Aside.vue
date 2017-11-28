@@ -71,14 +71,14 @@
 				<div class="iconfont icon-shouhui btn-fold" @click='slide' v-bind:class='{"rotate":isCollapse}'></div>
 			</li>
 			<li>
-				<div class="iconfont icon-caidan5555 btn-mission"></div>
+				<div class="iconfont icon-caidan5555 btn-mission" @click="mission_show=!mission_show"></div>
 			</li>
-			<div class="mission">
+			<div class="mission" v-show="mission_show">
 				<h3>任务&nbsp;&nbsp;&nbsp;————————</h3>
 				<ol>
-					<li>
-						<span class="icon-eye-open icon-slidenav"></span>
-						<p class="lookRole" mintype="1">查看角色02</p>
+					<li v-for="(index,item) in messions" :key="index">
+						<span class="icon-eye-open icon-slidenav" :class="item.icon"></span>
+						<p>{{item.title}}{{item.id}}</p>
 						<span class="iconfont icon-chuyidong1 del"></span>
 					</li>
 				</ol>
@@ -93,6 +93,8 @@ require("../../../assets/style/common/Sidebar.css");
 export default {
 	data() {
 		return {
+			mission_show:false,
+			messions:[],
 			isCollapse: false,
 			backgroundColor: '#ffffff',
 			user: {
