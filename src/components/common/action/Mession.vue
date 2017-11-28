@@ -2,10 +2,10 @@
 	<div class="mission" >
 		<h3>任务列表</h3>
 		<ol>
-			<li v-for="(item,index) in messions" :key="index" @click="pop_mession_item(item.id)">
+			<li v-for="(item,index) in messions" :key="index" @click="pop_mession_item(item.id,item.type)">
 				<span class="icon-slidenav" :class="item.icon"></span>
 				<p>{{item.title}}{{item.id}}</p>
-				<span class="iconfont icon-chuyidong1 del" @click.stop="del_mession_item(item.id)"></span>
+				<span class="iconfont icon-chuyidong1 del" @click.stop="del_mession_item(item.id,item.type)"></span>
 			</li>
 		</ol>
 	</div>
@@ -20,12 +20,12 @@ export default {
         }
     },
     methods:{
-    	pop_mession_item:function(id){
+    	pop_mession_item:function(id,type){
 //  		console.log(id)
-			this.$emit('pop_mession',id);
+			this.$emit('pop_mession',id,type);
     	},
-    	del_mession_item:function(id){
-			this.$emit('del_mession',id);
+    	del_mession_item:function(id,type){
+			this.$emit('del_mession',id,type);
     	}
     }
 }

@@ -72,38 +72,35 @@ export default {
     },
     handleView(index, row) {
 //	    console.log(row.id);
-	    this.$emit('viewitemid',row.id)
-	},
-	handleEdit(index, row) {
-	    console.log(index, row);
-
-	},
-
-	handleAult(index, row) {
-
-	  },
+	    this.$emit('openmodal',row.id,'view')
+		},
+		handleEdit(index, row) {
+//		    console.log(index, row);
+		    this.$emit('openmodal',row.id,'edit')
+		},
+	
+		handleAult(index, row) {
+		    this.$emit('openmodal',row.id,'ault')
+		  },
 	  handleDele(index, row) {
 	    this.$confirm('此操作将永久删除该'+row.rowType+', 是否继续?', '提示', {
-          confirmButtonText: '确定',
-          cancelButtonText: '取消',
-          type: 'warning'
-        }).then(() => {
-          this.$message({
-            type: 'success',
-            message: '删除成功!'
-          });
-        }).catch(() => {
-          this.$message({
-            type: 'info',
-            message: '已取消删除'
-          });          
-        });
+	      confirmButtonText: '确定',
+	      cancelButtonText: '取消',
+	      type: 'warning'
+	    }).then(() => {
+	      this.$message({
+	        type: 'success',
+	        message: '删除成功!'
+	      });
+	    }).catch(() => {
+	      this.$message({
+	        type: 'info',
+	        message: '已取消删除'
+	      });          
+	    });
 	  },
-	  handleAult(index, row) {
-
-	    console.log(index, row);
-	},
-  }
+		  
+	}
 }
 
 </script>

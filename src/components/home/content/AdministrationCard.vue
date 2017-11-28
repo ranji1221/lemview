@@ -133,55 +133,64 @@
 	padding: 0 0.05rem;
     font-size: 0.2rem;
 }
-.administration col[name='el-table_1_column_1']{
-	min-width:0.75rem!important;
-	width:20%;
-}
-.administration col[name='el-table_1_column_2']{
-	min-width:1rem!important;
-	width:30%;
-}
-.administration col[name='el-table_1_column_3']{
-	min-width:0.9rem!important;
-	width:25%;
-}
-.administration col[name='el-table_1_column_4']{
-	width:auto!important;
-}
-.administration .el-table_1_column_1 div.cell{
-	min-width:0.75rem!important;
+.administration div.cell{
+	width:100%;
 
-}
-.administration .el-table_1_column_2 div.cell{
-	min-width:1rem!important;
-
-}
-.administration .el-table_1_column_3 div.cell{
-	min-width:0.9rem!important;
-
-}
-.administration .el-table_1_column_4 div.cell{
-	width:auto!important;
-}
-@media screen and (min-width: 1200px) { 
-	.administration col[name='el-table_1_column_1'],.administration .el-table_1_column_1 div.cell{
-		width:0.75rem!important;
-	}
-	.administration col[name='el-table_1_column_2'],.administration .el-table_1_column_2 div.cell{
-		width:1rem!important;
-	}
-	.administration col[name='el-table_1_column_3'],.administration .el-table_1_column_3 div.cell{
-		width:0.9rem!important;
-	}
-	.administration col[name='el-table_1_column_4'],.administration .el-table_1_column_4 div.cell{
-		width:auto!important;
-	}
 }
 .administration_card .el-table__header thead{
 	width:auto!important;
 }
 .administration_card .el-table__header thead th{
 	background-color: #f7f7f7;
+}
+
+
+/*设定表头宽度*/
+.el-main .administration .el-table__header-wrapper table colgroup col:nth-child(1){
+	min-width:0.75rem!important;
+	width:20%;
+}
+.el-main .administration .el-table__header-wrapper table colgroup col:nth-child(2),.el-main .administration .el-table__header-wrapper table colgroup col:nth-child(3){
+    min-width:1rem!important;
+	width:30%;
+}
+.el-main .administration .el-table__header-wrapper table colgroup col:nth-last-child(2){
+    width:auto!important;
+}
+/*设定表身宽度*/
+.el-main .administration .el-table__body-wrapper table colgroup col:nth-child(1){
+    min-width:0.75rem!important;
+	width:20%;
+}
+.el-main .administration .el-table__body-wrapper table colgroup col:nth-child(2),.el-main .administration .el-table__body-wrapper table colgroup col:nth-child(3){
+    min-width:1rem!important;
+	width:30%;
+}
+.el-main .administration .el-table__body-wrapper table colgroup col:nth-last-child(1){
+    width:auto!important;
+}
+
+@media screen and (min-width: 1200px) { 
+	/*设定表头宽度*/
+	.el-main .administration .el-table__header-wrapper table colgroup col:nth-child(1){
+		width:0.75rem!important;
+	}
+	.el-main .administration .el-table__header-wrapper table colgroup col:nth-child(2),.el-main .administration .el-table__header-wrapper table colgroup col:nth-child(3){
+	    width:1rem!important;
+	}
+	.el-main .administration .el-table__header-wrapper table colgroup col:nth-last-child(2){
+	    width:auto!important;
+	}
+	/*设定表身宽度*/
+	.el-main .administration .el-table__body-wrapper table colgroup col:nth-child(1){
+	    width:0.75rem!important;
+	}
+	.el-main .administration .el-table__body-wrapper table colgroup col:nth-child(2),.el-main .administration .el-table__body-wrapper table colgroup col:nth-child(3){
+	    width:1rem!important;
+	}
+	.el-main .administration .el-table__body-wrapper table colgroup col:nth-last-child(1){
+	    width:auto!important;
+	}
 }
 </style>
 

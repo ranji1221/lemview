@@ -1,7 +1,7 @@
 <template>
-	<el-dialog :visible.sync="view.open" :modal="false" :lock-scroll="false" :close-on-click-modal="false" :close-on-press-escape="false" :show-close="false" v-show="view.show" :center="true" :class="{lg:view.lg}">
+	<el-dialog :visible.sync="item.open" :modal="false" :lock-scroll="false" :close-on-click-modal="false" :close-on-press-escape="false" :show-close="false" v-show="item.show" :center="true" :class="{lg:item.lg}">
 	    <!--头部-->
-	    <span slot="title" class="titleaut" v-show="!view.lg">
+	    <span slot="title" class="titleaut" v-show="!item.lg">
 			<p>{{title}}</p>
 			<div class="btns">
 				<!--最小化-->
@@ -21,45 +21,46 @@
 		<!--内容-->
 	    
 	    <!--查看-->
-	    <template v-if="view.lg">	    	
+	    <template v-if="item.lg">	    	
 		    <div class="role_view option_title_agg">
 			    <lemon-breadcrumb :breadcrumb="breadcrumb" ></lemon-breadcrumb>
 			    <lemon-option-title  :actions="title_actions" v-on:btn_hid="btn_hid" v-on:btn_scaling="btn_scaling" v-on:btn_close="btn_close"></lemon-option-title>		
 			</div>
 	    </template>
-	    <div class="viewwrap">
-		    <div class="row modal_body_title" v-show="view.lg">
-				<h3>青柠云后台管理系统</h3>
-			</div>
-			<table class="view">
-				<tr v-for="(value, key) in view.viewitem">
-					<td>{{key}}</td>
-					<td>{{value}}</td>
-				</tr>				
-				<!--<tr class="remarks">
-					<td>备注消息</td>
-					<td>UI设计师为研发部门付出了艰辛的努力</td>
-				</tr>-->
-			</table>
-	    </div>
-	    
+	    <!--查看部分-->
+	    <template v-if="modal_type=='view'">
+	    	<lemon-modal-view :lg="item.lg" :datalist="item.datalist"></lemon-modal-view>
+	    </template>
+	    <!--编辑部分-->
+	    <template v-if="modal_type=='edit'">
+	    	<lemon-modal-edit :lg="item.lg" :datalist="item.datalist"></lemon-modal-edit>
+	    </template>
+	    <!--编辑部分-->
+	    <template v-if="modal_type=='ault'">
+	    	<lemon-modal-ault :lg="item.lg" :datalist="item.datalist"></lemon-modal-ault>
+	    </template>
 	    
 	    <!--底部-->
 	    <span slot="footer" class="dialog-footer" v-if="footer">
-	    	<el-button type="primary" @click="view.open = false">确 定</el-button>
-		    <el-button @click="view.open = false">取 消</el-button>
+	    	<el-button type="primary" @click="item.open = false">确 定</el-button>
+		    <el-button @click="item.open = false">取 消</el-button>
 		</span>
 	</el-dialog>
 </template>
 
 <script>
 //import "@/assets/style/common/list.css"
-import LemonOptionTitle from "@/components/common/action/OptionTitle"
+import LemonOptionTitle from "@/components/common/action/OptionTitle";
 import LemonBreadcrumb from '@/components/common/action/Breadcrumb.vue';
+//各种分支modal组件的引入
+import LemonModalView from '@/components/common/action/modals/View.vue';
+import LemonModalEdit from '@/components/common/action/modals/Edit.vue';
+import LemonModalAult from '@/components/common/action/modals/Ault.vue';
+
 
 export default {
-    components:{ LemonOptionTitle,LemonBreadcrumb },
-    props: ['view','title'],
+    components:{ LemonOptionTitle,LemonBreadcrumb,LemonModalView,LemonModalEdit,LemonModalAult },
+    props: ['item','title','modal_type'],
     data() {
         return {
         	breadcrumb:{
@@ -80,16 +81,17 @@ export default {
     },
     methods:{
     	btn_hid:function(){
-    		this.view.show=!this.view.show;
-	    	this.$emit('hid',this.view.id);  		
+    		this.item.show=!this.item.show;
+	    	this.$emit('hid',this.item.id,this.modal_type);  		
     	},
     	btn_scaling:function(){
-    		this.view.lg=!this.view.lg;
-	    	this.$emit('scaling',this.view.lg);  		
+    		this.item.lg=!this.item.lg;
+	    	this.$emit('scaling',this.item.lg);  	
+	    	console.log(this.item.lg);
     	},
     	btn_close:function(){
-//  		this.view.open=false;
-	    	this.$emit('close',this.view.id); 
+//  		this.item.open=false;
+	    	this.$emit('close',this.item.id,this.modal_type); 
     	},
     },
     mounted:function(){
@@ -183,86 +185,6 @@ export default {
 .el-dialog--center .el-dialog__body,.el-dialog__body{
 	padding:0.5rem 0.6rem;
 }
-/*查看内容*/
 
-table.view tr:first-child td:first-child{
-	width: 14em;
-	/*width: 50%;*/
-}
-/*@media (min-width: 1200px){
-	.lg table.view tr:first-child td:first-child{
-		width: 16.666666%;
-	}
-}*/
-table .remarks td {
-    white-space: normal;
-    text-overflow: unset;
-    word-break: normal;
-}
-table.view{
-	width:100%;	
-}
-.modal_body_title{
-	padding-left:0.45rem;
-	background-color:#f2f2f4;
-	height:0.6rem;
-	border:1px solid #dddddd;
-	border-bottom:1px dashed #dddddd;
-
-}	
-.modal_body_title h3{
-	font-size:0.24rem;
-	line-height:0.6rem;
-	height:100%;
-}
-table.view {
-	border-top: 1px solid #ddd;
-	border-left: 1px solid #ddd;
-	border-right: 1px solid #ddd;
-	text-align: right;
-	table-layout: fixed; 
-}
-.lg table.view {
-	border-top: none;
-}
-table.view .remarks td{
-	white-space: normal;
-    text-overflow: unset;
-    word-break: normal;
-}
-table.view tr{
-	height:0.6rem;
-	border-bottom:1px dashed #ddd;
-	text-align:left;
-}
-table.view tr td {
-	font-size: 0.18rem;
-	height:0.6rem;
-	line-height:0.6rem;
-	padding:0;
-	color: #333333;	
-	overflow: hidden;
-	white-space: nowrap;
-	border-top:none;
-	text-overflow: ellipsis;
-	word-break: keep-all; 
-	border-bottom: 1px dashed #ddd;
-}
-table.view tr td.error {
-	color: rgb(255,100,100);
-}
-table.view tr td:nth-child(1) {
-	border-left:none;
-	background-color:#fbfbfb;
-	padding-left:0.7rem;
-	padding-right: 0.40rem; 
-}
-table.view tr td:nth-child(2) {
-	text-align: left;
-	border-left: 1px dashed #ddd;
-	font-size:0.14rem;
-	color:#666666;
-	padding-left: 0.52rem; 
-}
 
 </style>
