@@ -1,20 +1,15 @@
 <template>
-	<el-dialog :visible.sync="view.open" :modal="false" :lock-scroll="false" :close-on-click-modal="false" :close-on-press-escape="false" :show-close="false" v-show="view.show" :center="true" :class="{lg:lg}">
+	<el-dialog :visible.sync="view.open" :modal="false" :lock-scroll="false" :close-on-click-modal="false" :close-on-press-escape="false" :show-close="false" v-show="view.show" :center="true" :class="{lg:view.lg}">
 	    <!--头部-->
-	    <span slot="title" class="titleaut" v-show="!lg">
-			<p>角色授权</p>
+	    <span slot="title" class="titleaut" v-show="!view.lg">
+			<p>{{title}}</p>
 			<div class="btns">
 				<!--最小化-->
 				<a href="javascript:;" @click="btn_hid">
 					<img src="~IMG/sys/modal2.png" alt="">
-					<!--<div class="hidmission">
-						<span class="icon-key icon-slidenav"></span>
-						<p class='role-aut' mintype='1'>角色授权</p>
-						<span class="iconfont icon-chuyidong1 del"></span>
-					</div>-->
 				</a>
 				<!--放大-->
-				<a href="javascript:;" @click="lg=!lg">
+				<a href="javascript:;" @click="btn_scaling">
 					<img src="~IMG/sys/modal3.png" alt="">
 				</a>
 				<!--关闭-->
@@ -26,22 +21,21 @@
 		<!--内容-->
 	    
 	    <!--查看-->
-	    <template v-if="lg">	    	
+	    <template v-if="view.lg">	    	
 		    <div class="role_view option_title_agg">
-			    <lemon-breadcrumb :breadcrumb="breadcrumb"></lemon-breadcrumb>
+			    <lemon-breadcrumb :breadcrumb="breadcrumb" ></lemon-breadcrumb>
 			    <lemon-option-title  :actions="title_actions" v-on:btn_hid="btn_hid" v-on:btn_scaling="btn_scaling" v-on:btn_close="btn_close"></lemon-option-title>		
 			</div>
 	    </template>
 	    <div class="viewwrap">
-		    <div class="row modal_body_title" v-show="lg">
+		    <div class="row modal_body_title" v-show="view.lg">
 				<h3>青柠云后台管理系统</h3>
 			</div>
 			<table class="view">
 				<tr v-for="(value, key) in view.viewitem">
 					<td>{{key}}</td>
 					<td>{{value}}</td>
-				</tr>
-				
+				</tr>				
 				<!--<tr class="remarks">
 					<td>备注消息</td>
 					<td>UI设计师为研发部门付出了艰辛的努力</td>
@@ -50,14 +44,11 @@
 	    </div>
 	    
 	    
-	    
 	    <!--底部-->
 	    <span slot="footer" class="dialog-footer" v-if="footer">
 	    	<el-button type="primary" @click="view.open = false">确 定</el-button>
 		    <el-button @click="view.open = false">取 消</el-button>
 		</span>
-		<!--<button @click="view.show=!view.show">我是个按钮</button>
-		<button @click="lg=!lg">我是个按钮</button>-->
 	</el-dialog>
 </template>
 
@@ -68,18 +59,20 @@ import LemonBreadcrumb from '@/components/common/action/Breadcrumb.vue';
 
 export default {
     components:{ LemonOptionTitle,LemonBreadcrumb },
-    props: ['view'],
+    props: ['view','title'],
     data() {
         return {
         	breadcrumb:{
 	      		search:true,
+	      		undefinedpath:this.title,
 	        },
 	      	title_actions:{
 	      		hid:true,
 	      		scaling:true,
 	      		close:true,
+	      		undefinedpath:this.title,
 	      	},
-        	lg:false,
+//      	lg:false,
     		true:true,
     		false:false,
     		footer:false,
@@ -91,7 +84,8 @@ export default {
 	    	this.$emit('hid',this.view.id);  		
     	},
     	btn_scaling:function(){
-    		this.lg=!this.lg;
+    		this.view.lg=!this.view.lg;
+	    	this.$emit('scaling',this.view.lg);  		
     	},
     	btn_close:function(){
 //  		this.view.open=false;
@@ -99,7 +93,7 @@ export default {
     	},
     },
     mounted:function(){
-
+//		console.log(this.breadcrumb)
     }
     
 }

@@ -73,7 +73,7 @@
 			<li>
 				<div class="iconfont icon-caidan5555 btn-mission" @click="mission_show=!mission_show"></div>
 			</li>
-			<div class="mission" v-show="mission_show">
+			<!--<div class="mission" v-show="mission_show">
 				<h3>任务&nbsp;&nbsp;&nbsp;————————</h3>
 				<ol>
 					<li v-for="(index,item) in messions" :key="index">
@@ -82,7 +82,7 @@
 						<span class="iconfont icon-chuyidong1 del"></span>
 					</li>
 				</ol>
-			</div>
+			</div>-->
 		</ul>
 
 	</el-menu>

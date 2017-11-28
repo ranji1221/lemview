@@ -37,6 +37,9 @@ export default {
 	},
     computed:{
         Route:function(){
+        	if(this.actions.undefinedpath){
+        		return this.actions.undefinedpath;
+        	}
             const route = this.$route.name.split("/")
             return route[route.length-1]
         }

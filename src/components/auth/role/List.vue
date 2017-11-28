@@ -6,17 +6,16 @@
       </lemon-list>
       <lemon-pagination :page="page"></lemon-pagination>
       <template v-if="actions.view">
-      	<lemon-modal v-for="(item, index) in viewdata" :view="item" :key="index" :ref="item.id" v-on:close="close_modal" v-on:hid="hid_modal"></lemon-modal>      	
+      	<lemon-modal v-for="(item, index) in viewdata" :view="item" :key="index" :ref="item.id" v-on:close="close_modal" v-on:scaling="scaling_modal" v-on:hid="hid_modal" title="查看角色"></lemon-modal>      	
       </template>
-      <!--<button @click="showview(222)">我是个按钮</button>-->
+      <template >
+      	<lemon-mession v-show="mission_show" :messions="messions" v-on:pop_mession="pop_mession" v-on:del_mession="del_mession"></lemon-mession>
+      </template>
+      <div class="mask" v-if="mask"></div>
     </div>
 </template>
 
 <style>
-	.listpagewrap{
-		position:relative;
-		height: 100%;
-	}
 	
 </style>
 
@@ -26,16 +25,19 @@ import LemonPrompt from '@/components/common/prompt/Prompt.vue';
 import LemonBreadcrumb from '@/components/common/action/Breadcrumb.vue';
 import LemonPagination from '@/components/common/action/Pagination.vue';
 import LemonModal from '@/components/common/action/Modal.vue';
+import LemonMession from '@/components/common/action/Mession.vue';
 import "@/assets/style/common/list.css"
 
 export default {
   components: {
-    LemonList,LemonPrompt,LemonPagination,LemonBreadcrumb,LemonModal
+    LemonList,LemonPrompt,LemonPagination,LemonBreadcrumb,LemonModal,LemonMession
   },
   methods: {
 //	获取到点击查看的列表id并显示对应模态框
     openview:function(id) {
+    	this.mask=true;
     	//console.log(id)
+//  	这是一段关于$refs的尝试
 //		var item=this.$refs[id][0].view;
 //  	var show=item.show;//show这个字段待定
 //  	if( !show){
@@ -45,112 +47,104 @@ export default {
 //  		item.open=true;		
 //  		console.log("open")
 //  	}
-		var newdata={
-			  	viewitem:{
-		          '角色名称': 'UI设计师'+id,		    
-		          '父级角色': '首页',		    
-		          '依赖角色': '员工',		       
-		          '最大限制用户数': '6',		   
-		          '备注消息': 'UI设计师为研发部门付出了艰辛的努力',
-		        },
-		        open:true,
-		        show:true,
-		        id:id,
-		   };
-		this.viewdata.push(newdata);
-		
+//先查询任务中是否有该id,没有的话新建
+		var mession=this.messions.filter(function (item) {
+		  	return item.id===id;
+		})
+		if(!mession.length){
+//获取一组查看模态框数据并插入到查看数组中,以实现新建模态框的效果
+			var newdata={
+				  	viewitem:{
+			          '角色名称': 'UI设计师'+id,		    
+			          '父级角色': '首页',		    
+			          '依赖角色': '员工',		       
+			          '最大限制用户数': '6',		   
+			          '备注消息': 'UI设计师为研发部门付出了艰辛的努力',
+			        },
+			        open:true,
+			        show:true,
+			        id:id,
+			        lg:false,
+			   };
+			this.viewdata.push(newdata);
+		}else{
+//调用messions中的
+			this.pop_mession(id);
+		}
     },
     close_modal:function(id){
-    	console.log(id)
+//  	过滤掉对应id的查看数据实现删除效果
+    	this.mask=false;
     	this.viewdata=this.viewdata.filter(function (item) {
 		  	return item.id!==id;
 		})
     },
-    hid_modal:function(id){
-    	
+    scaling_modal:function(lg){
+//  	放大后
+    	if(lg){
+//  		this.lg=true;
+    		this.mask=false;
+    	}else{
+//  		this.lg=false;
+    		this.mask=true;    		
+    	}
     },
+//  隐藏模态框时像任务messions数据组插入数据新建任务
+    hid_modal:function(id){
+    	this.mask=false; 		
+    	var newmession={   		
+		  		icon:"icon-eye-open ",
+		  		title:"查看用户",
+		  		id:id
+	    	};
+		this.messions.unshift(newmession);
+	    	
+    },
+//  通过messions中的item点击时的id,删除id的mession数据并打开查看数据组中对应id的显示
+    pop_mession:function(id){
+		this.messions=this.messions.filter(function (item) {
+		  	return item.id!==id;
+		})
+    	var item=this.$refs[id][0].view;
+    	if(item.lg){
+    		this.mask=false; 		  		
+    	}else{
+    		this.mask=true;
+    	}
+    	item.show=true;
+    },
+//  通过messions中的item点击删除时的id,删除id的mession数据删除查看数据组中对应id的显示
+    del_mession:function(id){
+		this.messions=this.messions.filter(function (item) {
+		  	return item.id!==id;
+		})
+    	this.viewdata=this.viewdata.filter(function (item) {
+		  	return item.id!==id;
+		})
+    },
+//  mask:function(){
+//  	
+//  },
+
   },
+computed: {
+//	控制显示任务框
+	mission_show:function(){
+	  if(this.messions.length==0){
+	  	return false;
+	  }else{
+	  	return true;
+	  }
+	}
+},
   data() {
     return {
-//    查看模态框临时模拟数据
-//	    viewdata:[
-//		    {
-//			  	viewitem:{
-//		          '角色名称': 'UI设计师111',		    
-//		          '父级角色': '首页',		    
-//		          '依赖角色': '员工',		       
-//		          '最大限制用户数': '6',		   
-//		          '备注消息': 'UI设计师为研发部门付出了艰辛的努力',
-//		        },
-//		        open:true,
-//		        show:true,
-//		        id:"01",
-//		    },
-//		    
-//		    {
-//			  	viewitem:{
-//		          '角色名称': 'UI设计师222',		    
-//		          '父级角色': '首页',		    
-//		          '依赖角色': '员工',		       
-//		          '最大限制用户数': '6',		   
-//		          '备注消息': 'UI设计师为研发部门付出了艰辛的努力',
-//		        },
-//		        open:false,
-//		        show:true,
-//		        id:"02",
-//		    },
-//		    {
-//			  	viewitem:{
-//		          '角色名称': 'UI设计师333',		    
-//		          '父级角色': '首页',		    
-//		          '依赖角色': '员工',		       
-//		          '最大限制用户数': '6',		   
-//		          '备注消息': 'UI设计师为研发部门付出了艰辛的努力',
-//		        },
-//		        open:false,
-//		        show:true,
-//		        id:"03",
-//		    },
-//		    {
-//			  	viewitem:{
-//		          '角色名称': 'UI设计师444',		    
-//		          '父级角色': '首页',		    
-//		          '依赖角色': '员工',		       
-//		          '最大限制用户数': '6',		   
-//		          '备注消息': 'UI设计师为研发部门付出了艰辛的努力',
-//		        },
-//		        open:false,
-//		        show:true,
-//		        id:"04",
-//		    },
-////		    {
-////			  	viewitem: [
-////			  	{
-////		          key: '角色名称',
-////		          value: 'UI设计师',
-////		        }, {
-////		          key: '父级角色',
-////		          value: '首页',
-////		        }, {
-////		          key: '依赖角色',
-////		          value: '员工',
-////		        }, {
-////		          key: '最大限制用户数',
-////		          value: '6',
-////		        }, {
-////		          key: '备注消息',
-////		          value: 'UI设计师为研发部门付出了艰辛的努力',
-////		        }],
-////		        open:false,
-////		        show:true,
-////		        id:"04",
-////		    }
-//	    ],
-	  viewdata:[],
-	  
+   	  mask:false,
+	  viewdata:[],//查看数据组
+	  messions:[],//任务数据组
+//	  mission_show:false,
       breadcrumb:{
-      	search:true,
-      	
+      	search:true,    	
       },
       page: {
         size: 10,
