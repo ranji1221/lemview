@@ -5,25 +5,21 @@
       <!--alert-->
       <lemon-prompt :alerts="alerts"></lemon-prompt>
       <!--表格-->
-      <lemon-list class="rolelist list" :tabledata="tabledatas"  :items="items" :actions="actions" v-on:openmodal="openmodal" > 
+      <lemon-list class="rolelist list" :tabledata="tabledatas"  :items="items" :actions="actions"> 
       </lemon-list>
       <!--分页-->
       <lemon-pagination :page="page"></lemon-pagination>
       <!--查看模态框-->
       <template v-if="actions.view">
-      	<lemon-modal v-for="(item, index) in viewdata" :item="item" :key="index" :ref="item.id" v-on:close="close_modal" v-on:scaling="scaling_modal" v-on:hid="hid_modal" title="查看角色" modal_type="view"></lemon-modal>      	
+      	<lemon-modal v-for="(item, index) in viewdata" :item="item" :key="index" :ref="item.id" title="查看角色" modal_type="view"></lemon-modal>      	
       </template>
       <!--编辑模态框-->
       <template v-if="actions.edit">
-      	<lemon-modal v-for="(item, index) in editdata" :item="item" :key="index" :ref="item.id" v-on:close="close_modal" v-on:scaling="scaling_modal" v-on:hid="hid_modal" title="编辑角色" modal_type="edit"></lemon-modal>      	
+      	<lemon-modal v-for="(item, index) in editdata" :item="item" :key="index" :ref="item.id" title="编辑角色" modal_type="edit"></lemon-modal>      	
       </template>
       <!--授权模态框-->
       <template v-if="actions.ault">
-      	<lemon-modal v-for="(item, index) in aultdata" :item="item" :key="index" :ref="item.id" v-on:close="close_modal" v-on:scaling="scaling_modal" v-on:hid="hid_modal" title="角色授权" modal_type="ault"></lemon-modal>      	
-      </template>
-      <!--任务-->
-      <template >
-      	<lemon-mession v-show="mission_show" :messions="messions" v-on:pop_mession="pop_mession" v-on:del_mession="del_mession"></lemon-mession>
+      	<lemon-modal v-for="(item, index) in aultdata" :item="item" :key="index" :ref="item.id" title="角色授权" modal_type="ault"></lemon-modal>      	
       </template>
       <div class="mask" v-if="mask"></div>
     </div>
@@ -39,20 +35,48 @@ import LemonPrompt from '@/components/common/prompt/Prompt.vue';
 import LemonBreadcrumb from '@/components/common/action/Breadcrumb.vue';
 import LemonPagination from '@/components/common/action/Pagination.vue';
 import LemonModal from '@/components/common/action/Modal.vue';
-import LemonMession from '@/components/common/action/Mession.vue';
 import "@/assets/style/common/list.css"
 
 export default {
   components: {
-    LemonList,LemonPrompt,LemonPagination,LemonBreadcrumb,LemonModal,LemonMession
+    LemonList,LemonPrompt,LemonPagination,LemonBreadcrumb,LemonModal
+  },
+  created(){
+//	监听列表点击打开模态框事件(先经过了mission的过滤)
+  	this.$root.eventHub.$on("createmodal",function(id,type){
+//		this.mask=true;
+		this.createmodal(id,type);
+  	}.bind(this));
+//	监听隐藏模态框事件
+  	this.$root.eventHub.$on("hidden_modal",function(id,type){
+		this.mask=false; 
+  	}.bind(this));
+//	监听缩放模态框事件
+  	this.$root.eventHub.$on("scaling_modal",function(lg){
+  		if(lg){
+    		this.mask=false;
+    	}else{
+    		this.mask=true;    		
+    	}
+  	}.bind(this));
+//	监听关闭模态框事件
+  	this.$root.eventHub.$on("close_modal",function(id,type){
+  		this.mask=false;
+  		this.close_modal(id,type)
+  	}.bind(this));
+//	监听mession弹出模态框事件
+  	this.$root.eventHub.$on("pop_mession",function(id,type){
+		this.pop_mession(id,type)
+  	}.bind(this));
+//	监听mession删除模态框事件
+  	this.$root.eventHub.$on("del_mession",function(id,type){
+//		this.del_mession(id,type)
+  	}.bind(this));
   },
   methods: {
 //	获取到点击查看的列表id并显示对应模态框
-    openmodal:function(id,type) {
-    	console.log(id)
-    	console.log(type)
+    createmodal:function(id,type) {
     	this.mask=true;
-    	//console.log(id)
 //  	这是一段关于$refs的尝试
 //		var item=this.$refs[id][0].item;
 //  	var show=item.show;//show这个字段待定
@@ -63,11 +87,6 @@ export default {
 //  		item.open=true;		
 //  		console.log("open")
 //  	}
-//先查询任务中是否有该id,没有的话新建
-		var mession=this.messions.filter(function (item) {
-		  	return item.id===id&&item.type===type;
-		})
-		if(!mession.length){
 //获取一组查看模态框数据并插入到查看数组中,以实现新建模态框的效果
 		switch(type) 
 			{ 
@@ -89,10 +108,59 @@ export default {
 			break; 
 			case "edit": 
 				var newdata={
-//				  	datalist:{
-//			          
-//			        },
-					datalist:'编辑数据表',
+				  	datalist:{
+			          name: {
+			            label:"角色名称",
+			            text:"",
+			            type:"text",
+			            default:"请输入角色名称"
+			          },
+			          fath:{
+			            label:"父级角色",
+			            text:"",
+			            type:"select",
+			            selected:"选择父级角色",
+			            childrens:[
+			              {
+			                label:"角色列表",
+			                value:1
+			              },
+			              {
+			                label:"首页",
+			                value:2
+			              }
+			            ]
+			          },
+			          rely:{
+			            label:"依赖角色",
+			            text:"",
+			            type:"select",
+			            selected:"选择依赖角色",
+			            childrens:[
+			              {
+			                label:"依赖角色列表",
+			                value:"1"
+			              },
+			              {
+			                label:"首页",
+			                value:"2"
+			              }
+			            ]
+			          },
+			          num:{
+			            label:"最大限制用户数",
+			            type:"number",
+			            text:1,
+			            min:1,
+			            max:10
+			          },
+			          remarks:{
+			            label:"备注",
+			            text:"",
+			            type:"remarks",
+			            default:"请输入备注"
+			          }
+			       },
 			        open:true,
 			        show:true,
 			        id:id,
@@ -102,28 +170,32 @@ export default {
 			break; 
 			case "ault": 
 				var newdata={
-//				  	datalist:{
-//			          
-//			        },
-					datalist:'授权数据表',
+				  	datalist:{
+			          name: {
+			            label:"角色名称",
+			            text:"",
+			            type:"text",
+			            default:"请输入角色名称"
+			          },			       			          
+			          tree:{
+			            label:"角色授权",
+//			            text:"",
+			            type:"tree",
+//			            default:"请输入备注"
+			          }
+			       },
 			        open:true,
 			        show:true,
 			        id:id,
 			        lg:false,
-			    };
+			   };
 				this.aultdata.push(newdata);
 			break; 
-			} 
-			
-		}else{
-//调用messions中的
-			this.pop_mession(id,type);
-		}
-    },
-    
+			} 		
+    },    
     close_modal:function(id,type){
 //  	过滤掉对应id的查看数据实现删除效果
-    	this.mask=false;
+    	
     	switch(type) 
 			{ 
 			case "view": 
@@ -143,55 +215,9 @@ export default {
 			break; 
 			} 
     	
-    },
-    scaling_modal:function(lg){
-//  	放大后
-    	if(lg){
-    		this.mask=false;
-    	}else{
-    		this.mask=true;    		
-    	}
-    },
-//  隐藏模态框时像任务messions数据组插入数据新建任务
-    hid_modal:function(id,type){
-    	this.mask=false; 
-    	var icon;
-    	var title;
-    	switch(type) 
-			{ 
-			case "view": 
-    			icon="icon-eye-open";
-				title="查看角色";
-			break;
-			case "edit": 
-				icon="icon-pencil";
-				title="编辑角色";
-			break; 
-			case "ault": 
-				icon="icon-key";
-				title="角色授权";
-			break; 
-			} 
-		var newmession={   		
-	  		icon:icon,
-	  		title:title,
-	  		id:id,
-	  		type:type,
-    	};
-		this.messions.unshift(newmession);
-	    	
-    },
-    
-    
-    
+    },    
 //  通过messions中的item点击时的id,删除id的mession数据并打开查看数据组中对应id的显示
     pop_mession:function(id,type){
-		console.log(this.messions)
-    	
-		this.messions=this.messions.filter(function (item) {
-		  	return !(item.id==id&&item.type==type);
-		});
-		console.log(this.messions)
 		switch(type) 
 			{ 
 			case "view": 
@@ -220,9 +246,7 @@ export default {
     },
 //  通过messions中的item点击删除时的id,删除id的mession数据删除查看数据组中对应id的显示
     del_mession:function(id,type){
-		this.messions=this.messions.filter(function (item) {
-		  	return !(item.id==id&&item.type==type);
-		});
+		
 		switch(type) 
 			{ 
 			case "view": 
@@ -244,16 +268,6 @@ export default {
     	
     },
   },
-computed: {
-//	控制显示任务框
-	mission_show:function(){
-	  if(this.messions.length==0){
-	  	return false;
-	  }else{
-	  	return true;
-	  }
-	}
-},
   data() {
     return {
    	  mask:false,

@@ -43,7 +43,7 @@
         </template>
         <div class="btns">
             <el-button class="btn_succse btn" type="primary" @click="onSubmit">确认</el-button>
-            <el-button class="btn_cancel btn">取消</el-button>
+            <el-button class="btn_cancel btn" @click="cancel">取消</el-button>
         </div>
     </el-form>
 </template>
@@ -63,6 +63,12 @@ export default {
     methods: {
         onSubmit() {
             console.log('submit!');
+			this.$emit('btn_close')       
+        },
+        cancel(){
+            console.log('取消!');
+			
+			this.$emit('btn_close')       
         },
         addOption: function() {
            var forms_content = this.forms.option.arr

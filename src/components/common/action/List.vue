@@ -72,15 +72,15 @@ export default {
     },
     handleView(index, row) {
 //	    console.log(row.id);
-	    this.$emit('openmodal',row.id,'view')
+	    this.$root.eventHub.$emit('openmodal',row.id,'view')
 		},
 		handleEdit(index, row) {
 //		    console.log(index, row);
-		    this.$emit('openmodal',row.id,'edit')
+		    this.$root.eventHub.$emit('openmodal',row.id,'edit')
 		},
 	
 		handleAult(index, row) {
-		    this.$emit('openmodal',row.id,'ault')
+		    this.$root.eventHub.$emit('openmodal',row.id,'ault')
 		  },
 	  handleDele(index, row) {
 	    this.$confirm('此操作将永久删除该'+row.rowType+', 是否继续?', '提示', {

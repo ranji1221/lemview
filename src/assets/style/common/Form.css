@@ -71,12 +71,16 @@
     overflow: hidden;
     height: 100%;
     padding: 0.1rem 0.5rem;
+    line-height:0.4rem;
 }
 .el-form .el-form-item .el-form-item__content .maxnum .el-input{
     text-align:center;
 }
 .el-form .el-form-item .el-form-item__content .maxnum{
         line-height: 0.24rem;
+}
+.el-form .el-form-item .el-form-item__content .maxnum >span{
+        margin-top:-1px;
 }
 .el-form .el-form-item .el-form-item__content .maxnum .el-input-number__decrease,.el-form .el-form-item .el-form-item__content .maxnum .el-input-number__increase{
     width: 0.24rem;

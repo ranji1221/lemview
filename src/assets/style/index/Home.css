@@ -3,10 +3,13 @@
     background: rgb(241, 241, 241);
     padding:0;
 }
+.el-main div.homeheaderrow{
+	padding: 0.32rem 0.41rem;	
+}
 .el-main .home_cards{
-    width:100%;
-    padding: 0.32rem 0.41rem;
-    padding-right:0.2rem;
+	/*margin:0 -12px;*/
+    /*width:100%;*/
+    /*padding-right:0.2rem;*/
 }
 .el-main .home_cards .el-col{
     height:1.5rem;
@@ -45,10 +48,12 @@
 }
 .el-main .home_cards .home_card .title{
     color:white;
+    margin-top:-0.1rem;
 }
 .el-main .home_cards .home_card .title h3{
         font-size: 0.26rem;
 }
 .el-main .home_cards .home_card .title h4{
     font-size:0.2rem;
+    line-height: 0.2rem;
 }

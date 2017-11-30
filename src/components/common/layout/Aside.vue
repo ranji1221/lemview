@@ -73,24 +73,18 @@
 			<li>
 				<div class="iconfont icon-caidan5555 btn-mission" @click="mission_show=!mission_show"></div>
 			</li>
-			<!--<div class="mission" v-show="mission_show">
-				<h3>任务&nbsp;&nbsp;&nbsp;————————</h3>
-				<ol>
-					<li v-for="(index,item) in messions" :key="index">
-						<span class="icon-eye-open icon-slidenav" :class="item.icon"></span>
-						<p>{{item.title}}{{item.id}}</p>
-						<span class="iconfont icon-chuyidong1 del"></span>
-					</li>
-				</ol>
-			</div>-->
+      		<lemon-mession v-show="mission_show" v-on:show_messions="show_messions"></lemon-mession>
 		</ul>
 
 	</el-menu>
 </template>
 <script>
 require("../../../assets/style/common/Sidebar.css");
-
+import LemonMession from '@/components/common/action/Mession.vue';
 export default {
+	components: {
+	    LemonMession,
+	},
 	data() {
 		return {
 			mission_show:false,
@@ -292,6 +286,9 @@ export default {
 		},
 		tostr(num) {
 			return num.toString()
+		},
+		show_messions(){
+			this.mission_show=true;
 		}
 	},
 

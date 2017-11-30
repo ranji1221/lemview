@@ -1,4 +1,5 @@
 <template>
+	<!--<el-dialog  :append-to-body="true" :visible.sync="item.open" :modal="false" :lock-scroll="false" :close-on-click-modal="false" :close-on-press-escape="false" :show-close="false" v-show="item.show" :center="true" :class="{lg:item.lg}">-->
 	<el-dialog :visible.sync="item.open" :modal="false" :lock-scroll="false" :close-on-click-modal="false" :close-on-press-escape="false" :show-close="false" v-show="item.show" :center="true" :class="{lg:item.lg}">
 	    <!--头部-->
 	    <span slot="title" class="titleaut" v-show="!item.lg">
@@ -33,11 +34,11 @@
 	    </template>
 	    <!--编辑部分-->
 	    <template v-if="modal_type=='edit'">
-	    	<lemon-modal-edit :lg="item.lg" :datalist="item.datalist"></lemon-modal-edit>
+	    	<lemon-modal-edit :lg="item.lg" :datalist="item.datalist" v-on:btn_close="btn_close"></lemon-modal-edit>
 	    </template>
 	    <!--编辑部分-->
 	    <template v-if="modal_type=='ault'">
-	    	<lemon-modal-ault :lg="item.lg" :datalist="item.datalist"></lemon-modal-ault>
+	    	<lemon-modal-ault :lg="item.lg" :datalist="item.datalist" v-on:btn_close="btn_close"></lemon-modal-ault>
 	    </template>
 	    
 	    <!--底部-->
@@ -82,16 +83,16 @@ export default {
     methods:{
     	btn_hid:function(){
     		this.item.show=!this.item.show;
-	    	this.$emit('hid',this.item.id,this.modal_type);  		
+	    	this.$root.eventHub.$emit('hidden_modal',this.item.id,this.modal_type);  		
     	},
     	btn_scaling:function(){
     		this.item.lg=!this.item.lg;
-	    	this.$emit('scaling',this.item.lg);  	
-	    	console.log(this.item.lg);
+	    	this.$root.eventHub.$emit('scaling_modal',this.item.lg);  	
+//	    	console.log(this.item.lg);
     	},
     	btn_close:function(){
 //  		this.item.open=false;
-	    	this.$emit('close',this.item.id,this.modal_type); 
+	    	this.$root.eventHub.$emit('close_modal',this.item.id,this.modal_type); 
     	},
     },
     mounted:function(){
@@ -101,6 +102,10 @@ export default {
 }
 </script>
 <style>
+/*模态框插入body时的补充样式*/
+/*.lg{
+	padding:0.6rem 0 0 3rem;
+}*/
 .el-dialog{
 	overflow: hidden;
     width: 10.24rem;
@@ -126,6 +131,12 @@ export default {
 	height:100%!important;
 }
 .lg .viewwrap{
+	padding:0 0.41rem;
+}
+.lg .editwrap{
+	padding:0 0.41rem;
+}
+.lg .aultwrap{
 	padding:0 0.41rem;
 }
 /*头部*/

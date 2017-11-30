@@ -1,11 +1,17 @@
 <template>
-	<div class="mission" >
-		<h3>任务列表</h3>
+	<!--<div class="mission" v-show="mission_show">-->
+	<div class="mission">
+		<h3>任务&nbsp;&nbsp;&nbsp;————————</h3>
 		<ol>
 			<li v-for="(item,index) in messions" :key="index" @click="pop_mession_item(item.id,item.type)">
 				<span class="icon-slidenav" :class="item.icon"></span>
 				<p>{{item.title}}{{item.id}}</p>
 				<span class="iconfont icon-chuyidong1 del" @click.stop="del_mession_item(item.id,item.type)"></span>
+			</li>
+			<li v-if="mission_empty">
+				<span></span>
+				<p>(暂无)</p>
+				<span></span>
 			</li>
 		</ol>
 	</div>
@@ -13,27 +19,102 @@
 
 <script>
 export default {
-    props: ['messions'],
+//  props: ['mission_show'],
     data() {
         return {
-        	
+	 		messions:[],//任务数据组
         }
     },
+    computed: {
+//	控制显示任务框
+//		mission_show:function(){
+//		    if(this.messions.length==0){
+//		  		return false;
+//		    }else{
+//		  		return true;
+//		    }
+//		},
+		mission_empty:function(){
+		    if(this.messions.length==0){
+		    	return true;
+		    }else{
+		  		return false;
+		    }
+		}
+	},
+    created(){
+    //	监听列表点击打开模态框事件
+	  	this.$root.eventHub.$on("openmodal",function(id,type){
+			//先查询任务中是否有该id,没有的话新建
+			var mession=this.messions.filter(function (item) {
+			  	return item.id===id&&item.type===type;
+			})
+			console.log(mession)
+			if(!mession.length){				
+				this.$root.eventHub.$emit('createmodal',id,type);
+			}else{
+				this.pop_mession_item(id,type);
+			}
+	  	}.bind(this));
+	//	监听隐藏模态框事件
+	  	this.$root.eventHub.$on("hidden_modal",function(id,type){
+	  		this.hid_modal(id,type)
+	  	}.bind(this));
+	
+	
+	},
     methods:{
+//  	传递从mession弹出模态框的id与type
     	pop_mession_item:function(id,type){
-//  		console.log(id)
-			this.$emit('pop_mession',id,type);
+    		this.messions=this.messions.filter(function (item) {
+			  	return !(item.id==id&&item.type==type);
+			});
+			this.$root.eventHub.$emit('pop_mession',id,type);
     	},
+//  	传递从mession删除模态框的id与type
     	del_mession_item:function(id,type){
-			this.$emit('del_mession',id,type);
-    	}
+    		this.messions=this.messions.filter(function (item) {
+			  	return !(item.id==id&&item.type==type);
+			});
+			this.$root.eventHub.$emit('del_mession',id,type);
+    	},
+    	
+    	//  隐藏模态框时像任务messions数据组插入数据新建任务
+	    hid_modal:function(id,type){
+	    	
+	    	var icon;
+	    	var title;
+	    	switch(type) 
+				{ 
+				case "view": 
+	    			icon="icon-eye-open";
+					title="查看角色";
+				break;
+				case "edit": 
+					icon="icon-pencil";
+					title="编辑角色";
+				break; 
+				case "ault": 
+					icon="icon-key";
+					title="角色授权";
+				break; 
+				} 
+			var newmession={   		
+		  		icon:icon,
+		  		title:title,
+		  		id:id,
+		  		type:type,
+	    	};
+			this.messions.unshift(newmession);
+			this.$emit("show_messions")
+	    },
     }
 }
 </script>
 
 <style>
-
-.mission{
+/*用在列表时的样式,舍不得删万一以后用到再打开....*/
+/*.mission{
 	position: absolute;
 	left:0.1rem;
 	bottom:0.32rem;
@@ -77,8 +158,6 @@ export default {
 	color:rgb(93,161,245);
 }
 .mission >ol{
-	/*margin-top:10px;*/
-	/*height:197px;*/
 	height:auto;
 }
 .mission >ol >li{
@@ -131,5 +210,5 @@ export default {
 }
 .mission >ol >li:hover >.del{
 	display: block;
-}
+}*/
 </style>
