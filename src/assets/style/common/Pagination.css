@@ -70,7 +70,7 @@ div.tfoot .el-pager li{
 	border:0.01rem solid rgb(220,220,220);
 	line-height: 0.2rem;
 	text-align: center;
-	font-size: 0.12rem;
+	font-size: 0.17rem;
 	color:rgb(0,0,0);
 	border-radius: 0.02rem;
 	margin-right:0.1rem;
@@ -94,7 +94,7 @@ div.tfoot .el-pager li.active{
 div.tfoot .el-pagination span:not([class*=suffix]){
 	margin-left:0.05rem;
 	text-align: center;
-	font-size: 0.12rem;
+	font-size: 0.17rem;
 	color:rgb(0,0,0);
 	height:0.22rem;
 	line-height: 0.22rem;
@@ -107,7 +107,7 @@ div.tfoot .el-pagination__editor.el-input{
 	border:0.01rem solid rgb(236,210,200);
 	margin:0 0.08rem;
 	text-align: center;
-	font-size: 0.12rem;
+	font-size: 0.17rem;
 	color:rgb(0,0,0);
 	padding:0;
 	line-height:0.2rem;
