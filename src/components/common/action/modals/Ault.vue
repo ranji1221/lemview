@@ -8,12 +8,11 @@
 	            <template v-if="form.type=='text'">
 	                <el-input class="roleinput" v-model="form.text" :placeholder="form.default"></el-input>
 	            </template>
-	            <template v-else-if="form.type=='tree'">
-	            	
+	            <template v-else-if="form.type=='tree'">	            	
 	                <div class="treewrap">
 				    	<header>
-							<el-checkbox v-model="tree_select_toggle" @click="checkall()">选中全部</el-checkbox>
-							<el-checkbox v-model="tree_open_toggle" @click="openall">展开全部</el-checkbox>
+							<el-checkbox v-model="tree_select_toggle" @change="checkall">选中全部</el-checkbox>
+							<el-checkbox v-model="tree_open_toggle" @change="openall">展开全部</el-checkbox>
 							<div class="prompt">
 								温馨小提示：此
 								<el-checkbox v-model="disabletrue" disabled></el-checkbox>				
@@ -22,15 +21,15 @@
 						</header>
 						<div class="treezl">
 							<el-tree
-							    :data="data2"
+							    :data="tree.data"
 							    show-checkbox
-							    default-expand-all
 						  	    node-key="id"
 							    ref="tree"
-							    :check-strictly="checkStrictly"
+							    :check-strictly="tree.checkStrictly"
 							    highlight-current
+  								:default-expand-all="tree_open_toggle"
   								:default-checked-keys="defaultCheckedKeys"
-							    :props="defaultProps">
+							    :props="tree.defaultProps">
 							</el-tree>
 						</div>
 			    	
@@ -40,12 +39,7 @@
 							为您的上级权限您无权更改
 						</div>		  
 				  	</div>
-	            </template>
-	            
-	            
-		            
-		  	
-		  	
+	            </template>	  	
 	        </el-form-item>	        
 	        <div class="btns">
 	            <el-button class="btn_succse btn" type="primary" @click="onSubmit">确认</el-button>
@@ -62,10 +56,19 @@
 export default {
 
 //  components:{ LemonAult},
-    props: ['lg','datalist'],
-    mounted: function() {
-
+    props: ['lg','datalist','tree'],
+    beforeMount: function() {
+//    	this.finddisablecheckkey(this.tree.data)
+      	this.finddisablecheckedid(this.tree.data);
+      	this.finddefaultcheckkey(this.tree.data);
+      	this.findallcheckedid(this.tree.data);
+      	console.log(this.checkallkey)
     },
+//  mounted: function() {
+////    	this.finddisablecheckkey(this.tree.data)
+//    	this.finddisablecheckedid(this.tree.data);
+//    	this.finddefaultcheckkey(this.tree.data);
+//  },
     methods: {
     	 onSubmit() {
             console.log('submit!');
@@ -75,155 +78,86 @@ export default {
 		cancel(){
 			
 			this.$emit('btn_close')       
-       },
-		
-		
+      },		
       getCheckedNodes() {
         console.log(this.$refs.tree.getCheckedNodes());
       },
       getCheckedKeys() {
         console.log(this.$refs.tree.getCheckedKeys());
       },
-      setCheckedNodes() {
-        this.$refs.tree.setCheckedNodes([{
-          id: 5,
-          label: '二级 2-1'
-        }, {
-          id: 9,
-          label: '三级 1-1-1'
-        }]);
-      },
-      setCheckedKeys() {
-        this.$refs.tree.setCheckedKeys([3]);
-      },
       resetChecked() {
         this.$refs.tree.setCheckedKeys([]);
       },
-      checkall:function(){
+      checkall:function(a){
       	var allkeys;
-      	if(this.tree_select_toggle){
+      	if(a){
       		allkeys=this.checkallkey;
       	}else{
-      		allkeys=[];
+      		allkeys=this.disablecheckedkey;
       	}
-      	console.log(allkeys)
-      	this.$refs.tree.setCheckedKeys(allkeys);
+      	this.$refs.tree[0].setCheckedKeys(allkeys);
       },
-      openall(){
-      	var allkeys;
-      	if(this.tree_checkall_toggle){
-      		allkeys=this.checkallkey;
+      openall(a){
+      	if(a){
+      		this.tree.tree_open_toggle=true;
       	}else{
-      		allkeys=[];
+      		this.tree.tree_open_toggle=false;
       	}
-      	console.log(allkeys)
-      	this.$refs.tree.setCheckedKeys(allkeys);
+      	console.log(this.tree.tree_open_toggle)
       },
+      	findallcheckedid(arr){
+      		arr.forEach((val,index)=>{	      		   			
+	      		if((val.checked)&&val.disabled||(!val.disabled)){    			
+	      			this.checkallkey.push(val.id);
+	      		}
+				if(val.children){
+					this.findallcheckedid(val.children)
+				}
+			})	
+        },
+        finddisablecheckedid(arr){
+      		arr.forEach((val,index)=>{	      		   			
+	      		if(!(!val.checked)&&val.disabled){    			
+	      			this.disablecheckedkey.push(val.id);
+	      		}
+				if(val.children){
+					this.finddisablecheckedid(val.children)
+				}
+			})	
+        },
+      	finddisablecheckkey(arr){
+      		arr.forEach((val,index)=>{
+	      		if(val.disabled){    			
+	      			this.disablekey.push(val.id);
+	      		}
+				if(val.children){
+					this.finddisablecheckkey(val.children)
+				}
+			})
+        },
+        finddefaultcheckkey(arr){
+      		arr.forEach((val,index)=>{
+	      		if(val.checked){    			
+	      			this.defaultCheckedKeys.push(val.id);
+	      		}
+				if(val.children){
+					this.finddefaultcheckkey(val.children)
+				}
+			})
+        },
     },
-//	computed:{
-//	},
     data() {
       return {
-      	defaultCheckedKeys:[1,2,3,4,5,6,8,15,16,17,18],
-      	checkallkey:[1,2,3,4,5,6,8,9,10,11,12,13,14,15,16,17,18,19],
-      	openallkey:[1,2,3,4,5,6,8,9,10,11,12,13,14,15,16,17,18,19],
-      	checkStrictly:true,
-      	tree_select_toggle:false,
-      	tree_open_toggle:true,
-      	disabletrue:true,
-        data2: [
-        	{
-            id: 1,
-            label: '插件管理',
-	        disabled: true,
-            children: [
-            	{
-	                id: 2,
-	                label: '查看',
-	                disabled: true,
-            	},    
-            	{
-	                id: 3,
-	                label: '添加',          
-	                disabled: true,
-           		},
-	            {
-	                id: 4,
-	                label: '修改',          
-	                disabled: true,
-	            },
-	            {
-	                id: 5,
-	                label: '删除',          
-	                disabled: true,
-	            },
-	            {
-	                id: 6,
-	                label: '本地安装',          
-	                disabled: true,
-	            },
-	            {
-	                id: 7,
-	                label: '禁用',          
-	                disabled: true,
-	            },
-            ]
-       		}, {
-            id: 8,
-            label: '权限管理',
-            children: [
-            	{
-	                id: 9,
-	                label: '规则管理',
-	                children: [
-	                {
-	                	id: 10,
-	                	label: '规则管理1',
-	                },
-	                {
-	                	id: 11,
-	                	label: '规则管理2',
-	                },
-	                {
-	                	id: 12,
-	                	label: '规则管理3',
-	                },
-	                {
-	                	id: 13,
-	                	label: '规则管理4',
-	                },
-               		],
-            	},
-            	{
-	                id: 15,
-	                label: '角色组',
-	                children: [
-		                {
-		                	id: 16,
-		                	label: '角色组1',
-		                },
-		                {
-		                	id: 17,
-		                	label: '角色组2',
-		                },
-		                {
-		                	id: 18,
-		                	label: '角色组3',
-		                },
-		                {
-		                	id: 19,
-		                	label: '角色组4',
-		                },
-            		],
-        
-       			},
-            	]},
-        	],
-        defaultProps: {
-          children: 'children',
-          label: 'label'
-        }
-      };
+      	disablecheckedkey:[],//禁止选择且被选中的id
+      	disablekey:[],//禁止选择的key id
+      	checkallkey:[],//树上的全部可选排除了禁用的id
+      	defaultCheckedKeys:[],//默认选中的key id
+      	disabletrue:true,//处于禁止状态并选中
+      	tree_select_toggle:false,//全部选中开关
+      	tree_open_toggle:true,//全部打开开关
+      	
+      		
+      	}
     }
   };
 

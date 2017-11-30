@@ -38,7 +38,7 @@
 	    </template>
 	    <!--编辑部分-->
 	    <template v-if="modal_type=='ault'">
-	    	<lemon-modal-ault :lg="item.lg" :datalist="item.datalist" v-on:btn_close="btn_close"></lemon-modal-ault>
+	    	<lemon-modal-ault :lg="item.lg" :datalist="item.datalist" :tree="item.tree" v-on:btn_close="btn_close"></lemon-modal-ault>
 	    </template>
 	    
 	    <!--底部-->
