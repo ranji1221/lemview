@@ -9,9 +9,9 @@
 				<span class="iconfont icon-chuyidong1 del" @click.stop="del_mession_item(item.id,item.type)"></span>
 			</li>
 			<li v-if="mission_empty">
-				<span></span>
-				<p>(暂无)</p>
-				<span></span>
+
+				(暂无)
+
 			</li>
 		</ol>
 	</div>
@@ -49,7 +49,7 @@ export default {
 			var mession=this.messions.filter(function (item) {
 			  	return item.id===id&&item.type===type;
 			})
-			console.log(mession)
+//			console.log(mession)
 			if(!mession.length){				
 				this.$root.eventHub.$emit('createmodal',id,type);
 			}else{
@@ -69,6 +69,9 @@ export default {
     		this.messions=this.messions.filter(function (item) {
 			  	return !(item.id==id&&item.type==type);
 			});
+			if(!this.messions.length){
+				this.$emit("hidden_messions")
+			};
 			this.$root.eventHub.$emit('pop_mession',id,type);
     	},
 //  	传递从mession删除模态框的id与type

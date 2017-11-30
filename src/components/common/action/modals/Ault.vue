@@ -62,7 +62,7 @@ export default {
       	this.finddisablecheckedid(this.tree.data);
       	this.finddefaultcheckkey(this.tree.data);
       	this.findallcheckedid(this.tree.data);
-      	console.log(this.checkallkey)
+
     },
 //  mounted: function() {
 ////    	this.finddisablecheckkey(this.tree.data)

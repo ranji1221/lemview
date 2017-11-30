@@ -73,7 +73,7 @@
 			<li>
 				<div class="iconfont icon-caidan5555 btn-mission" @click="mission_show=!mission_show"></div>
 			</li>
-      		<lemon-mession v-show="mission_show" v-on:show_messions="show_messions"></lemon-mession>
+      		<lemon-mession v-show="mission_show" v-on:show_messions="show_messions" v-on:hidden_messions="hidden_messions"></lemon-mession>
 		</ul>
 
 	</el-menu>
@@ -289,7 +289,10 @@ export default {
 		},
 		show_messions(){
 			this.mission_show=true;
-		}
+		},
+		hidden_messions(){
+			this.mission_show=false;
+		},
 	},
 
 }

@@ -42,6 +42,12 @@ export default {
     LemonList,LemonPrompt,LemonPagination,LemonBreadcrumb,LemonModal
   },
   created(){
+//	监听列表删除事件
+    this.$root.eventHub.$on('delelistitem',function(rowid){
+    	this.tabledatas=this.tabledatas.filter(function(item){
+    		return item.id!==rowid;
+    	})
+    }.bind(this)); 	
 //	监听列表点击打开模态框事件(先经过了mission的过滤)
   	this.$root.eventHub.$on("createmodal",function(id,type){
 //		this.mask=true;
@@ -385,20 +391,10 @@ export default {
   data() {
     return {
    	  mask:false,
-// 	  modaldata:{
-// 	  	viewdata:[],//查看数据组
-//	    editdata:[],//编辑数据组  	  		
-// 	  },
 	  viewdata:[],//查看数据组
 	  editdata:[],//编辑数据组
 	  aultdata:[],//编辑数据组
 	  messions:[],//任务数据组
-//	  messions:{
-//	  	view:[],
-//	  	edit:[],
-//	  	ault:[],
-//	  },//任务数据组
-//	  mission_show:false,
       breadcrumb:{
       	search:true,    	
       },

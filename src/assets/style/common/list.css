@@ -2,6 +2,10 @@
 	position:relative;
 	height: 100%;
 }
+/*空数据容器*/
+.el-table__empty-block{
+	width:100%!important;
+}
 /*补了个遮罩层*/	
 .mask{
 	position:fixed;

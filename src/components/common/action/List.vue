@@ -52,7 +52,7 @@ export default {
     }
   },
   mounted: function() {
-    console.log(this.items)
+//  console.log(this.items)
   },
   methods: {
     toggleSelection(rows) {
@@ -88,6 +88,8 @@ export default {
 	      cancelButtonText: '取消',
 	      type: 'warning'
 	    }).then(() => {
+	    	this.$root.eventHub.$emit('delelistitem',row.id);
+	    	
 	      this.$message({
 	        type: 'success',
 	        message: '删除成功!'
