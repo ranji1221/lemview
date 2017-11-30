@@ -205,13 +205,13 @@ export default {
 	margin:0!important;
 }
 .treewrap header label .el-checkbox__label{
-	font-size:0.14rem;
+	font-size:0.17rem;
 }
 .treewrap  header div.prompt label{
 	padding:0;
 }
 .treewrap  header div.prompt{
-	font-size:0.14rem;
+	font-size:0.17rem;
 	float:right;
 	padding-right:0.1rem;
 	display: none;
@@ -224,7 +224,7 @@ export default {
 	bottom:0;
 	line-height: 0.52rem;
 	padding-left:0.3rem;
-	font-size:0.14rem;
+	font-size:0.17rem;
 	display: block;
 	white-space: nowrap;
 	overflow: hidden;
@@ -266,6 +266,6 @@ export default {
 	color:rgb(51,51,51);
 }
 .treewrap .el-tree-node__label{
-	font-size:0.14rem;
+	font-size:0.17rem;
 }
 </style>

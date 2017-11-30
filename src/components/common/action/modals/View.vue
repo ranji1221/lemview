@@ -107,7 +107,7 @@ table.view tr td:nth-child(1) {
 table.view tr td:nth-child(2) {
 	text-align: left;
 	border-left: 1px dashed #ddd;
-	font-size:0.14rem;
+	font-size:0.17rem;
 	color:#666666;
 	padding-left: 0.52rem; 
 }

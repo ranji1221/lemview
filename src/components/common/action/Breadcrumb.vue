@@ -92,6 +92,7 @@
 		line-height: 0.6rem;
 		background-color: rgba(241, 241, 241, 1);
 		position:relative;
+		overflow: hidden;
 	}
 	.breadcrumbwrap .el-breadcrumb{
 		height:0.6rem;
