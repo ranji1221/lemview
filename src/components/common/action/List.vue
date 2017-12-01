@@ -44,7 +44,7 @@
 </template>
 <script>
 export default {
-  props: ['items', 'tabledata','actions'],
+  props: ['items', 'tabledata','actions','list'],
   data() {
     return {
       multipleSelection: [],
@@ -72,15 +72,16 @@ export default {
     },
     handleView(index, row) {
 //	    console.log(row.id);
-	    this.$root.eventHub.$emit('openmodal',row.id,'view')
+	    this.$root.eventHub.$emit('openmodal',row.id,'view',this.list)
+	    console.log('发射');
 		},
 		handleEdit(index, row) {
 //		    console.log(index, row);
-		    this.$root.eventHub.$emit('openmodal',row.id,'edit')
+		    this.$root.eventHub.$emit('openmodal',row.id,'edit',this.list)
 		},
 	
 		handleAult(index, row) {
-		    this.$root.eventHub.$emit('openmodal',row.id,'ault')
+		    this.$root.eventHub.$emit('openmodal',row.id,'ault',this.list)
 		  },
 	  handleDele(index, row) {
 	    this.$confirm('此操作将永久删除该'+row.rowType+', 是否继续?', '提示', {
@@ -88,7 +89,7 @@ export default {
 	      cancelButtonText: '取消',
 	      type: 'warning'
 	    }).then(() => {
-	    	this.$root.eventHub.$emit('delelistitem',row.id);
+	    	this.$root.eventHub.$emit('delelistitem',row.id,this.list);
 	    	
 	      this.$message({
 	        type: 'success',

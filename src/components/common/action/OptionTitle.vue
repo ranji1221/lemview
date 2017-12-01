@@ -25,13 +25,16 @@ export default {
 	},
 	methods:{
 		close:function(){
-			this.$emit('btn_close')
+			this.$emit('btn_close');
+//			this.$root.eventHub.$emit('btn_close');
 		},
 		scaling:function(){
-			this.$emit('btn_scaling')
+			this.$emit('btn_scaling');
+//			this.$root.eventHub.$emit('btn_scaling');
 		},
 		hid:function(){
-			this.$emit('btn_hid')
+			this.$emit('btn_hid');
+//			this.$root.eventHub.$emit('btn_hid');
 		},
 		
 	},

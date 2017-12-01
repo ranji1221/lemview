@@ -1,9 +1,9 @@
 <template>
 	<!--<el-dialog  :append-to-body="true" :visible.sync="item.open" :modal="false" :lock-scroll="false" :close-on-click-modal="false" :close-on-press-escape="false" :show-close="false" v-show="item.show" :center="true" :class="{lg:item.lg}">-->
-	<el-dialog :visible.sync="item.open" :modal="false" :lock-scroll="false" :close-on-click-modal="false" :close-on-press-escape="false" :show-close="false" v-show="item.show" :center="true" :class="{lg:item.lg}">
+	<el-dialog :visible.sync="item.open" :modal="false" :lock-scroll="false" :close-on-click-modal="false" :close-on-press-escape="false" :show-close="false" v-show="item.show" :center="true" :class="{lg:item.lg,collapse:this.isCollapse&&item.lg}">
 	    <!--头部-->
 	    <span slot="title" class="titleaut" v-show="!item.lg">
-			<p>{{title}}</p>
+			<p>{{item.title}}</p>
 			<div class="btns">
 				<!--最小化-->
 				<a href="javascript:;" @click="btn_hid">
@@ -30,15 +30,15 @@
 	    </template>
 	    <!--查看部分-->
 	    <template v-if="modal_type=='view'">
-	    	<lemon-modal-view :lg="item.lg" :datalist="item.datalist"></lemon-modal-view>
+	    	<lemon-modal-view :lg="item.lg" :datalist="item.datalist" v-on:btn_hid="btn_hid" v-on:btn_scaling="btn_scaling" v-on:btn_close="btn_close"></lemon-modal-view>
 	    </template>
 	    <!--编辑部分-->
 	    <template v-if="modal_type=='edit'">
-	    	<lemon-modal-edit :lg="item.lg" :datalist="item.datalist" v-on:btn_close="btn_close"></lemon-modal-edit>
+	    	<lemon-modal-edit :lg="item.lg" :datalist="item.datalist" v-on:btn_hid="btn_hid" v-on:btn_scaling="btn_scaling" v-on:btn_close="btn_close"></lemon-modal-edit>
 	    </template>
 	    <!--编辑部分-->
 	    <template v-if="modal_type=='ault'">
-	    	<lemon-modal-ault :lg="item.lg" :datalist="item.datalist" :tree="item.tree" v-on:btn_close="btn_close"></lemon-modal-ault>
+	    	<lemon-modal-ault :lg="item.lg" :datalist="item.datalist" :tree="item.tree" v-on:btn_hid="btn_hid" v-on:btn_scaling="btn_scaling" v-on:btn_close="btn_close"></lemon-modal-ault>
 	    </template>
 	    
 	    <!--底部-->
@@ -57,22 +57,26 @@ import LemonBreadcrumb from '@/components/common/action/Breadcrumb.vue';
 import LemonModalView from '@/components/common/action/modals/View.vue';
 import LemonModalEdit from '@/components/common/action/modals/Edit.vue';
 import LemonModalAult from '@/components/common/action/modals/Ault.vue';
-
+import { mapState,mapMutations,mapGetters,mapActions} from 'vuex';
 
 export default {
     components:{ LemonOptionTitle,LemonBreadcrumb,LemonModalView,LemonModalEdit,LemonModalAult },
-    props: ['item','title','modal_type'],
+    props: ['item','modal_type'],
+    computed:{
+		...mapState(["modal_id_number","viewdata","editdata","aultdata","messions","mask","isCollapse"]),
+		...mapGetters(["modal_id"]),
+	},
     data() {
         return {
         	breadcrumb:{
 	      		search:true,
-	      		undefinedpath:this.title,
+	      		undefinedpath:this.item.title,
 	        },
 	      	title_actions:{
 	      		hid:true,
 	      		scaling:true,
 	      		close:true,
-	      		undefinedpath:this.title,
+	      		undefinedpath:this.item.title,
 	      	},
 //      	lg:false,
     		true:true,
@@ -81,18 +85,35 @@ export default {
         }
     },
     methods:{
+    	...mapMutations(['create_modal_id','is_mask','close_modal','hid_modal']),
+  		...mapActions(['addAction']),
     	btn_hid:function(){
     		this.item.show=!this.item.show;
-	    	this.$root.eventHub.$emit('hidden_modal',this.item.id,this.modal_type);  		
+    		this.is_mask(false); 
+	    	var payload={};
+				payload.id=this.item.id;
+				payload.type=this.modal_type;
+				payload.list=this.item.list;
+			this.hid_modal(payload);
+//			发送事件让messions显示
+			this.$root.eventHub.$emit("hidden_modal");
     	},
     	btn_scaling:function(){
+    		console.log(111111)
     		this.item.lg=!this.item.lg;
-	    	this.$root.eventHub.$emit('scaling_modal',this.item.lg);  	
-//	    	console.log(this.item.lg);
+    		if(this.item.lg){
+	    		this.is_mask(false);
+	    	}else{
+	    		this.is_mask(true);    		
+	    	}
     	},
     	btn_close:function(){
-//  		this.item.open=false;
-	    	this.$root.eventHub.$emit('close_modal',this.item.id,this.modal_type); 
+			this.is_mask(false);
+			var payload={};
+				payload.id=this.item.id;
+				payload.type=this.modal_type;
+				payload.list=this.item.list;
+  			this.close_modal(payload);
     	},
     },
     mounted:function(){
@@ -103,9 +124,9 @@ export default {
 </script>
 <style>
 /*模态框插入body时的补充样式*/
-/*.lg{
+.lg{
 	padding:0.6rem 0 0 3rem;
-}*/
+}
 .el-dialog{
 	overflow: hidden;
     width: 10.24rem;
@@ -117,6 +138,9 @@ export default {
 	bottom:auto;
 	z-index: 1!important;
 	height:100%;
+}
+.lg.collapse{
+	padding-left:1rem;
 }
 .lg .el-dialog{
 	width:100%!important;

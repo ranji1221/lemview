@@ -1,5 +1,5 @@
 <template>
-	<el-menu default-active="home" class="el-menu-vertical-demo" :router=true @open="handleOpen" @close="handleClose" :collapse="isCollapse" :background-color="backgroundColor" :unique-opened=true>
+	<el-menu default-active="home" class="el-menu-vertical-demo" :router=true @open="handleOpen" @select="handleSelect" @close="handleClose" :collapse="this.isCollapse" :background-color="backgroundColor" :unique-opened=true>
 		<!--用户信息-->
 		<div class="user">
 			<div class="photo">
@@ -68,7 +68,7 @@
 				<div class="iconfont icon-bianji btn-edit"></div>
 			</li>
 			<li>
-				<div class="iconfont icon-shouhui btn-fold" @click='slide' v-bind:class='{"rotate":isCollapse}'></div>
+				<div class="iconfont icon-shouhui btn-fold" @click='slide' v-bind:class='{"rotate":this.isCollapse}'></div>
 			</li>
 			<li>
 				<div class="iconfont icon-caidan5555 btn-mission" @click="mission_show=!mission_show"></div>
@@ -81,15 +81,20 @@
 <script>
 require("../../../assets/style/common/Sidebar.css");
 import LemonMession from '@/components/common/action/Mession.vue';
+import { mapState,mapMutations,mapGetters,mapActions} from 'vuex';
 export default {
 	components: {
 	    LemonMession,
 	},
+	computed:{
+		...mapState(["isCollapse"]),
+		...mapGetters(["modal_id"]),
+  	},
 	data() {
 		return {
 			mission_show:false,
-			messions:[],
-			isCollapse: false,
+//			messions:[],
+//			isCollapse: false,
 			backgroundColor: '#ffffff',
 			user: {
 				name: '哎吆吆',
@@ -275,14 +280,17 @@ export default {
 		};
 	},
 	methods: {
+		...mapMutations(['slideToggle','route_click']),
+  		...mapActions(['addAction']),
 		handleOpen(key, keyPath) {
 			// console.log(key, keyPath);
 		},
 		handleClose(key, keyPath) {
 			// console.log(key, keyPath);
 		},
-		slide() {
-			this.isCollapse = !this.isCollapse;
+		handleSelect(key, keyPath){
+//			console.log(key, keyPath);
+			this.route_click()
 		},
 		tostr(num) {
 			return num.toString()
@@ -293,6 +301,12 @@ export default {
 		hidden_messions(){
 			this.mission_show=false;
 		},
+		slide(){
+			this.mission_show=false;
+			setTimeout(()=>{
+				this.slideToggle();				
+			},100)
+		}
 	},
 
 }

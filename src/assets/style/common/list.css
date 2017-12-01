@@ -17,16 +17,7 @@
 .el-table__empty-block{
 	width:100%!important;
 }
-/*补了个遮罩层*/	
-.mask{
-	position:fixed;
-	top:0;
-	left:0;
-	right:0;
-	bottom:0;
-	z-index: 1999;
-	background:rgba(0,0,0,0.5);
-}
+
 .el-main{
     /*padding: 0px 0.45rem;*/
     background-color:white;

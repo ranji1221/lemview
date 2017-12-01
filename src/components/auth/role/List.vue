@@ -5,23 +5,22 @@
       <!--alert-->
       <lemon-prompt :alerts="alerts"></lemon-prompt>
       <!--表格-->
-      <lemon-list class="rolelist list" :tabledata="tabledatas"  :items="items" :actions="actions"> 
+      <lemon-list class="rolelist list" :tabledata="tabledatas" :list="list" :items="items" :actions="actions"> 
       </lemon-list>
       <!--分页-->
       <lemon-pagination :page="page"></lemon-pagination>
       <!--查看模态框-->
-      <template v-if="actions.view">
-      	<lemon-modal v-for="(item, index) in viewdata" :item="item" :key="index" :ref="item.id" title="查看角色" modal_type="view"></lemon-modal>      	
-      </template>
+      <!--<template v-if="actions.view">
+      	<lemon-modal v-for="(item, index) in viewdata" :list="list" :item="item" :key="index" :ref="item.id" title="查看角色" modal_type="view"></lemon-modal>      	
+      </template>-->
       <!--编辑模态框-->
-      <template v-if="actions.edit">
-      	<lemon-modal v-for="(item, index) in editdata" :item="item" :key="index" :ref="item.id" title="编辑角色" modal_type="edit"></lemon-modal>      	
-      </template>
+      <!--<template v-if="actions.edit">
+      	<lemon-modal v-for="(item, index) in editdata" :list="list" :item="item" :key="index" :ref="item.id" title="编辑角色" modal_type="edit"></lemon-modal>      	
+      </template>-->
       <!--授权模态框-->
-      <template v-if="actions.ault">
-      	<lemon-modal v-for="(item, index) in aultdata" :item="item" :key="index" :ref="item.id" title="角色授权" modal_type="ault"></lemon-modal>      	
-      </template>
-      <div class="mask" v-if="mask"></div>
+      <!--<template v-if="actions.ault">
+      	<lemon-modal v-for="(item, index) in aultdata" :list="list" :item="item" :key="index" :ref="item.id" title="角色授权" modal_type="ault"></lemon-modal>      	
+      </template>-->
     </div>
 </template>
 
@@ -36,10 +35,15 @@ import LemonBreadcrumb from '@/components/common/action/Breadcrumb.vue';
 import LemonPagination from '@/components/common/action/Pagination.vue';
 import LemonModal from '@/components/common/action/Modal.vue';
 import "@/assets/style/common/list.css"
+import { mapState,mapMutations,mapGetters,mapActions} from 'vuex';
 
 export default {
   components: {
     LemonList,LemonPrompt,LemonPagination,LemonBreadcrumb,LemonModal
+  },
+  computed:{
+	...mapState(["modal_id_number","viewdata","editdata","aultdata","messions","mask"]),
+	...mapGetters(["modal_id"]),
   },
   created(){
 //	监听列表删除事件
@@ -47,57 +51,36 @@ export default {
     	this.tabledatas=this.tabledatas.filter(function(item){
     		return item.id!==rowid;
     	})
+    	console.log('删除0');
     }.bind(this)); 	
 //	监听列表点击打开模态框事件(先经过了mission的过滤)
-  	this.$root.eventHub.$on("createmodal",function(id,type){
-//		this.mask=true;
-		this.createmodal(id,type);
-  	}.bind(this));
-//	监听隐藏模态框事件
-  	this.$root.eventHub.$on("hidden_modal",function(id,type){
-		this.mask=false; 
-  	}.bind(this));
-//	监听缩放模态框事件
-  	this.$root.eventHub.$on("scaling_modal",function(lg){
-  		if(lg){
-    		this.mask=false;
-    	}else{
-    		this.mask=true;    		
-    	}
-  	}.bind(this));
-//	监听关闭模态框事件
-  	this.$root.eventHub.$on("close_modal",function(id,type){
-  		this.mask=false;
-  		this.close_modal(id,type)
-  	}.bind(this));
-//	监听mession弹出模态框事件
-  	this.$root.eventHub.$on("pop_mession",function(id,type){
-		this.pop_mession(id,type)
-  	}.bind(this));
-//	监听mession删除模态框事件
-  	this.$root.eventHub.$on("del_mession",function(id,type){
-//		this.del_mession(id,type)
+  	this.$root.eventHub.$on("createmodaling",function(id,type){  
+			console.log("新建中")
+  		
+		this.create_modal_id();
+		var list=this.list;
+		this.createmodal(id,type,list);
   	}.bind(this));
   },
+  destroyed(){
+  	this.$root.eventHub.$off("createmodaling")
+  	this.$root.eventHub.$off('delelistitem')
+  	console.log('销毁')
+  },
   methods: {
+  	...mapMutations(['create_modal_id','is_mask','create_modal','close_modal']),
+  	...mapActions(['addAction']),
 //	获取到点击查看的列表id并显示对应模态框
-    createmodal:function(id,type) {
-    	this.mask=true;
-//  	这是一段关于$refs的尝试
-//		var item=this.$refs[id][0].item;
-//  	var show=item.show;//show这个字段待定
-//  	if( !show){
-//  		item.show=true;
-//  		console.log("show")
-//  	}else{
-//  		item.open=true;		
-//  		console.log("open")
-//  	}
+    createmodal:function(id,type,list) {
+    	this.is_mask(true);
 //获取一组查看模态框数据并插入到查看数组中,以实现新建模态框的效果
-		switch(type) 
+		var datatype;
+		var newdata;
+		switch(type)
 			{ 
 			case "view": 
-				var newdata={
+				datatype='viewdata';
+				newdata={
 				  	datalist:{
 			          '角色名称': 'UI设计师'+id,		    
 			          '父级角色': '首页',		    
@@ -109,11 +92,17 @@ export default {
 			        show:true,
 			        id:id,
 			        lg:false,
+			        list:list,
+			        title:"查看角色",
+			        type:type,
 			    };
-				this.viewdata.push(newdata);
 			break; 
 			case "edit": 
-				var newdata={
+				datatype='editdata';
+				newdata={
+			        list:list,
+			        title:"编辑角色",
+			        type:type,
 				  	datalist:{
 			          name: {
 			            label:"角色名称",
@@ -172,10 +161,13 @@ export default {
 			        id:id,
 			        lg:false,
 			    };
-				this.editdata.push(newdata);
 			break; 
 			case "ault": 
-				var newdata={
+				datatype='aultdata';
+				newdata={
+			        list:list,
+			        type:type,
+			        title:"角色授权",
 				  	datalist:{
 			          name: {
 			            label:"角色名称",
@@ -309,92 +301,18 @@ export default {
 			        id:id,
 			        lg:false,
 			   };
-				this.aultdata.push(newdata);
 			break; 
 			} 		
+			var payload={};
+				payload.datatype=datatype;
+				payload.newdata=newdata;
+				console.log('新建完成')
+			this.create_modal(payload);
     },    
-    close_modal:function(id,type){
-//  	过滤掉对应id的查看数据实现删除效果
-    	
-    	switch(type) 
-			{ 
-			case "view": 
-				this.viewdata=this.viewdata.filter(function (item) {
-				  	return item.id!==id;
-				})
-			break; 
-			case "edit": 
-				this.editdata=this.editdata.filter(function (item) {
-				  	return item.id!==id;
-				})
-			break; 
-			case "ault": 
-				this.aultdata=this.aultdata.filter(function (item) {
-				  	return item.id!==id;
-				})
-			break; 
-			} 
-    	
-    },    
-//  通过messions中的item点击时的id,删除id的mession数据并打开查看数据组中对应id的显示
-    pop_mession:function(id,type){
-		switch(type) 
-			{ 
-			case "view": 
-    			var item=this.viewdata.find(function(item){
-    				return item.id==id;
-    			});
-			break; 
-			case "edit": 
-				var item=this.editdata.find(function(item){
-    				return item.id==id;
-    			});
-			break; 
-			case "ault": 
-				var item=this.aultdata.find(function(item){
-    				return item.id==id;
-    			});
-			break; 
-			} 
-//  	var item=this.$refs[id][0].item;
-    	if(item.lg){
-    		this.mask=false; 		  		
-    	}else{
-    		this.mask=true;
-    	}
-    	item.show=true;
-    },
-//  通过messions中的item点击删除时的id,删除id的mession数据删除查看数据组中对应id的显示
-    del_mession:function(id,type){
-		
-		switch(type) 
-			{ 
-			case "view": 
-    			this.viewdata=this.viewdata.filter(function (item) {
-				  	return item.id!==id;
-				});
-			break; 
-			case "edit": 
-				this.editdata=this.editdata.filter(function (item) {
-				  	return item.id!==id;
-				});
-			break; 
-			case "ault": 
-				this.aultdata=this.aultdata.filter(function (item) {
-				  	return item.id!==id;
-				});
-			break; 
-			} 
-    	
-    },
   },
   data() {
     return {
-   	  mask:false,
-	  viewdata:[],//查看数据组
-	  editdata:[],//编辑数据组
-	  aultdata:[],//编辑数据组
-	  messions:[],//任务数据组
+      list:"rolelist",
       breadcrumb:{
       	search:true,    	
       },
