@@ -1,15 +1,27 @@
 <template>
 	<div class="breadcrumbwrap">
 		<el-breadcrumb separator-class="el-icon-arrow-right">
-		    <el-breadcrumb-item to="/index/home">
-		    	<i class="icon-home"></i>
-		    	首页
-		    </el-breadcrumb-item>
-		    <!--<el-breadcrumb-item v-for="item in breadcrumbList" :key="item.index" :to="item.path">{{item.name}}</el-breadcrumb-item>-->
-		    <el-breadcrumb-item v-for="item in breadcrumbList" :key="item.index" >{{item.name}}</el-breadcrumb-item>
-			<el-breadcrumb-item v-if="breadcrumb.undefinedpath">
-		    	{{breadcrumb.undefinedpath}}
-		    </el-breadcrumb-item>
+			<template v-if="breadcrumb.undefinedpath">
+			    <el-breadcrumb-item>
+			    	<span @click='backhome'>
+			    		
+			    	<i class="icon-home"></i>
+			    	首页
+			    	</span>
+			    </el-breadcrumb-item>
+			    <el-breadcrumb-item v-for="item in breadcrumbListsCache" :key="item.index" >{{item.name}}</el-breadcrumb-item>
+				<el-breadcrumb-item >
+			    	{{breadcrumb.undefinedpath}}
+			   </el-breadcrumb-item>				
+			</template>
+			<template v-else>
+				<el-breadcrumb-item to="/index/home">
+			    	<i class="icon-home"></i>
+			    	首页
+			    </el-breadcrumb-item>
+			    <!--<el-breadcrumb-item v-for="item in breadcrumbList" :key="item.index" :to="item.path">{{item.name}}</el-breadcrumb-item>-->
+			    <el-breadcrumb-item v-for="item in breadcrumbList" :key="item.index" >{{item.name}}</el-breadcrumb-item>
+			</template>
 		</el-breadcrumb>
 		
 		<div class="bread_search" v-if="breadcrumb.search">
@@ -34,16 +46,48 @@ import {mapMutations} from 'vuex';
 //import "@/assets/style/common/Breadcrumb.css"
   export default {
     props: ['breadcrumb'],
-    methods: {
-		...mapMutations(['route_click']),
-      
-    },
     data() {
       return {
         searching:'',
-//      curName: this.$route.name,
-//      curPath:this.$route.fullPath,
+		firstfalg:true,//第一次加载确定路由的开关
+		breadcrumbListsCache:[],
       };
+    },
+    created(){
+    	this.breadcrumbListFirst();
+    },
+    methods:{
+    	...mapMutations(['route_click']),
+    	backhome(){
+//  		手动跳转
+			this.route_click();
+    		this.$router.push({ path: '/index/home' });
+    	},
+    	breadcrumbListFirst() {
+    		if(this.firstfalg){
+	//	    	获取连接名按照"/"切分并反转
+		        var breadcrumbName=this.$route.name.split('/').reverse();
+	//	       	 等待返回的面包屑名字对应路径的对象数组
+		        var breadcrumbLists=[];
+		        	for(var i=0;i<breadcrumbName.length;i++){
+		        		var breadcrumbItem={};
+	//	        		获取名字
+		        		breadcrumbItem.name=breadcrumbName[i];
+	//	        		获取路径
+		        		var breadcrumbPath=this.$route.fullPath.split('/');
+	//	        		从后向前以"/"为节点裁掉/后面的路径并拼接回字符串
+		        		breadcrumbPath.splice(-i,i);	        		
+		        		breadcrumbItem.path=breadcrumbPath.join('/');
+		        		breadcrumbItem.index=i;
+		        		breadcrumbLists.unshift(breadcrumbItem);
+		        	}    
+		        this.firstfalg=false,
+		        this.breadcrumbListsCache=breadcrumbLists;
+		        return breadcrumbLists;
+    		}else{
+    			return this.breadcrumbListsCache;
+    		}
+	    }
     },
     computed: {
 	    breadcrumbList: function () {
@@ -62,7 +106,7 @@ import {mapMutations} from 'vuex';
 	        		breadcrumbItem.path=breadcrumbPath.join('/');
 	        		breadcrumbItem.index=i;
 	        		breadcrumbLists.unshift(breadcrumbItem);
-	        	}        
+	        	}    
 	        return breadcrumbLists;
 	    }
 	},

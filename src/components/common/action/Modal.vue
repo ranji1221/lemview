@@ -19,15 +19,16 @@
 				</a>
 			</div>
 		</span>
-		<!--内容-->
 	    
-	    <!--查看-->
-	    <template v-if="item.lg">	    	
-		    <div class="role_view option_title_agg">
+	    <!--放大后的头部-->
+	    <template >	    	
+		    <div class="role_view option_title_agg" v-show="item.lg">
 			    <lemon-breadcrumb :breadcrumb="breadcrumb" ></lemon-breadcrumb>
 			    <lemon-option-title  :actions="title_actions" v-on:btn_hid="btn_hid" v-on:btn_scaling="btn_scaling" v-on:btn_close="btn_close"></lemon-option-title>		
 			</div>
 	    </template>
+		<!--内容-->
+	    
 	    <!--查看部分-->
 	    <template v-if="modal_type=='view'">
 	    	<lemon-modal-view :lg="item.lg" :datalist="item.datalist" v-on:btn_hid="btn_hid" v-on:btn_scaling="btn_scaling" v-on:btn_close="btn_close"></lemon-modal-view>
@@ -99,7 +100,6 @@ export default {
 			this.$root.eventHub.$emit("hidden_modal");
     	},
     	btn_scaling:function(){
-    		console.log(111111)
     		this.item.lg=!this.item.lg;
     		if(this.item.lg){
 	    		this.is_mask(false);
