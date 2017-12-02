@@ -46,12 +46,16 @@ export default {
 	...mapGetters(["modal_id"]),
   },
   created(){
+  		this.$root.eventHub.$off("createmodaling")
+	this.$root.eventHub.$off('delelistitem')
+  	console.log('销毁1')
+  	console.log('新建的list1');
 //	监听列表删除事件
-    this.$root.eventHub.$on('delelistitem',function(rowid){
+    this.$root.eventHub.$on('delelistitem',function(rowid,list){
     	this.tabledatas=this.tabledatas.filter(function(item){
     		return item.id!==rowid;
     	})
-    	console.log('删除0');
+    	console.log(rowid,list);
     }.bind(this)); 	
 //	监听列表点击打开模态框事件(先经过了mission的过滤)
   	this.$root.eventHub.$on("createmodaling",function(id,type){  
@@ -62,10 +66,10 @@ export default {
 		this.createmodal(id,type,list);
   	}.bind(this));
   },
-  destroyed(){
+  destroy(){
   	this.$root.eventHub.$off("createmodaling")
   	this.$root.eventHub.$off('delelistitem')
-  	console.log('销毁')
+  	console.log('销毁1')
   },
   methods: {
   	...mapMutations(['create_modal_id','is_mask','create_modal','close_modal']),

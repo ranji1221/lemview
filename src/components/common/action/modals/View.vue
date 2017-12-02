@@ -101,8 +101,8 @@ table.view tr td.error {
 table.view tr td:nth-child(1) {
 	border-left:none;
 	background-color:#fbfbfb;
-	padding-left:0.7rem;
-	padding-right: 0.40rem; 
+	padding-left:5em;
+	padding-right: 4.5em; 
 }
 table.view tr td:nth-child(2) {
 	text-align: left;

@@ -61,20 +61,17 @@ const mutations = {
 		var id=payload.id;
 		var type=payload.type;
 		var	list=payload.list;
+		var title=payload.title;
 		var icon;
-	    var title;
     	switch(type) 
 			{ 
 			case "view": 
-				title="查看角色";
     			icon="icon-eye-open";
 			break; 
 			case "edit": 
-				title="编辑角色";
 				icon="icon-pencil";
 			break; 
 			case "ault": 
-				title="角色授权";
 				icon="icon-key";
 			break; 
 			} 

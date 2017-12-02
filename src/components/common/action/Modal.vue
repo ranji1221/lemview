@@ -95,6 +95,7 @@ export default {
 				payload.id=this.item.id;
 				payload.type=this.modal_type;
 				payload.list=this.item.list;
+				payload.title=this.item.title;
 			this.hid_modal(payload);
 //			发送事件让messions显示
 			this.$root.eventHub.$emit("hidden_modal");
@@ -139,6 +140,14 @@ export default {
 	z-index: 1!important;
 	height:100%;
 }
+/*取消放大时的过渡效果*/
+.lg.dialog-fade-leave-active{
+	animation: dialog-fade-out 0s;	
+}
+.lg.dialog-fade-enter-active{
+	animation: dialog-fade-in 0s;	
+}
+
 /*用在el-main时不用这条*/
 /*.lg.collapse{
 	padding-left:1rem;
