@@ -124,9 +124,9 @@ export default {
 </script>
 <style>
 /*模态框插入body时的补充样式*/
-.lg{
+/*.lg{
 	padding:0.6rem 0 0 3rem;
-}
+}*/
 .el-dialog{
 	overflow: hidden;
     width: 10.24rem;
@@ -139,9 +139,10 @@ export default {
 	z-index: 1!important;
 	height:100%;
 }
-.lg.collapse{
+/*用在el-main时不用这条*/
+/*.lg.collapse{
 	padding-left:1rem;
-}
+}*/
 .lg .el-dialog{
 	width:100%!important;
 	height:100%;

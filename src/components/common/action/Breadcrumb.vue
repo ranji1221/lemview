@@ -29,10 +29,13 @@
 </template>
 
 <script>
+import {mapMutations} from 'vuex';
+	
 //import "@/assets/style/common/Breadcrumb.css"
   export default {
     props: ['breadcrumb'],
     methods: {
+		...mapMutations(['route_click']),
       
     },
     data() {

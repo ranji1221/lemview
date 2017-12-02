@@ -1,21 +1,21 @@
 <template>
-	<el-container class="lemonbox">
+	<el-container class="lemonrelative">
 		<el-header>
 			<lemon-header></lemon-header>
 		</el-header>
 		<el-container>
 			<lemon-sidebar></lemon-sidebar>
-			<el-main>
-				 <router-view></router-view>
+			<el-main class="lemonrelative">
+				<router-view></router-view>
+				<!--查看模态框-->	
+			      	<lemon-modal v-for="(item, index) in viewdata" :item="item" :key="index" :ref="item.id" title="查看角色" modal_type="view"></lemon-modal>      		
+			    <!--编辑模态框-->	
+			      	<lemon-modal v-for="(item, index) in editdata" :item="item" :key="index" :ref="item.id" title="编辑角色" modal_type="edit"></lemon-modal>      	
+			    <!--授权模态框-->
+			      	<lemon-modal v-for="(item, index) in aultdata" :item="item" :key="index" :ref="item.id" title="角色授权" modal_type="ault"></lemon-modal>      	  
+		      	<div class="mask" v-if="mask"></div>
 			</el-main>
 		</el-container>
-		<!--查看模态框-->	
-	      	<lemon-modal v-for="(item, index) in viewdata" :item="item" :key="index" :ref="item.id" title="查看角色" modal_type="view"></lemon-modal>      		
-	    <!--编辑模态框-->	
-	      	<lemon-modal v-for="(item, index) in editdata" :item="item" :key="index" :ref="item.id" title="编辑角色" modal_type="edit"></lemon-modal>      	
-	    <!--授权模态框-->
-	      	<lemon-modal v-for="(item, index) in aultdata" :item="item" :key="index" :ref="item.id" title="角色授权" modal_type="ault"></lemon-modal>      	  
-      	<div class="mask" v-if="mask"></div>
       	<div>{{viewdata}}</div>
 	</el-container>
 </template>
@@ -50,7 +50,7 @@
 	z-index: 1999;
 	background:rgba(0,0,0,0.5);
 }
-.lemonbox{
+.lemonrelative{
 	position:relative;
 }
 </style>

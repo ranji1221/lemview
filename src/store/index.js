@@ -128,7 +128,7 @@ const mutations = {
     },
     slideToggle(state){
     	state.isCollapse=!state.isCollapse; 
-    	mutations.route_click(state);
+//  	mutations.route_click(state);
     },
     route_click(state){
     	var current=mutations.find_current_modal(state)
