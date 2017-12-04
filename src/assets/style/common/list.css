@@ -94,6 +94,10 @@
     cursor: pointer;
     vertical-align: -0.05rem;
 }
+.el-main .list .el-table__body-wrapper td .cell button{
+    font-size: inherit;
+    padding:0;
+}
 .el-main .list .el-table__header-wrapper table tr{
     background-color:rgb(222, 233, 247);
     color: rgb(51, 51, 51);
@@ -297,7 +301,7 @@
 /*数据库列表宽度匹配*/
 /*设定表头宽度*/
 .el-main .datebaselist .el-table__header-wrapper table colgroup col:nth-last-child(3){
-    width:0.8rem;
+    width:0.37rem;
 }
 .el-main .datebaselist .el-table__header-wrapper table colgroup col:nth-last-child(2){
     width:0.68rem;
@@ -307,11 +311,12 @@
     /*width:0.37rem;*/
 }
 .el-main .datebaselist .el-table__body-wrapper table colgroup col:nth-last-child(2){
-    width:0.9rem;
+    width:0.37rem;
 }
 .el-main .datebaselist .el-table__body-wrapper table colgroup col:nth-last-child(1){
-    width:0.7rem;
+    width:0.68rem;
 }
+
 .el-main .datebaselist .el-table__body-wrapper table tr .icon-signin{
     color:rgb(55,142,248);
 }

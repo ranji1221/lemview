@@ -13,12 +13,10 @@
 			      	<lemon-modal v-for="(item, index) in editdata" :item="item" :key="index" :ref="item.id" modal_type="edit"></lemon-modal>      	
 			    <!--授权模态框-->
 			      	<lemon-modal v-for="(item, index) in aultdata" :item="item" :key="index" :ref="item.id" modal_type="ault"></lemon-modal>
-				<!--进度条模态框 -->
-					<lemon-modal modal_type="import"></lemon-modal>
 		      	<div class="mask" v-if="mask"></div>
 			</el-main>
 		</el-container>
-      	<div>{{viewdata}}</div>
+      	<!--<div>{{viewdata}}</div>-->
 	</el-container>
 </template>
 

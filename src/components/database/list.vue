@@ -1,66 +1,68 @@
 <template>
-  <div class="list_databa datebaselist">
+  <div class="listpagewrap">
+  <!--<div class="list_databa datebaselist">-->
     <lemon-breadcrumb :breadcrumb="breadcrumb"></lemon-breadcrumb>
     <lemon-prompt :alerts="alerts"></lemon-prompt>
-    <lemon-list class="database list" :tabledata="tabledatas" :list="list" :items="items" :actions="actions">
+    <lemon-list class="datebaselist list" :tabledata="tabledatas" :list="list" :items="items" :actions="actions">
     </lemon-list>
     <lemon-pagination :page="page"></lemon-pagination>
-
+		<!--进度条模态框 -->
+		<template v-if="actions.import">
+			<lemon-import :importdatabase="importdatabase"></lemon-import>
+		</template>
   </div>
 </template>
 <script>
+import LemonImport from '@/components/common/action/Modals/import.vue';
 import LemonList from '@/components/common/action/List.vue';
 import LemonBreadcrumb from '@/components/common/action/Breadcrumb.vue';
 import LemonPrompt from '@/components/common/prompt/Prompt.vue';
 import LemonPagination from '@/components/common/action/Pagination.vue';
 import "@/assets/style/common/list.css"
+import "@/assets/style/common/import.css"
 import { mapState, mapMutations, mapGetters, mapActions } from 'vuex';
 
 export default {
   components: {
-    LemonList, LemonBreadcrumb, LemonPagination, LemonPrompt
+    LemonList, LemonBreadcrumb, LemonPagination, LemonPrompt,LemonImport
   },
   created() {
     this.$root.eventHub.$off('delelistitem')
     //	监听列表删除事件
-    this.$root.eventHub.$on('delelistitem', function(rowid, list) {
-      this.tabledatas = this.tabledatas.slice(rowid, -1)
-      console.log(rowid, list);
+    this.$root.eventHub.$on('delelistitem',function(rowid,list){
+    	this.tabledatas=this.tabledatas.filter(function(item){
+    		return item.id!==rowid;
+    	})
+    	console.log(rowid,list);
     }.bind(this));
-  },
-  methods: {
-    createmodal: function(id, type, list) {
-      this.is_mask(true);
-      //获取一组查看模态框数据并插入到查看数组中,以实现新建模态框的效果
-      var datatype;
-      var newdata;
-          datatype = 'viewdata';
-          newdata = {
-            datalist: {
-              '角色名称': 'UI设计师' + id,
-              '父级角色': '首页',
-              '依赖角色': '员工',
-              '最大限制用户数': '6',
-              '备注消息': 'UI设计师为研发部门付出了艰辛的努力',
-            },
-            open: true,
-            show: true,
-            id: id,
-            lg: false,
-            list: list,
-            title: "提示信息",
-            type: type,
-          };
-      var payload = {};
-      payload.datatype = datatype;
-      payload.newdata = newdata;
-      console.log('新建完成')
-      this.create_modal(payload);
-    }
+    this.$root.eventHub.$off('showimport')
+    //	显示进度
+    this.$root.eventHub.$on('showimport',function(rowid,list){
+			this.importdatabase.Progress=true;
+			var t;
+			clearInterval(t);
+			this.importdatabase.Percentage=0;
+			t=setInterval(()=>{
+				this.importdatabase.Percentage++;
+				if(this.importdatabase.Percentage==100){
+					clearInterval(t);
+					this.importdatabase.Message=true;
+//					this.importdatabase.Status="success";
+					this.importdatabase.Status="exception";
+				}
+			},100)
+    	console.log(rowid,list);
+    }.bind(this));
   },
   data() {
     return {
       list: "datebaselist",
+      importdatabase:{
+      	Progress:false,//控制倒入进度显示
+      	Message:false,//控制导入结果显示
+      	Status:'',//可选参数success，exception，''
+      	Percentage:0,      	
+      },
       breadcrumb: {
         search: true,
       },
@@ -83,31 +85,35 @@ export default {
       //    表格数据
       tabledatas: [
         {
-          id: 'xxx数据库',
-          name: "2017/01/01",
-          fath: "823k",
-          remarks: "查看备注",
+        	id:1,
+          databaseName: 'xxx数据库1',
+          date: "2017/01/01",
+          size: "823k",
+          remarks: "111然则我获得的┞封个S变量却老是少一部分，有人说AsString只能限制在64K以下，但我的S实际上只有33K阁下，并且不是说Delphi3以上的String的理论值已经是4G了吗？我在写一个数据库法度榜样时，须要大大一个表中获得备注字段的内容然后写入另一个表中，我是用：var s :string; s:=Query.FieldByName('MemoField').AsString;如不雅确切有如许的限制的话，我该若何实现上述功能？还请各位大大侠多多指导！！",
           rowType: '数据库'
         },
         {
-          id: 'xxx数据库',
-          name: "2017/01/01",
-          fath: "823k",
-          remarks: "查看备注",
+        	id:2,
+          databaseName: 'xxx数据库2',
+          date: "2017/01/01",
+          size: "823k",
+          remarks: "222然则我获得的┞封个S变量却老是少一部分，有人说AsString只能限制在64K以下，但我的S实际上只有33K阁下，并且不是说Delphi3以上的String的理论值已经是4G了吗？我在写一个数据库法度榜样时，须要大大一个表中获得备注字段的内容然后写入另一个表中，我是用：var s :string; s:=Query.FieldByName('MemoField').AsString;如不雅确切有如许的限制的话，我该若何实现上述功能？还请各位大大侠多多指导！！",
           rowType: '数据库'
         },
         {
-          id: 'xxx数据库',
-          name: "2017/01/01",
-          fath: "823k",
-          remarks: "查看备注",
+        	id:3,
+          databaseName: 'xxx数据库3',
+          date: "2017/01/01",
+          size: "823k",
+          remarks: "333然则我获得的┞封个S变量却老是少一部分，有人说AsString只能限制在64K以下，但我的S实际上只有33K阁下，并且不是说Delphi3以上的String的理论值已经是4G了吗？我在写一个数据库法度榜样时，须要大大一个表中获得备注字段的内容然后写入另一个表中，我是用：var s :string; s:=Query.FieldByName('MemoField').AsString;如不雅确切有如许的限制的话，我该若何实现上述功能？还请各位大大侠多多指导！！",
           rowType: '数据库'
         },
         {
-          id: 'xxx数据库',
-          name: "2017/01/01",
-          fath: "823k",
-          remarks: "查看备注",
+        	id:4,
+          databaseName: 'xxx数据库4',
+          date: "2017/01/01",
+          size: "823k",
+          remarks: "444然则我获得的┞封个S变量却老是少一部分，有人说AsString只能限制在64K以下，但我的S实际上只有33K阁下，并且不是说Delphi3以上的String的理论值已经是4G了吗？我在写一个数据库法度榜样时，须要大大一个表中获得备注字段的内容然后写入另一个表中，我是用：var s :string; s:=Query.FieldByName('MemoField').AsString;如不雅确切有如许的限制的话，我该若何实现上述功能？还请各位大大侠多多指导！！",
           rowType: '数据库'
         },
       ],
@@ -115,29 +121,21 @@ export default {
       items: [
         {
           id: 1,
-          prop: 'id',
+          prop: 'databaseName',
           label: "文件名",
           sort: true,
           width: "245"
         },
         {
           id: 2,
-          prop: 'name',
+          prop: 'date',
           label: "备份时间",
           sort: true,
         },
         {
           id: 3,
-          prop: 'fath',
+          prop: 'size',
           label: "大小",
-          sort: true,
-
-        },
-        {
-          id: 4,
-          prop: 'remarks',
-          label: "备注",
-          class: "remarks",
           sort: true,
         },
       ],
@@ -147,7 +145,7 @@ export default {
         edit: false,
         dele: true,
         ault: false,
-        import: true
+        import: true,
       }
     }
   }

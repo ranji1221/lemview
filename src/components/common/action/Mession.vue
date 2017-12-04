@@ -59,17 +59,15 @@ export default {
     //	监听列表点击打开模态框事件
 	  	this.$root.eventHub.$on("openmodal",function(id,type,list){
 			//先查询任务中是否有该id,没有的话新建
-			console.log("接收了")
 			var mession=this.messions.filter(function (item) {
 			  	return item.id===id&&item.type===type&&item.list===list;
 			})
 //			console.log(mession)
 			if(!mession.length){	
-//				新建一个
-			console.log("去建了")
+//				新建一个新建事件createmodaling由list页面监控
 				this.$root.eventHub.$emit('createmodaling',id,type,list);
 			}else{
-//				display一个
+//				更改display直接显示
 				this.pop_mession_item(id,type,list);
 			}
 	  	}.bind(this));

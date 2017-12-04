@@ -26,8 +26,14 @@
       </template>
        <!--是否包含导入操作-->
       <template v-if="actions.import">
-          <el-table-column  :resizable="resizable" align="center" label="导入" class-name="tableAction">
+      	<el-table-column  :resizable="resizable" align="center" label="备注" class-name="tableAction">
           <template slot-scope="scope">
+            <el-button @click="handleLookremarks(scope.$index, scope.row)" type="text" size="small">查看备注</el-button>
+          </template>
+        </el-table-column>
+        <el-table-column  :resizable="resizable" align="center" label="导入" class-name="tableAction">
+          <template slot-scope="scope">
+            <!--<i class="icon-signin" @click="handleimport(scope.$index, scope.row)" v-loading.fullscreen.lock="importLoading"></i>-->
             <i class="icon-signin" @click="handleimport(scope.$index, scope.row)"></i>
           </template>
         </el-table-column>
@@ -55,6 +61,7 @@ export default {
   props: ['items', 'tabledata','actions','list'],
   data() {
     return {
+//  	importLoading: false,
       multipleSelection: [],
       resizable:false,
     }
@@ -79,16 +86,17 @@ export default {
       return row.address;
     },
     handleView(index, row) {
-//	    console.log(row.id);
+//	  	console.log(index,row,this.list);
 	    this.$root.eventHub.$emit('openmodal',row.id,'view',this.list)
-	    console.log('发射');
+	    //openmodal打开模态框方法有mession组件监控
 		},
 		handleEdit(index, row) {
-//		    console.log(index, row);
+//	  	console.log(index,row,this.list);
 		    this.$root.eventHub.$emit('openmodal',row.id,'edit',this.list)
 		},
 	
 		handleAult(index, row) {
+//	  	console.log(index,row,this.list);
 		    this.$root.eventHub.$emit('openmodal',row.id,'ault',this.list)
 		  },
 	  handleDele(index, row) {
@@ -97,8 +105,7 @@ export default {
 	      cancelButtonText: '取消',
 	      type: 'warning'
 	    }).then(() => {
-	    	this.$root.eventHub.$emit('delelistitem',index,this.list);
-	    	
+	    	this.$root.eventHub.$emit('delelistitem',row.id,this.list);
 	      this.$message({
 	        type: 'success',
 	        message: '删除成功!'
@@ -109,6 +116,22 @@ export default {
 	        message: '已取消删除'
 	      });          
 	    });
+	  },
+	  handleLookremarks(index,row){
+//	  	console.log(index,row,this.list);
+	  	this.$alert(row.remarks, '查看数据库备注信息', {
+//        confirmButtonText: '确定',
+          showConfirmButton:false,
+          customClass:'Lookremarks',
+          callback: action => {
+            
+          }
+        });
+	  },
+	  handleimport(index,row){
+//	  	console.log(index,row,this.list);
+	    	this.$root.eventHub.$emit('showimport',row.id,this.list);
+				
 	  },
 		  
 	}
