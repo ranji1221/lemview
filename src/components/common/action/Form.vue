@@ -42,7 +42,7 @@
             </div>
         </template>
         <div class="btns">
-            <el-button class="btn_succse btn" type="primary" @click="onSubmit">确认</el-button>
+            <el-button class="btn_succse btn" type="primary" @click="onSubmit">{{btn?btn.succse:"确认"}}</el-button>
             <el-button class="btn_cancel btn" @click="cancel">取消</el-button>
         </div>
     </el-form>
@@ -51,7 +51,7 @@
 <script>
 import "@/assets/style/common/Form.css";
 export default {
-    props: ["forms"],
+    props: ["forms","btn"],
     mounted: function() {
 
     },

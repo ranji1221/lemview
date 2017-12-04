@@ -228,7 +228,7 @@ export default {
 				{
 					icon: 'icon-beifenshujuku',
 					title: '备份数据库',
-					linkto: '',
+					linkto: '/index/database/databaseups',
 					level: 2,
 					pid: 15,
 					lid: 16
@@ -236,7 +236,7 @@ export default {
 				{
 					icon: 'icon-shuju-yihuifu',
 					title: '恢复数据库',
-					linkto: '',
+					linkto: '/index/database/list',
 					level: 2,
 					pid: 15,
 					lid: 17

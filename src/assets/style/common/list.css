@@ -148,7 +148,7 @@
 .el-checkbox__input.is-checked .el-checkbox__inner, .el-checkbox__input.is-indeterminate .el-checkbox__inner{
     background-color:#3498DB;
 }
-.listpagewrap{
+.listpagewrap,.list_databa{
 	padding:0 0.41rem;
 }
 .list{	
@@ -297,17 +297,26 @@
 /*数据库列表宽度匹配*/
 /*设定表头宽度*/
 .el-main .datebaselist .el-table__header-wrapper table colgroup col:nth-last-child(3){
-    width:0.37rem;
+    width:0.8rem;
 }
 .el-main .datebaselist .el-table__header-wrapper table colgroup col:nth-last-child(2){
     width:0.68rem;
 }
 /*设定表身宽度*/
-.el-main .datebaselist .el-table__body-wrapper table colgroup col:nth-last-child(3),.el-main .datebaselist .el-table__body-wrapper table colgroup col:nth-last-child(2){
-    width:0.37rem;
+.el-main .datebaselist .el-table__body-wrapper table colgroup col:nth-last-child(3){
+    /*width:0.37rem;*/
+}
+.el-main .datebaselist .el-table__body-wrapper table colgroup col:nth-last-child(2){
+    width:0.9rem;
 }
 .el-main .datebaselist .el-table__body-wrapper table colgroup col:nth-last-child(1){
-    width:0.68rem;
+    width:0.7rem;
+}
+.el-main .datebaselist .el-table__body-wrapper table tr .icon-signin{
+    color:rgb(55,142,248);
+}
+.el-main .datebaselist .el-table__body-wrapper table tr .remarks{
+    color:rgb(55,142,248);
 }
 
 
