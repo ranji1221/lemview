@@ -11,6 +11,8 @@ import UserAdd from '@/components/auth/user/Add.vue'
 import UserAdds from '@/components/auth/user/Adds.vue'
 import ResourceList from '@/components/auth/resource/List.vue'
 import ResourceAdd from '@/components/auth/resource/Add.vue'
+import DataBaseUps from '@/components/database/backups.vue'
+import DataBaseList from '@/components/database/list.vue'
 
 Vue.use(Router)
 
@@ -76,6 +78,16 @@ export default new Router({
               name:"资源管理/添加资源",
               component:ResourceAdd
             },
+            {
+              path:"database/databaseups",
+              name:"数据库管理/备份数据库",
+              component:DataBaseUps
+            },
+            {
+              path:"database/list",
+              name:"数据库管理/数据列表",
+              component:DataBaseList
+            }
         ]
     },
     

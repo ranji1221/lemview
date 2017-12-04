@@ -6,7 +6,7 @@
         </el-table-column>
       </template>
       <!--循环数据-->
-	    <el-table-column v-for="item in items" :resizable="resizable"	 align="center" :key="item.id" :label="item.label" :sortable="item.sort" :prop="item.prop" :class-name="item.class">
+	    <el-table-column v-for="item in items" :width="item.width?item.width:'auto'" :resizable="resizable"	 align="center" :key="item.id" :label="item.label" :sortable="item.sort" :prop="item.prop" :class-name="item.class">
 	    </el-table-column>
       <!--是否包含查看操作-->
       <template v-if="actions.view">
@@ -24,6 +24,14 @@
           </template>
         </el-table-column>
       </template>
+       <!--是否包含导入操作-->
+      <template v-if="actions.import">
+          <el-table-column  :resizable="resizable" align="center" label="导入" class-name="tableAction">
+          <template slot-scope="scope">
+            <i class="icon-signin" @click="handleimport(scope.$index, scope.row)"></i>
+          </template>
+        </el-table-column>
+      </template>  
       <!--是否包含删除操作-->
       <template v-if="actions.dele">
         <el-table-column :resizable="resizable" align="center" label="删除" class-name="tableAction">
@@ -89,7 +97,7 @@ export default {
 	      cancelButtonText: '取消',
 	      type: 'warning'
 	    }).then(() => {
-	    	this.$root.eventHub.$emit('delelistitem',row.id,this.list);
+	    	this.$root.eventHub.$emit('delelistitem',index,this.list);
 	    	
 	      this.$message({
 	        type: 'success',

@@ -41,7 +41,10 @@
 	    <template v-if="modal_type=='ault'">
 	    	<lemon-modal-ault :lg="item.lg" :datalist="item.datalist" :tree="item.tree" v-on:btn_hid="btn_hid" v-on:btn_scaling="btn_scaling" v-on:btn_close="btn_close"></lemon-modal-ault>
 	    </template>
-	    
+	    <!--导入部分-->
+		<template v-if="modal_type=='import'">
+			<lemon-modal-import v-on:btn_close="btn_close"></lemon-modal-import>
+		</template>
 	    <!--底部-->
 	    <span slot="footer" class="dialog-footer" v-if="footer">
 	    	<el-button type="primary" @click="item.open = false">确 定</el-button>
@@ -58,6 +61,7 @@ import LemonBreadcrumb from '@/components/common/action/Breadcrumb.vue';
 import LemonModalView from '@/components/common/action/modals/View.vue';
 import LemonModalEdit from '@/components/common/action/modals/Edit.vue';
 import LemonModalAult from '@/components/common/action/modals/Ault.vue';
+import LemonModalImport from '@/components/common/action/modals/import.vue'
 import { mapState,mapMutations,mapGetters,mapActions} from 'vuex';
 
 export default {
