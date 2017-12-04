@@ -109,6 +109,9 @@
 .el-form .el-form-item .el-form-item__content .maxnum input{
     border:none;
 }
+.el-form .el-form-item .el-form-item__content .roleinput{
+    width:73%;
+}
 .el-form .el-form-item .el-form-item__content .roleinput input{
     max-width: 7rem;
     height:0.4rem;

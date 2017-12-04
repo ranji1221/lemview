@@ -1,9 +1,9 @@
 <template>
-    <el-form ref="form" class="role_form" :model="forms" size="medium">
+    <el-form ref="forms" class="role_form" :rules="rules" :model="forms" size="medium">
         <template>
             <p>青柠云后台管理系统</p>
         </template>
-        <el-form-item v-for="(form,index) in forms" :key="index" :label="form.label" :class="{textarea:form.type=='remarks'}" v-show="form.type!='options'">
+        <el-form-item v-for="(form,index) in forms" :prop="index" :inline-message="true" :key="index" :label="form.label" :class="{textarea:form.type=='remarks'}" v-show="form.type!='options'">
             <template v-if="form.type=='text'">
                 <el-input class="roleinput" v-model="form.text" :placeholder="form.default"></el-input>
             </template>
@@ -42,7 +42,7 @@
             </div>
         </template>
         <div class="btns">
-            <el-button class="btn_succse btn" type="primary" @click="onSubmit">{{btn?btn.succse:"确认"}}</el-button>
+            <el-button class="btn_succse btn" type="primary" @click="onSubmit('forms')">{{btn?btn.succse:"确认"}}</el-button>
             <el-button class="btn_cancel btn" @click="cancel">取消</el-button>
         </div>
     </el-form>
@@ -51,27 +51,94 @@
 <script>
 import "@/assets/style/common/Form.css";
 export default {
-    props: ["forms","btn"],
+    props: ["forms", "btn"],
     mounted: function() {
 
     },
     data() {
+        methods:{
+            // name的验证
+            var validateName = ( rule, value, callback ) => {
+                var str =/^[^'"#$%&\^*》>,."<《？，。！@#￥%……’”：/；]+$/;
+                if(!value.text){
+                     return callback(new Error("请输入名称"));
+                }else if(!str.test(value.text)){
+                    return callback(new Error("有除了特殊的字符"))
+                }else{
+                    callback()
+                }
+            }
+            // 下拉框
+            var validateFath = ( rule, value, callback ) => {
+                if(!value.text){
+                    return callback(new Error("必须选择"))
+                }else{
+                    callback()
+                }
+            }
+            // 电话
+            var validatePhone = ( rule, value, callback ) => {
+                var str = /^1[3|4|5|8][0-9]\d{4,8}$/
+                if(!value.text){
+                    return callback(new Error("手机号不能为空"))
+                }else if(!str.test(value.text)){
+                    return callback(new Error("手机号不对"))
+                }else{
+                    callback()
+                }
+            }
+            // 邮箱
+            var validateEmily = ( rule, value, callback ) => {
+                var str = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/ 
+                if(!value.text){
+                    return callback(new Error("邮箱不能为空"))
+                }else if(str.test(value.text)){
+                    return callback(new Error("邮箱不正确"))
+                }else{
+                    return callback()
+                }
+            }
+        } 
         return {
-            
+            rules: {
+                name: [
+                    {validator:validateName,trigger:'change'}
+                ],
+                fath:[
+                    {validator:validateFath,trigger:'change'}
+                ],
+                rely:[
+                     {validator:validateFath,trigger:'change'}
+                ],
+                phone:[
+                    {validator:validatePhone,trigger:'change'}
+                ],
+                emily:[
+                    { validator:validateEmily,trigger:"change" }
+                ]
+            }
         }
     },
     methods: {
-        onSubmit() {
-            console.log('submit!');
-			this.$emit('btn_close')       
+        onSubmit(formname) {
+            // console.log(this.$refs)
+            this.$refs[formname].validate((valid) => {
+                if (valid) {
+                    alert('submit!');
+                } else {
+                    console.log('error submit!!');
+                    return false;
+                }
+            });
+            this.$emit('btn_close')
         },
-        cancel(){
+        cancel() {
             console.log('取消!');
-			
-			this.$emit('btn_close')       
+
+            this.$emit('btn_close')
         },
         addOption: function() {
-           var forms_content = this.forms.option.arr
+            var forms_content = this.forms.option.arr
             var parpam = [
                 {
                     btn_look: true,
@@ -102,20 +169,20 @@ export default {
                 forms_content.forEach(function(i, v) {
                     i.forEach(function(i, v) {
                         i.readonly = true,
-                        i.btn_look = false
+                            i.btn_look = false
                     })
                 })
-               forms_content.push(parpam)
+                forms_content.push(parpam)
             }
         },
         cancelOption: function() {
             var forms_content = this.forms.option.arr
             if (forms_content.length > 1) {
                 forms_content.pop()
-               forms_content[forms_content.length - 1].forEach(function(i, v) {
+                forms_content[forms_content.length - 1].forEach(function(i, v) {
                     i.readonly = false
                 })
-               forms_content[forms_content.length - 1][0].btn_look = true
+                forms_content[forms_content.length - 1][0].btn_look = true
             } else {
                 return
             }
