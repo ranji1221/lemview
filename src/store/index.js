@@ -132,10 +132,9 @@ const mutations = {
     	if(current){
     		current.show=!current.show;
     		state.mask=false;
-    		var payload={id:current.id,type:current.type,list:current.list}
+    		var payload={id:current.id,type:current.type,title:current.title}
     		mutations.hid_modal(state,payload)
     	}
-    	console.log(payload);
     },
     find_current_modal(state){
     	var modal_data=[...state.viewdata,...state.editdata,...state.aultdata,...state.messions]

@@ -130,6 +130,7 @@ export default {
 	  },
 	  handleimport(index,row){
 //	  	console.log(index,row,this.list);
+//				事件传递到了database/list
 	    	this.$root.eventHub.$emit('showimport',row.id,this.list);
 				
 	  },

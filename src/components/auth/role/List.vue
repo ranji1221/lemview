@@ -47,9 +47,7 @@ export default {
   },
   created(){
   		this.$root.eventHub.$off("createmodaling")
-	this.$root.eventHub.$off('delelistitem')
-  	console.log('销毁1')
-  	console.log('新建的list1');
+		this.$root.eventHub.$off('delelistitem')
 //	监听列表删除事件
     this.$root.eventHub.$on('delelistitem',function(rowid,list){
     	this.tabledatas=this.tabledatas.filter(function(item){
@@ -69,7 +67,6 @@ export default {
   destroy(){
   	this.$root.eventHub.$off("createmodaling")
   	this.$root.eventHub.$off('delelistitem')
-  	console.log('销毁1')
   },
   methods: {
   	...mapMutations(['create_modal_id','is_mask','create_modal','close_modal']),

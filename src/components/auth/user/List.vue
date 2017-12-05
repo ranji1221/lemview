@@ -35,19 +35,17 @@ export default {
   },
   created(){
   		this.$root.eventHub.$off("createmodaling")
-	this.$root.eventHub.$off('delelistitem')
-  	console.log('销毁2')
-  	console.log('新建的list2');
+		this.$root.eventHub.$off('delelistitem')
 //	监听列表删除事件
     this.$root.eventHub.$on('delelistitem',function(rowid,list){
     	this.tabledatas=this.tabledatas.filter(function(item){
     		return item.id!==rowid;
     	})
-    	console.log(rowid,list);
+//  	console.log(rowid,list);
     }.bind(this)); 	
 //	监听列表点击打开模态框事件(先经过了mission的过滤)
   	this.$root.eventHub.$on("createmodaling",function(id,type){  
-			console.log("新建中")
+//			console.log("新建中")
   		
 		this.create_modal_id();
 		var list=this.list;

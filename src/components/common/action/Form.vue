@@ -110,12 +110,18 @@ export default {
                 rely:[
                      {validator:validateFath,trigger:'change'}
                 ],
+                Assigning_users:[
+                     {validator:validateFath,trigger:'change'}
+                ],
                 phone:[
                     {validator:validatePhone,trigger:'change'}
                 ],
                 emily:[
                     { validator:validateEmily,trigger:"change" }
-                ]
+                ],
+                email:[
+                    { validator:validateEmily,trigger:"change" }
+                ],
             }
         }
     },
@@ -125,12 +131,12 @@ export default {
             this.$refs[formname].validate((valid) => {
                 if (valid) {
                     alert('submit!');
+                    this.$emit('btn_close')
                 } else {
                     console.log('error submit!!');
                     return false;
                 }
             });
-            this.$emit('btn_close')
         },
         cancel() {
             console.log('取消!');
