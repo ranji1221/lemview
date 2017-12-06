@@ -5,10 +5,10 @@
       <!--alert-->
       <lemon-prompt :alerts="alerts"></lemon-prompt>
       <!--表格-->
-      <lemon-list class="rolelist list" :tabledata="tabledatas" :list="list" :items="items" :actions="actions"> 
+      <lemon-list class="rolelist list" :tabledata="tabledatas" :list="list" :items="items" :actions="actions" v-on:getchecked="getchecked"> 
       </lemon-list>
       <!--分页-->
-      <lemon-pagination :page="page"></lemon-pagination>
+      <lemon-pagination :page="page" v-on:paginationEvent="paginationEvent" v-on:getCurrentPage="getCurrentPage"></lemon-pagination>
       <!--查看模态框-->
       <!--<template v-if="actions.view">
       	<lemon-modal v-for="(item, index) in viewdata" :list="list" :item="item" :key="index" :ref="item.id" title="查看角色" modal_type="view"></lemon-modal>      	
@@ -46,19 +46,17 @@ export default {
 	...mapGetters(["modal_id"]),
   },
   created(){
-  		this.$root.eventHub.$off("createmodaling")
-		this.$root.eventHub.$off('delelistitem')
+    this.$root.eventHub.$off('delelistitem')
+    this.$root.eventHub.$off("createmodaling")
 //	监听列表删除事件
     this.$root.eventHub.$on('delelistitem',function(rowid,list){
     	this.tabledatas=this.tabledatas.filter(function(item){
     		return item.id!==rowid;
     	})
-    	console.log(rowid,list);
+//  	console.log(rowid,list);
     }.bind(this)); 	
 //	监听列表点击打开模态框事件(先经过了mission的过滤)
   	this.$root.eventHub.$on("createmodaling",function(id,type){  
-			console.log("新建中")
-  		
 		this.create_modal_id();
 		var list=this.list;
 		this.createmodal(id,type,list);
@@ -71,6 +69,54 @@ export default {
   methods: {
   	...mapMutations(['create_modal_id','is_mask','create_modal','close_modal']),
   	...mapActions(['addAction']),
+//	获取分页中当前页码
+	getCurrentPage(page){
+		console.log(page)
+	},
+//	映射分页触发的事件
+  	paginationEvent(actiontype){
+  		if(actiontype=='create'){
+  			console.log('create')
+  		}else if(actiontype=='refresh'){
+  			console.log('refresh')			
+  		}else if(actiontype=='delete'){
+  			if(!this.checkedId.length){
+	      		this.$confirm('请选中删除项', '提示', {
+	//			    confirmButtonText: '确定',
+					showConfirmButton:false,
+				    cancelButtonText: '取消',
+				    type: 'warning'
+			    }).then(() => {
+			    	
+			    }).catch(() => {
+			      
+			    });
+	      	}else{
+		      	this.$confirm('此操作将永久删除选中项, 是否继续?', '提示', {
+				      confirmButtonText: '确定',
+				      cancelButtonText: '取消',
+				      type: 'warning'
+				}).then(() => {
+					this.tabledatas=this.tabledatas.filter((item)=>{
+			    		return !this.checkedId.includes(item.id);
+			    	})
+				    this.$message({
+				        type: 'success',
+				        message: '删除成功!'
+				    });
+				}).catch(() => {
+				    this.$message({
+				        type: 'info',
+				        message: '已取消删除'
+				    });          
+				});
+	        }  			
+  		}
+  	},
+//	获取多选框选中数据的id(这是一个数组)
+  	getchecked(checkedId){
+  		this.checkedId=checkedId;
+  	},
 //	获取到点击查看的列表id并显示对应模态框
     createmodal:function(id,type,list) {
     	this.is_mask(true);
@@ -313,6 +359,7 @@ export default {
   },
   data() {
     return {
+      checkedId:[],
       list:"rolelist",
       breadcrumb:{
       	search:true,    	
@@ -393,3 +440,4 @@ export default {
   }
 }
 </script>
+

@@ -138,7 +138,7 @@ const mutations = {
     },
     find_current_modal(state){
     	var modal_data=[...state.viewdata,...state.editdata,...state.aultdata,...state.messions]
-    	console.log(modal_data);
+//  	console.log(modal_data);
     	var current=modal_data.find(function(item){
     		return item.show==true
     	})

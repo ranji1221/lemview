@@ -3,9 +3,9 @@
   <!--<div class="list_databa datebaselist">-->
     <lemon-breadcrumb :breadcrumb="breadcrumb"></lemon-breadcrumb>
     <lemon-prompt :alerts="alerts"></lemon-prompt>
-    <lemon-list class="datebaselist list" :tabledata="tabledatas" :list="list" :items="items" :actions="actions">
+    <lemon-list class="datebaselist list" :tabledata="tabledatas" :list="list" :items="items" :actions="actions" v-on:getchecked="getchecked">
     </lemon-list>
-    <lemon-pagination :page="page"></lemon-pagination>
+    <lemon-pagination :page="page" v-on:paginationEvent="paginationEvent" v-on:getCurrentPage="getCurrentPage"></lemon-pagination>   
 		<!--进度条模态框 -->
 		<template v-if="actions.import">
 			<lemon-import :importdatabase="importdatabase"></lemon-import>
@@ -27,16 +27,15 @@ export default {
     LemonList, LemonBreadcrumb, LemonPagination, LemonPrompt,LemonImport
   },
   created() {
-    this.$root.eventHub.$off('delelistitem')
     //	监听列表删除事件
+    this.$root.eventHub.$off('delelistitem')
     this.$root.eventHub.$on('delelistitem',function(rowid,list){
     	this.tabledatas=this.tabledatas.filter(function(item){
     		return item.id!==rowid;
     	})
-    	console.log(rowid,list);
     }.bind(this));
-    this.$root.eventHub.$off('showimport')
     //	显示进度
+    this.$root.eventHub.$off('showimport')
     this.$root.eventHub.$on('showimport',function(rowid,list){
 			this.importdatabase.Progress=true;
 			var t;
@@ -54,6 +53,56 @@ export default {
     	console.log(rowid,list);
     }.bind(this));
   },
+  methods: {
+//	获取分页中当前页码
+		getCurrentPage(page){
+			console.log(page)
+		},
+//	映射分页触发的事件
+  	paginationEvent(actiontype){
+  		if(actiontype=='create'){
+  			console.log('create')
+  		}else if(actiontype=='refresh'){
+  			console.log('refresh')			
+  		}else if(actiontype=='delete'){
+  			if(!this.checkedId.length){
+	      		this.$confirm('请选中删除项', '提示', {
+	//			    confirmButtonText: '确定',
+					showConfirmButton:false,
+				    cancelButtonText: '取消',
+				    type: 'warning'
+			    }).then(() => {
+			    	
+			    }).catch(() => {
+			      
+			    });
+	      	}else{
+		      	this.$confirm('此操作将永久删除选中项, 是否继续?', '提示', {
+				      confirmButtonText: '确定',
+				      cancelButtonText: '取消',
+				      type: 'warning'
+				}).then(() => {
+					this.tabledatas=this.tabledatas.filter((item)=>{
+			    		return !this.checkedId.includes(item.id);
+			    	})
+				    this.$message({
+				        type: 'success',
+				        message: '删除成功!'
+				    });
+				}).catch(() => {
+				    this.$message({
+				        type: 'info',
+				        message: '已取消删除'
+				    });          
+				});
+	        }  			
+  		}
+  	},
+//	获取多选框选中数据的id(这是一个数组)
+  	getchecked(checkedId){
+  		this.checkedId=checkedId;
+  	},
+	},
   data() {
     return {
       list: "datebaselist",

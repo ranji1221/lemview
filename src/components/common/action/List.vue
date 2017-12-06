@@ -70,17 +70,12 @@ export default {
 //  console.log(this.items)
   },
   methods: {
-    toggleSelection(rows) {
-      if (rows) {
-        rows.forEach(row => {
-          this.$refs.multipleTable.toggleRowSelection(row);
-        });
-      } else {
-        this.$refs.multipleTable.clearSelection();
-      }
-    },
     handleSelectionChange(val) {
       this.multipleSelection = val;
+      var checkedId=val.map(function(item){
+      	return item.id;
+      })
+			this.$emit('getchecked',checkedId)
     },
     formatter(row, column) {
       return row.address;
