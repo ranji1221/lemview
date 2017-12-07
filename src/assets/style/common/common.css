@@ -63,9 +63,9 @@ html{
 	}
 }
 
-@font-face {font-family: "icon";
+/*@font-face {font-family: "icon";
   src:url(../fonts/font-awesome3.2.1/font/fontawesome-webfont.woff)
-}
+}*/
 i{
   font-family:icon;
   font-size:0.14rem;

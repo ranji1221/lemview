@@ -7,15 +7,15 @@
 			<div class="btns">
 				<!--最小化-->
 				<a href="javascript:;" @click="btn_hid">
-					<img src="~IMG/sys/modal2.png" alt="">
+					<img src="static/images/sys/modal2.png" alt="">
 				</a>
 				<!--放大-->
 				<a href="javascript:;" @click="btn_scaling">
-					<img src="~IMG/sys/modal3.png" alt="">
+					<img src="static/images/sys/modal3.png" alt="">
 				</a>
 				<!--关闭-->
 				<a href="javascript:;" @click="btn_close">
-					<img src="~IMG/sys/modal1.png" alt="">
+					<img src="static/images/sys/modal1.png" alt="">
 				</a>
 			</div>
 		</span>

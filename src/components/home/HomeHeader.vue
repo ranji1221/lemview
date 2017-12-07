@@ -37,28 +37,28 @@ export default {
 		return {
 			cards: [
 				{
-					thumb: "src/assets/images/index/analysis.png",
+					thumb: "static/images/index/analysis.png",
 					title: "统计分析",
 					Etitle: "Statistical analysis",
 					bgcolor: "#f16f6e",
 					bscolor: "pink"
 				},
 				{
-					thumb: "src/assets/images/index/Authority.png",
+					thumb: "static/images/index/Authority.png",
 					title: "权利管理",
 					Etitle: "SAuthority management",
 					bgcolor: "#5ca2f7",
 					bscolor: "blue"
 				},
 				{
-					thumb: "src/assets/images/index/human.png",
+					thumb: "static/images/index/human.png",
 					title: "人力行政",
 					Etitle: "Human resources administration",
 					bgcolor: "#fcdf3a",
 					bscolor: "yellow"
 				},
 				{
-					thumb: "src/assets/images/index/Settings.png",
+					thumb: "static/images/index/Settings.png",
 					title: "行政管理",
 					Etitle: "System management",
 					bgcolor: "#5cf79e",

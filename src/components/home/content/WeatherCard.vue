@@ -27,7 +27,7 @@
 					<div class="cloud el-col-sm-12 text-center">
 						<!--<canvas width="80" height="100" id="skyCan">-->
 						<!--</canvas>-->
-						<img src="src/assets/images/index/weather/duoyun.jpg" class="img-responsive" alt="">
+						<img src="static/images/index/weather/duoyun.jpg" class="img-responsive" alt="">
 					</div>
 				</div>
 				<div class="date text-center">

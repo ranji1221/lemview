@@ -23,7 +23,7 @@
     padding: 15px;
 }
 .el-main .home_cards .home_card:hover{
-    background-image:url("../../images/index/navhover.png");
+    background-image:url("~static/images/index/navhover.png");
     background-repeat: no-repeat;
     background-size:cover;
 }

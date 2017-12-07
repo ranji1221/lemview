@@ -141,7 +141,7 @@
     border: solid 1px #f4f4f4;
     border-radius: 50%;
     cursor: pointer;
-    background-image: url(../../images/index/user/user1.jpg);
+    /*background-image: url(../../images/index/user/user1.jpg);*/
     background-size: cover;
     /* overflow: hidden; */
     position: relative;

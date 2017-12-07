@@ -2,15 +2,15 @@
 <div class="block tfoot">
 	<div class="tfoot_btns" v-if='page.tfootbtns.btns'>
 		<span v-if='page.tfootbtns.create' class='create' @click="create_newdata">
-			<img src="../../../assets/images/sys/icons4.png" alt="" />
+			<img src="static/images/sys/icons4.png" alt="" />
 			新建
 		</span>
 		<span v-if='page.tfootbtns.refresh' class='refresh' @click="refresh_data">
-			<img src="../../../assets/images/sys/icons1.png" alt="" />
+			<img src="static/images/sys/icons1.png" alt="" />
 			刷新
 		</span>
 		<span v-if='page.tfootbtns.delete' class='delete' @click="delete_checked">
-			<img src="../../../assets/images/sys/icons2.png" alt="" />
+			<img src="static/images/sys/icons2.png" alt="" />
 			删除
 		</span>
 	</div>

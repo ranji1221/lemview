@@ -1,7 +1,7 @@
 <template>
 	<div class="upload">
 		<div class="title">
-			<img src="~IMG/sys/addrolees4.png" alt="">
+			<img src="static/images/sys/addrolees4.png" alt="">
 		</div>
 		<form>
 			<div class="uploadinput">

@@ -27,6 +27,7 @@ module.exports = {
       'vue$': 'vue/dist/vue.esm.js',
       '@': resolve('src'),
       'IMG': path.resolve(__dirname, '../src/assets/images'), 
+      'static': path.resolve(__dirname, '../static'), 
     }
   },
   module: {

@@ -36,13 +36,13 @@
                 </el-dropdown-item>
               </el-col>
              <el-col :span="9" class="lemon_admin_image">
-               <div class="lemon_admin_image_content el-col-12" ></div>
+               <div class="lemon_admin_image_content el-col-12" style="background-image: url(static/images/index/user/user1.jpg);"></div>
                <div class="lemon_admin_image_font el-col-10 hidden-md-and-down">
                  <span>您好,GIGI</span>
                </div>
              </el-col>
                <el-col :span="5" class="lemon_admin_output hidden-md-and-down">
-                 <img src="../../../assets/images/index/out.png" alt="">
+                 <img src="static/images/index/out.png" alt="">
                </el-col>
             </div>
           </el-col>

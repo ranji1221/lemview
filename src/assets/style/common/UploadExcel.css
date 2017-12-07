@@ -1,4 +1,3 @@
-
 .upload{
 	width:100%;
 	/*height:;*/
@@ -46,7 +45,7 @@
 .upload .uploadhelp:before{
 	content: '';
 	position: absolute;
-	top:-0.22rem;
+	top:-0.21rem;
 	left:0.25rem;
 	width:0;
 	height:0;
@@ -79,7 +78,7 @@
 .upload .selectfile{
 	width:1.1rem;
 	height:0.44rem;
-	background:url(~IMG/sys/addrolees6.png) no-repeat center;
+	background:url(~static/images/sys/addrolees6.png) no-repeat center;
 	background-size: cover;
 	line-height: 0.44rem;
 	text-align: center;
@@ -94,7 +93,7 @@
 .upload .uploadfile{
 	width:1.1rem;
 	height:0.44rem;
-	background:url(~IMG/sys/addrolees7.png) no-repeat center;
+	background:url(~static/images/sys/addrolees7.png) no-repeat center;
 	background-size: cover;
 	line-height: 0.44rem;
 	text-align: center;

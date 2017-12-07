@@ -9,7 +9,7 @@
 		</div>
 		<div class="row-content">
 			<div class="col-img">
-				<img src="src/assets/images/index/newIssue.jpg" alt="">
+				<img src="static/images/index/newIssue.jpg" alt="">
 			</div>
 			<div class="col-text text-justify">
 				<p>小米商城直营小米公司旗下所有产品，囊括小米手机系列小米6、小米5X、小米MIX，红米手机系列红米4X、红米Note 5A，智能硬件，配件及小小米商城直营小米公司旗下所有产品，囊括小米手机系列小米6、小，红米手机系列红米4X、红米Note 5A，智能硬件，配件及小....
