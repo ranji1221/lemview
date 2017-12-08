@@ -14,7 +14,7 @@
 			删除
 		</span>
 	</div>
-    <el-pagination @size-change="sizeChange" @current-change="currentChange" :current-page.sync="currentPage" :page-size="page.size" layout="prev, pager, next, jumper" :total="page.total">
+    <el-pagination @size-change="sizeChange" @current-change="currentChange" :current-page.sync="page.currentPage" :page-size="page.size" layout="prev, pager, next, jumper" :total="page.total">
     </el-pagination>
   </div>
 </template>
@@ -37,12 +37,12 @@ import "@/assets/style/common/Pagination.css"
       },
       currentChange(){
 //    	console.log(this.currentPage,this.page.size);
-		this.$emit('getCurrentPage',this.currentPage);
+		this.$emit('getCurrentPage',this.page.currentPage);
       },
     },
     data() {
       return {
-        currentPage: 1,
+
       };
     }
   }

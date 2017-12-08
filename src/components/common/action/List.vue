@@ -1,5 +1,17 @@
 <template>
-  <el-table ref="multipleTable" stripe tooltip-effect="dark" style="width: 100%" border :data="tabledata" @selection-change="handleSelectionChange" :default-sort = "{prop: 'id', order: 'descending'}">
+  <el-table 
+  	ref="multipleTable" 
+  	stripe 
+  	tooltip-effect="dark" 
+  	style="width: 100%" 
+  	border :data="tabledata" 
+  	@selection-change="handleSelectionChange" 
+  	:default-sort = "{prop: 'id', order: 'ascending'}" 
+  	v-loading="loading"
+    element-loading-customClass="table_loading"
+    element-loading-text="loading..."
+    element-loading-spinner="el-icon-loading"
+    element-loading-background="rgba(255,255,255, 0.8)">
    		<!--是否包含多选框-->
    		<template v-if="actions.selection">
         <el-table-column :resizable="resizable" align="center" type="selection" class-name="tableAction">
@@ -58,7 +70,7 @@
 </template>
 <script>
 export default {
-  props: ['items', 'tabledata','actions','list'],
+  props: ['items', 'tabledata','actions','list','loading'],
   data() {
     return {
 //  	importLoading: false,
@@ -67,7 +79,7 @@ export default {
     }
   },
   mounted: function() {
-//  console.log(this.items)
+//		this.openloading()
   },
   methods: {
     handleSelectionChange(val) {

@@ -5,7 +5,7 @@
       <!--alert-->
       <lemon-prompt :alerts="alerts"></lemon-prompt>
       <!--表格-->
-      <lemon-list class="rolelist list" :tabledata="tabledatas" :list="list" :items="items" :actions="actions" v-on:getchecked="getchecked"> 
+      <lemon-list class="rolelist list" :tabledata="tabledatas" :list="list" :items="items" :actions="actions" v-on:getchecked="getchecked" :loading="loading"> 
       </lemon-list>
       <!--分页-->
       <lemon-pagination :page="page" v-on:paginationEvent="paginationEvent" v-on:getCurrentPage="getCurrentPage"></lemon-pagination>
@@ -36,6 +36,10 @@ import LemonPagination from '@/components/common/action/Pagination.vue';
 import LemonModal from '@/components/common/action/Modal.vue';
 import "@/assets/style/common/list.css"
 import { mapState,mapMutations,mapGetters,mapActions} from 'vuex';
+import data from '@/util/mock';
+
+
+
 
 export default {
   components: {
@@ -46,6 +50,28 @@ export default {
 	...mapGetters(["modal_id"]),
   },
   created(){
+  	// 为给定 ID 的 user 创建请求
+  	this.loading=true;
+	this.$http({
+	    method: 'get',
+		url: 'http://data.cn',
+		data: {
+		    listName: 'rolelist',
+		    page: 1,
+		    pageSize:this.page.size,
+		}
+  	}).then(function (response) {
+	  	this.tabledatas=response.data.tabledatas;
+  		setTimeout(()=>{			  		
+	  		this.loading=false;
+	  	},2000)
+	}.bind(this)).catch(function (error) {
+	    console.log(error);
+	}.bind(this));
+	  
+	  
+  
+  
     this.$root.eventHub.$off('delelistitem')
     this.$root.eventHub.$off("createmodaling")
 //	监听列表删除事件
@@ -78,7 +104,22 @@ export default {
   		if(actiontype=='create'){
   			console.log('create')
   		}else if(actiontype=='refresh'){
-  			console.log('refresh')			
+  			this.loading=true;
+			this.$http({
+			    method: 'get',
+				url: 'http://data.cn',
+				data: {
+//				    firstName: 'Fred',
+//				    lastName: 'Flintstone'
+				}
+		  	}).then(function (response) {
+			  	this.tabledatas=response.data.tabledatas;
+			  	setTimeout(()=>{			  		
+			  		this.loading=false;
+			  	},2000)
+			}.bind(this)).catch(function (error) {
+			    console.log(error);
+			}.bind(this));			
   		}else if(actiontype=='delete'){
   			if(!this.checkedId.length){
 	      		this.$confirm('请选中删除项', '提示', {
@@ -364,10 +405,12 @@ export default {
       breadcrumb:{
       	search:true,    	
       },
+      loading:false,
 //    分页数据
       page: {
         size: 10,
         total: 19,
+        currentPage: 1,
         tfootbtns:{
         	btns:true,//是否添加按钮组
         	create:true,//新建按钮
@@ -381,32 +424,33 @@ export default {
         type: 'info'
       }],
 //    表格数据
-      tabledatas:[
-        {
-          id:'01',
-          name:"首页2",
-          fath:"首页14",
-          rowType: '角色'
-        },
-        {
-          id:'02',
-          name:"首页5",
-          fath:"首页1",
-          rowType: '角色'
-        },
-        {
-          id:'03',
-          name:"首页1",
-          fath:"首页177",
-          rowType: '角色'
-        },
-        {
-          id:'04',
-          name:"首页8",
-          fath:"首页19",
-          rowType: '角色'
-        }
-      ],
+      tabledatas:[],
+//    tabledatas:[
+//      {
+//        id:'01',
+//        name:"首页2",
+//        fath:"首页14",
+//        rowType: '角色'
+//      },
+//      {
+//        id:'02',
+//        name:"首页5",
+//        fath:"首页1",
+//        rowType: '角色'
+//      },
+//      {
+//        id:'03',
+//        name:"首页1",
+//        fath:"首页177",
+//        rowType: '角色'
+//      },
+//      {
+//        id:'04',
+//        name:"首页8",
+//        fath:"首页19",
+//        rowType: '角色'
+//      }
+//    ],
       //表头项
       items: [
       {

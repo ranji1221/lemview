@@ -7,9 +7,10 @@ import './assets/style/common/common.css'
 import './assets/style/fonts/iconfont.css'
 import 'element-ui/lib/theme-chalk/display.css'
 import store from './store/index'
+import axios from 'axios'
 
 Vue.use(ElementUI)
-
+Vue.prototype.$http=axios
 
 new Vue({
   el: '#app',
