@@ -53,15 +53,15 @@ export default {
   	// 为给定 ID 的 user 创建请求
   	this.loading=true;
 	this.$http({
-	    method: 'get',
-		url: 'http://data.cn',
+	    method: 'post',
+		url: '/liquid/role/data',
 		data: {
 		    listName: 'rolelist',
 		    page: 1,
 		    pageSize:this.page.size,
 		}
   	}).then(function (response) {
-	  	this.tabledatas=response.data.tabledatas;
+	  	this.tabledatas=response.data.rows;
   		setTimeout(()=>{			  		
 	  		this.loading=false;
 	  	},2000)
@@ -113,7 +113,7 @@ export default {
 //				    lastName: 'Flintstone'
 				}
 		  	}).then(function (response) {
-			  	this.tabledatas=response.data.tabledatas;
+			  	this.tabledatas=response.data.rows;
 			  	setTimeout(()=>{			  		
 			  		this.loading=false;
 			  	},2000)
@@ -425,33 +425,6 @@ export default {
       }],
 //    表格数据
       tabledatas:[],
-//    tabledatas:[
-//      {
-//        id:'01',
-//        name:"首页2",
-//        fath:"首页14",
-//        rowType: '角色'
-//      },
-//      {
-//        id:'02',
-//        name:"首页5",
-//        fath:"首页1",
-//        rowType: '角色'
-//      },
-//      {
-//        id:'03',
-//        name:"首页1",
-//        fath:"首页177",
-//        rowType: '角色'
-//      },
-//      {
-//        id:'04',
-//        name:"首页8",
-//        fath:"首页19",
-//        rowType: '角色'
-//      }
-//    ],
-      //表头项
       items: [
       {
         id: 1,
@@ -462,13 +435,13 @@ export default {
       },
       {
         id: 2,
-        prop:'name',
+        prop:'displayName',
         label: "名称",
         sort:true,
       },
       {
         id: 3,
-        prop:'fath',
+        prop:'rolePName',
         label:"父菜单",
         sort:true,
       },
