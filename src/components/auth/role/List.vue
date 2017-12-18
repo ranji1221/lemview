@@ -36,9 +36,6 @@ import LemonPagination from '@/components/common/action/Pagination.vue';
 import LemonModal from '@/components/common/action/Modal.vue';
 import "@/assets/style/common/list.css"
 import { mapState,mapMutations,mapGetters,mapActions} from 'vuex';
-import data from '@/util/mock';
-
-
 
 
 export default {
