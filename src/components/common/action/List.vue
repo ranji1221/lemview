@@ -130,7 +130,7 @@ export default {
 	  },
 	  handleLookremarks(index,row){
 //	  	console.log(index,row,this.list);
-	  	this.$alert(row.remarks, '查看数据库备注信息', {
+	  	  this.$alert(row.remarks, '查看数据库备注信息', {
 //        confirmButtonText: '确定',
           showConfirmButton:false,
           customClass:'Lookremarks',

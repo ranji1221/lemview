@@ -116,6 +116,7 @@ export default {
   	},
 //	获取列表数据方法
   	getlistdata(page){
+  		this.loading=true;
   		// 获取列表数据（第？页）
 		this.$http({
 		    method: 'post',
