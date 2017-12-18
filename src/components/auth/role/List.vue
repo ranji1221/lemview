@@ -51,7 +51,6 @@ export default {
   },
   created(){
 //  获取列表总数计算页码数量
-	// 获取列表数据（第？页）
 	this.$http({
 	    method: 'post',
 		url: this.pagetotalURL,
@@ -65,6 +64,7 @@ export default {
 	}.bind(this)).catch(function (error) {
 	    console.log(error);
 	}.bind(this));
+	console.log(12312)
 //  获取列表数据（第一页）
 	this.getlistdata(1)
 //	移除监听事件
@@ -460,7 +460,7 @@ export default {
 //    分页数据
       page: {
         size: 10,
-        total: 19,
+        total: 0,
         currentPage: 1,
         tfootbtns:{
         	btns:true,//是否添加按钮组
