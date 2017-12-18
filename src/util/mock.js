@@ -9,8 +9,7 @@ export default Mock.mock('/liquid/role/data', {
           rowType: '角色'
         }
       ],
-      page:{
-      	total:56,
-      }
+      total:56,
+      
 
 });

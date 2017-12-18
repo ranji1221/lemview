@@ -50,21 +50,6 @@ export default {
 	...mapGetters(["modal_id"]),
   },
   created(){
-//  获取列表总数计算页码数量
-	this.$http({
-	    method: 'post',
-		url: this.pagetotalURL,
-		data: {
-		    listName: this.list,
-		}
-    }).then(function (response) {
-
-	  	this.page.total=response.data.page.total;
-  		
-	}.bind(this)).catch(function (error) {
-	    console.log(error);
-	}.bind(this));
-	console.log(12312)
 //  获取列表数据（第一页）
 	this.getlistdata(1)
 //	移除监听事件
@@ -99,6 +84,7 @@ export default {
 		this.$http({
 		    method: 'post',
 			url: this.searchURL,
+			headers: {'Content-Type': 'application/x-www-form-urlencoded'},
 			data: {
 			    listName: this.list,
 			    page:1,
@@ -121,6 +107,7 @@ export default {
 		this.$http({
 		    method: 'post',
 			url: this.datalistURL,
+			headers: {'Content-Type': 'application/x-www-form-urlencoded'},
 			data: {
 			    listName: this.list,
 			    page:page,
@@ -128,6 +115,8 @@ export default {
 			}
 	    }).then(function (response) {
 		  	this.tabledatas=response.data.rows;
+	  		this.page.total=response.data.total;
+		  	
 	  		setTimeout(()=>{			  		
 		  		this.loading=false;
 		  	},1000)
@@ -140,6 +129,7 @@ export default {
 		this.$http({
 		    method: 'post',
 			url: this.deleteURL,
+			headers: {'Content-Type': 'application/x-www-form-urlencoded'},
 			data: {
 			    listName: this.list,
 			    id:id,
@@ -449,7 +439,6 @@ export default {
       datalistURL:'/liquid/role/data',
       searchURL:'/liquid/role/data/search',
       deleteURL:'/liquid/role/data/delete',
-      pagetotalURL:'/liquid/role/data',
       checkedId:[],
       list:"rolelist",
       breadcrumb:{
