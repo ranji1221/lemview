@@ -1,7 +1,7 @@
 <template>
     <div class='listpagewrap'>
       <!--面包屑-->
-      <lemon-breadcrumb :breadcrumb="breadcrumb"></lemon-breadcrumb>
+      <lemon-breadcrumb :breadcrumb="breadcrumb" v-on:searchingfor="searchingfor"></lemon-breadcrumb>
       <!--alert-->
       <lemon-prompt :alerts="alerts"></lemon-prompt>
       <!--表格-->
@@ -36,6 +36,9 @@ import LemonPagination from '@/components/common/action/Pagination.vue';
 import LemonModal from '@/components/common/action/Modal.vue';
 import "@/assets/style/common/list.css"
 import { mapState,mapMutations,mapGetters,mapActions} from 'vuex';
+//本地测试要用下面import代码
+import data from '@/util/mock';
+
 
 
 export default {
@@ -47,28 +50,24 @@ export default {
 	...mapGetters(["modal_id"]),
   },
   created(){
-  	// 为给定 ID 的 user 创建请求
-  	this.loading=true;
+//  获取列表总数计算页码数量
+	// 获取列表数据（第？页）
 	this.$http({
 	    method: 'post',
-		url: '/liquid/role/data',
+		url: this.pagetotalURL,
 		data: {
-		    listName: 'rolelist',
-		    page: 1,
-		    pageSize:this.page.size,
+		    listName: this.list,
 		}
-  	}).then(function (response) {
-	  	this.tabledatas=response.data.rows;
-  		setTimeout(()=>{			  		
-	  		this.loading=false;
-	  	},2000)
+    }).then(function (response) {
+
+	  	this.page.total=response.data.page.total;
+  		
 	}.bind(this)).catch(function (error) {
 	    console.log(error);
 	}.bind(this));
-	  
-	  
-  
-  
+//  获取列表数据（第一页）
+	this.getlistdata(1)
+//	移除监听事件
     this.$root.eventHub.$off('delelistitem')
     this.$root.eventHub.$off("createmodaling")
 //	监听列表删除事件
@@ -76,6 +75,7 @@ export default {
     	this.tabledatas=this.tabledatas.filter(function(item){
     		return item.id!==rowid;
     	})
+    	this.sendDeleteId(rowid);
 //  	console.log(rowid,list);
     }.bind(this)); 	
 //	监听列表点击打开模态框事件(先经过了mission的过滤)
@@ -92,31 +92,75 @@ export default {
   methods: {
   	...mapMutations(['create_modal_id','is_mask','create_modal','close_modal']),
   	...mapActions(['addAction']),
-//	获取分页中当前页码
-	getCurrentPage(page){
-		console.log(page)
+//	获取搜索数据
+  	searchingfor(searching){
+  		console.log(searching);
+  		// 获取列表数据（第？页）
+		this.$http({
+		    method: 'post',
+			url: this.searchURL,
+			data: {
+			    listName: this.list,
+			    page:1,
+			    pageSize:this.page.size,
+			    name_like:searching,
+			}
+	    }).then(function (response) {
+		  	this.tabledatas=response.data.rows;
+	  		setTimeout(()=>{			  		
+		  		this.loading=false;
+		  	},1000)
+		}.bind(this)).catch(function (error) {
+		    console.log(error);
+		}.bind(this));
+  	},
+//	获取列表数据方法
+  	getlistdata(page){
+  		// 获取列表数据（第？页）
+		this.$http({
+		    method: 'post',
+			url: this.datalistURL,
+			data: {
+			    listName: this.list,
+			    page:page,
+			    pageSize:this.page.size,
+			}
+	    }).then(function (response) {
+		  	this.tabledatas=response.data.rows;
+	  		setTimeout(()=>{			  		
+		  		this.loading=false;
+		  	},1000)
+		}.bind(this)).catch(function (error) {
+		    console.log(error);
+		}.bind(this));
+  	},
+  	//	发送删除id
+  	sendDeleteId(id){
+		this.$http({
+		    method: 'post',
+			url: this.deleteURL,
+			data: {
+			    listName: this.list,
+			    id:id,
+			}
+	    }).then(function (response) {
+		  	
+		}.bind(this)).catch(function (error) {
+		    console.log(error);
+		}.bind(this));
+  	},
+//	获取分页点击事件中及当前页码
+    getCurrentPage(currentPage){
+//		console.log(currentPage)
+		this.getlistdata(currentPage)
 	},
 //	映射分页触发的事件
   	paginationEvent(actiontype){
   		if(actiontype=='create'){
   			console.log('create')
   		}else if(actiontype=='refresh'){
-  			this.loading=true;
-			this.$http({
-			    method: 'get',
-				url: 'http://data.cn',
-				data: {
-//				    firstName: 'Fred',
-//				    lastName: 'Flintstone'
-				}
-		  	}).then(function (response) {
-			  	this.tabledatas=response.data.rows;
-			  	setTimeout(()=>{			  		
-			  		this.loading=false;
-			  	},2000)
-			}.bind(this)).catch(function (error) {
-			    console.log(error);
-			}.bind(this));			
+  			// 获取列表数据（第一页）
+			this.getlistdata(1)			
   		}else if(actiontype=='delete'){
   			if(!this.checkedId.length){
 	      		this.$confirm('请选中删除项', '提示', {
@@ -135,9 +179,13 @@ export default {
 				      cancelButtonText: '取消',
 				      type: 'warning'
 				}).then(() => {
+//					后台传值删除
+//					console.log(this.checkedId);
+					this.sendDeleteId(this.checkedId);
+//					前台过滤
 					this.tabledatas=this.tabledatas.filter((item)=>{
 			    		return !this.checkedId.includes(item.id);
-			    	})
+			    	})					
 				    this.$message({
 				        type: 'success',
 				        message: '删除成功!'
@@ -397,12 +445,17 @@ export default {
   },
   data() {
     return {
+      datalistURL:'/liquid/role/data',
+      searchURL:'/liquid/role/data/search',
+      deleteURL:'/liquid/role/data/delete',
+      pagetotalURL:'/liquid/role/data',
       checkedId:[],
       list:"rolelist",
       breadcrumb:{
-      	search:true,    	
+      	search:true,   
+      	searching:'',
       },
-      loading:false,
+      loading:true,
 //    分页数据
       page: {
         size: 10,
@@ -423,13 +476,13 @@ export default {
 //    表格数据
       tabledatas:[],
       items: [
-      {
-        id: 1,
-        prop:'id',
-        label: "编号",
-        sort:true
-
-      },
+//    {
+//      id: 1,
+//      prop:'id',
+//      label: "编号",
+//      sort:true
+//
+//    },
       {
         id: 2,
         prop:'displayName',
@@ -445,6 +498,7 @@ export default {
       ],
       actions:{
       	selection:true,
+      	number:true,
       	view:true,
       	edit:true,
       	dele:true,

@@ -25,14 +25,14 @@
 		</el-breadcrumb>
 		
 		<div class="bread_search" v-if="breadcrumb.search">
-		     <el-input placeholder="搜索你想找到的..." v-model="searching" class="input-with-select">
+		    <el-input placeholder="搜索你想找到的..." v-model="searching" class="input-with-select">
 			    <!--<el-select v-model="select" slot="prepend" placeholder="请选择">
 			        <el-option label="餐厅名" value="1"></el-option>
 			        <el-option label="订单号" value="2"></el-option>
 			        <el-option label="用户电话" value="3"></el-option>
 			    </el-select>-->
 			    <!--<el-button slot="append" icon="el-icon-search">-->
-			    <el-button slot="append">
+			    <el-button slot="append" @click="searchingfor">
 			    	<img src="static/images/sys/iconsearch.png" alt="" />
 			    </el-button>
 			</el-input>
@@ -58,6 +58,9 @@ import {mapMutations} from 'vuex';
     },
     methods:{
     	...mapMutations(['route_click']),
+    	searchingfor(){
+      		this.$emit('searchingfor',this.searching)     		
+    	},
     	backhome(){
 //  		手动跳转
 			this.route_click();

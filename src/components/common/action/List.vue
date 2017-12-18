@@ -17,6 +17,9 @@
         <el-table-column :resizable="resizable" align="center" type="selection" class-name="tableAction">
         </el-table-column>
       </template>
+      <!--是否添加编号-->
+      <el-table-column type="index" :index="1" align="center" label="编号" v-if="actions.number"></el-table-column>
+      <!--<el-table-column type="index" :index="indexMethod" v-if="actions.number"></el-table-column>-->
       <!--循环数据-->
 	    <el-table-column v-for="item in items" :width="item.width?item.width:'auto'" :resizable="resizable"	 align="center" :key="item.id" :label="item.label" :sortable="item.sort" :prop="item.prop" :class-name="item.class">
 	    </el-table-column>
@@ -80,6 +83,7 @@ export default {
   },
   mounted: function() {
 //		this.openloading()
+			console.log(this.loading)
   },
   methods: {
     handleSelectionChange(val) {
@@ -105,7 +109,7 @@ export default {
 		handleAult(index, row) {
 //	  	console.log(index,row,this.list);
 		    this.$root.eventHub.$emit('openmodal',row.id,'ault',this.list)
-		  },
+		},
 	  handleDele(index, row) {
 	    this.$confirm('此操作将永久删除该'+row.rowType+', 是否继续?', '提示', {
 	      confirmButtonText: '确定',
