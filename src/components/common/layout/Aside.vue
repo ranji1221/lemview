@@ -17,7 +17,7 @@
 		<!--导航-->
 		<!--  <div style="min-height:4.5rem;">-->
 		<template v-for="item in navlist" v-if="item.pid==0">
-			<el-submenu :index="item.lid.toString()" key="item.lid">
+			<el-submenu :index="item.lid.toString()">
 				<template slot="title">
 					<div class="rightborder"></div>
 					<div class="rightarrow"></div>
@@ -27,14 +27,14 @@
 
 				<template v-if="item.level==3">
 					<template v-for="item2 in navlist" v-if="item2.pid==item.lid" >
-						<el-submenu :index="item2.lid.toString()" key="item2.lid">
+						<el-submenu :index="item2.lid.toString()">
 							<template slot="title">
 								<i class="iconfont secondlevel" :class="item2.icon"></i>
 								<span slot="title">{{item2.title}}</span>
 							</template>
 
 							<template v-for="item3 in navlist" v-if="item3.pid==item2.lid">
-								<el-menu-item :index="item3.linkto" key="item3.lid">
+								<el-menu-item :index="item3.linkto">
 									<div class="leftline"></div>
 									<i class="iconfont thirdlevel" :class="item3.icon"></i>
 									<span>{{item3.title}}</span>
@@ -49,7 +49,7 @@
 
 				<template v-if="item.level==2">
 					<template v-for="item4 in navlist" v-if="item4.pid==item.lid">
-						<el-menu-item :index="item4.linkto" key="item4.lid">
+						<el-menu-item :index="item4.linkto">
 							<i class="iconfont secondlevel" :class="item4.icon"></i>
 							<span>{{item4.title}}</span>
 						</el-menu-item>
