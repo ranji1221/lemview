@@ -105,14 +105,22 @@ export default {
   		this.loading=true;
   		// 获取列表数据（第？页）
 		this.$http({
-		    method: 'post',
+		  method: 'post',
 			url: this.datalistURL,
-			headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-			data: {
+			headers: { 'Content-Type': 'application/x-www-form-urlencoded'},
+			data:{
 			    listName: this.list,
 			    page:page,
-			    pageSize:this.page.size,
-			}
+			    rows:this.page.size,
+			},
+			transformRequest: [function (data) {
+				// Do whatever you want to transform the data
+				let ret = ''
+				for (let it in data) {
+					ret += encodeURIComponent(it) + '=' + encodeURIComponent(data[it]) + '&'
+				}
+				return ret
+			}],
 	    }).then(function (response) {
 		  	this.tabledatas=response.data.rows;
 	  		this.page.total=response.data.total;
@@ -436,9 +444,9 @@ export default {
   },
   data() {
     return {
-      datalistURL:'/liquid/role/data',
-      searchURL:'/liquid/role/data/search',
-      deleteURL:'/liquid/role/data/delete',
+      datalistURL:'api/liquid/role/data',
+      searchURL:'api/liquid/role/data/search',
+      deleteURL:'api/liquid/role/data/delete',
       checkedId:[],
       list:"rolelist",
       breadcrumb:{
